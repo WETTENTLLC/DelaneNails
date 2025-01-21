@@ -28,41 +28,50 @@
     </header>
     <main>
         <div class="news-container">
-            <section id="latest-news">
-                <h2>Latest News</h2>
-                <!-- Real-time information and video updates will go here -->
-                <div class="video-updates">
-                    <h3>Video Updates</h3>
-                    <!-- Placeholder for video updates -->
-                    <video controls>
-                        <source src="path/to/your-video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+            <section id="news-updates">
+                <h1>News & Updates</h1>
+                <div class="quilt-blocks">
+                  <div class="news-item">
+                    <h2>Latest Event Highlights</h2>
+                    <p>Stay up-to-date with our latest events and achievements. From community outreach to industry expos, DNNC is always at the forefront of excellence.</p>
+                    <div class="floating-modal" onclick="showModal('event-modal')">Read More</div>
+                  </div>
+                  <div class="news-item">
+                    <h2>Featured Blog Post</h2>
+                    <p>Discover insights, tips, and trends in the world of nail care through our curated blog posts. Our experts share their knowledge to help you stay informed.</p>
+                    <div class="floating-modal" onclick="showModal('blog-modal')">Read More</div>
+                  </div>
+                  <!-- Add more news items as needed -->
                 </div>
-            </section>
-            <section id="blog">
-                <h2>Our Blog</h2>
-                <article>
-                    <h3>Innovative Nail Care Techniques</h3>
-                    <p>Discover the latest trends and techniques in nail care, from advanced manicure methods to specialized pedicures. Stay updated with our expert insights.</p>
-                    <a href="blog-post-1.html">Read More</a>
-                </article>
-                <article>
-                    <h3>Sanitary and Safe Services</h3>
-                    <p>Learn about the importance of maintaining high standards of hygiene in nail care. We share our best practices to ensure a safe and relaxing experience for all clients.</p>
-                    <a href="blog-post-2.html">Read More</a>
-                </article>
-                <!-- More blog articles can be added here -->
-            </section>
-            <section id="social-media">
-                <h2>Follow Us on Social Media</h2>
-                <div class="social-links">
-                    <a href="https://www.facebook.com" target="_blank">Facebook</a>
-                    <a href="https://www.instagram.com" target="_blank">Instagram</a>
-                    <a href="https://www.twitter.com" target="_blank">Twitter</a>
+              </section>
+              
+              <!-- Modals -->
+              <div id="event-modal" class="modal">
+                <div class="modal-content">
+                  <span class="close" onclick="closeModal('event-modal')">&times;</span>
+                  <h2>Event Details</h2>
+                  <p>[Placeholder for event details and images]</p>
                 </div>
-            </section>
-        </div>
+              </div>
+              
+              <div id="blog-modal" class="modal">
+                <div class="modal-content">
+                  <span class="close" onclick="closeModal('blog-modal')">&times;</span>
+                  <h2>Blog Post</h2>
+                  <p>[Placeholder for blog post content and images]</p>
+                </div>
+              </div>
+              
+              <script>
+              function showModal(modalId) {
+                document.getElementById(modalId).style.display = "block";
+              }
+              
+              function closeModal(modalId) {
+                document.getElementById(modalId).style.display = "none";
+              }
+              </script>
+              
     </main>
     <footer>
         <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
@@ -79,3 +88,18 @@
     </div>
 </body>
 </html>
+
+
+<section id="gallery">
+    <h1>Our Work</h1>
+    <div class="gallery-item">
+      <img src="path/to/image1.jpg" alt="Gallery Image 1">
+      <p>Description of image 1</p>
+    </div>
+    <div class="gallery-item">
+      <img src="path/to/image2.jpg" alt="Gallery Image 2">
+      <p>Description of image 2</p>
+    </div>
+    <!-- Add more gallery items as needed -->
+  </section>
+  

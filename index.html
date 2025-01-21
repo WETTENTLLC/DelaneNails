@@ -9,32 +9,52 @@
 </head>
 <body>
     <header>
+        <a href="#mainContent" class="skip-link">Skip to content</a>
+
+<!-- Add this near the beginning of the body -->
+
         <div class="header-content">
-            <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+            
             <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="steps-to-success.html">Steps to Success</a></li>
-                </ul>
+                
+
+                <button id="menuToggle" aria-label="Toggle menu">☰</button> <ul id="navMenu"> <li><a href="#welcome">Welcome</a></li> <li><a href="#about">About</a></li> <li><a href="#news-updates">News & Updates</a></li> <li><a href="#faq">FAQ</a></li> <li><a href="#contact">Contact</a></li> </ul>
+                <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+                
+                <button id="darkModeToggle">Toggle Dark Mode</button>
+                <form id="bookingForm">
+                    <!-- Existing booking form fields -->
+                
+                    <!-- New music preference field -->
+                    <label for="music">Preferred Music Type:</label>
+                    <select id="music" name="music">
+                        <option value="classical">Classical</option>
+                        <option value="jazz">Jazz</option>
+                        <option value="pop">Pop</option>
+                        <option value="rock">Rock</option>
+                        <option value="ambient">Ambient</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                
+                    <!-- New special scents/allergies field -->
+                    <label for="scents">Special Scents or Allergies:</label>
+                    <textarea id="scents" name="scents" placeholder="Please specify any preferred scents or allergies"></textarea>
+                
+                    <!-- Submit button -->
+                    <button type="submit">Book Appointment</button>
+                </form>
+                
             </nav>
         </div>
         <h1>Delane's Natural Nail Care</h1>
         <p>Relaxing, Private, Professional and Clean</p>
-        <button class="get-started" onclick="window.location.href='services.html'">GET STARTED</button>
+        <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
     </header>
     <main>
         <div class="grid-container">
             <section id="home" class="grid-item">
                 <h2>Welcome to Delane's Natural Nail Care</h2>
-                <p>Your go-to place for relaxing, private, and professional nail care services. Discover the difference today!</p>
-                <p>Delane's Natural Nail care has been around for over 25 years. What started as a hobby turned into a passion and love for hands and feet health and beauty. Inspired by my grandfather, who passed as the oldest man in the USA at 117, almost 118 (he would say he's 118). Seeing his struggles later in life with foot care and hands definitely inspired and gave me a new found direction when it started as just nails. We offer spa services at regular nail salon prices, showing that you don't have to be insanely pricey to offer great service. Here's more information about the company.</p>
+                <p>Experience the epitome of elegance and health at Delane’s Natural Nail Care. Our sanctuary of beauty and relaxation invites you to indulge in the finest toxin-free nail services, tailored to uplift and rejuvenate. Join us on a journey where excellence meets serenity. Ready to be pampered? Book your appointment today and immerse yourself in pure luxury!</p>
                 <button onclick="window.location.href='about.html'">Learn More</button>
             </section>
             <section id="pivot" class="grid-item">
@@ -79,3 +99,19 @@
     </div>
 </body>
 </html>
+
+<img src="low-res-placeholder.jpg" data-src="high-res-image.jpg" alt="Description" class="lazy">
+
+
+<!-- HTML -->
+<div class="hamburger-menu">
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <nav class="menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  

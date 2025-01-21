@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Popup Modal Styles */
+        .service-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .service-modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -114,5 +156,173 @@
             </form>
         </div>
     </div>
-
+    <div id="spa-pedicure" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close" onclick="closeServiceModal('spa-pedicure')">&times;</span>
+            <h3>Spa Pedicure</h3>
+            <p>Indulge in our spa pedicure featuring a soothing foot soak, nail shaping, cuticle care, exfoliation, a relaxing foot massage, and polish application. We prioritize the health and care of your feet.</p>
+            <form>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist[_{{{CITATION{{{_1{](https://github.com/naikrudresh/internship2020.github.io/tree/5f8854cf528016971982c28ed3f815d818e65be9/query.php)[_{{{CITATION{{{_2{](https://github.com/azkanab/pokedex/tree/de98e1e9386034ef0442e38ed4f4b8d7f1a80ccf/src%2Fstyle%2FMyPokemon%2FRemoveModal.js)[_{{{CITATION{{{_3{](https://github.com/brillianodhiya/Berkat-Kasih-Damai-V2/tree/5b4d63fcb2e7321cd51fe69419a971e8b08e6f45/components%2FDaftar.js)[_{{{CITATION{{{_4{](https://github.com/thatsenam/resturant-laravel/tree/d679bbced7526ee4a5c13dea664a7dd22817a9cf/resources%2Fviews%2Fadmin%2Ffoodavailability.blade.php)[_{{{CITATION{{{_5{](https://github.com/kanghanan/imkc/tree/ff4b198ee4bcaceba7e8383507e0ad08c098bbaf/application%2Fviews%2Fheader.php)[_{{{CITATION{{{_6{](https://github.com/tonycops/lalala/tree/f4221a6d39de4464e868bede644c2d31f4343c86/application%2Fviews%2Fhalaman%2Fadmin-product.php)[_{{{CITATION{{{_7{](https://github.com/engineernyallah/uhakika/tree/3fa19bc72d75d9ae6c92f018ab526b147b164161/functions%2Fcomponents%2FsignupForm.component.js)[_{{{CITATION{{{_8{](https://github.com/toshiro-en-miyamoto/responsive/tree/4a400cc47b355d1c755114fafab8d4e583e0275c/HTML5%2F4-4_Grouping.md)[_{{{CITATION{{{_9{](https://github.com/biancabirsan/car-insurance/tree/bd14fbf8a2891b6502d108d0ddd3de1e5379aa3f/result.php)[_{{{CITATION{{{_10{](https://github.com/Eblazecode/HOHbornfire/tree/97144935461a8707f477c8ee2cf24a165e943239/storage%2Fframework%2Fviews%2Fb73fecb6f61be40f24298138a5ab6eb1323f95ae.php)[_{{{CITATION{{{_11{](https://github.com/gurnoors/272Project/tree/5fd1fe563cacebbbd4455738f625022e814b3e16/contacts.php)[_{{{CITATION{{{_12{](https://github.com/Kantnathan/mhm2/tree/0c079c76ea41a008160f5cb80998d5967252fbcb/application%2Fthemes%2Fdefault.php)[_{{{CITATION{{{_13{](https://github.com/rishivishwa/Laravel/tree/22ab6529ecfcfecb722c34313274caf6ff88d5c9/testallied%2Fresources%2Fviews%2Flayouts%2Ffooter.blade.php)[_{{{CITATION{{{_14{](https://github.com/shivaconceptsolution/Codeignitersession8-9/tree/266154c6da8e672fbfd023ebf9517512e57d8f7f/views%2Ftheme%2Fheader.php)[_{{{CITATION{{{_15{](https://github.com/niravshah/refrew-gui/tree/c64679dc14a49835e928b6a725138611e9c96f17/img%2Fimages%2Fimages%2Fsocial%2Fimages%2Fjavascripts%2Fskrollr.ie.min.js)                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </div>
+    </div>
+    <div id="manicure-pedicure" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close" onclick="closeServiceModal('manicure-pedicure')">&times;</span>
+            <h3>Manicure & Pedicure</h3>
+            <p>Enjoy both manicure and pedicure services together, ensuring complete care for your hands and feet.</p>
+            <form>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </div>
+    </div>
+    <div id="specialized-foot-treatments" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close" onclick="closeServiceModal('specialized-foot-treatments')">&times;</span>
+            <h3>Specialized Foot Treatments</h3>
+            <p>Our specialized foot treatments are designed to address specific concerns such as calluses, cracked heels, and foot pain. These treatments include exfoliation, hydration, and targeted care to ensure your feet are healthy and beautiful.</p>
+            <form>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </div>
+    </div>
+    <div id="paraffin-aroma-vapors" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close" onclick="closeServiceModal('paraffin-aroma-vapors')">&times;</span>
+            <h3>Paraffin Aroma Vapors Treatment</h3>
+            <p>Enjoy the ultimate relaxation with our paraffin aroma vapors treatment. This service includes a soothing paraffin wax dip, infused with essential oils to hydrate and soften your skin.</p>
+            <form>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </div>
+    </div>
+    <div id="deep-moisturizing" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close" onclick="closeServiceModal('deep-moisturizing')">&times;</span>
+            <h3>Deep Moisturizing Hand & Feet Treatment</h3>
+            <p>This treatment provides intense hydration for your hands and feet, leaving your skin feeling soft and rejuvenated.</p>
+            <form>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </div>
+    </div>
+    <div id="prosthetic-toenail-remedies" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close" onclick="closeServiceModal('prosthetic-toenail-remedies')">&times;</span>
+            <h3>Prosthetic Toenail Remedies</h3>
+            <p>We offer prosthetic remedies for missing toenails. Our expert technicians will provide custom solutions that look natural and feel comfortable.</p>
+            <form>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </div>
+    </div>
+    <div id="candys-touch" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close" onclick="closeServiceModal('candys-touch')">&times;</span>
+            <h3>Candy's Touch</h3>
+            <p>A signature service that combines nail care with a personalized touch, ensuring a unique and delightful experience.</p>
+            <form>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </div>
+    </div>
+    <div id="private-parties" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close" onclick="closeServiceModal('private-parties')">&times;</span>
+            <h3>Private Parties</h3>
+            <p>Host a private nail party with your friends or family. Enjoy our luxurious nail services in a private setting, complete with complimentary champagne and personalized attention.</p>
+            <form>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist 2</                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </div>
+    </div>
     
+   

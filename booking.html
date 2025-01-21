@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delane's Natural Nail Care - Book Your Appointment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="news.html">News & Updates</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="steps-to-success.html">Steps to Success</a></li>
+                </ul>
+            </nav>
+        </div>
+        <h1>Book Your Appointment</h1>
+    </header>
+    <main>
+        <section id="booking-form" class="grid-item">
+            <h2>Book Your Appointment</h2>
+            <form id="bookingForm">
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="stylist">Select Stylist:</label><br>
+                <select id="stylist" name="stylist" required>
+                    <option value="stylist1">Stylist 1</option>
+                    <option value="stylist2">Stylist 2</option>
+                </select><br>
+                <label for="coupon">Coupon Code:</label><br>
+                <input type="text" id="coupon" name="coupon"><br>
+                <button type="submit">Book & Pay</button>
+            </form>
+        </section>
+        <section id="preferences-form" class="floating-frame">
+            <div class="preferences-container">
+                <h3>Preferred Music & Scents</h3>
+                <form id="preferencesForm">
+                    <label for="music">Preferred Music:</label><br>
+                    <input type="text" id="music" name="music"><br>
+                    <label for="scents">Preferred Scents:</label><br>
+                    <input type="text" id="scents" name="scents"><br>
+                    <button type="submit">Save Preferences</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
+        <nav>
+            <ul>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <div class="donation-frame">
+        <p>Support Steps to Success</p>
+        <a href="steps-to-success.html">Donate Now</a>
+    </div>
+    <script>
+        function openServiceModal(serviceId) {
+            var modal = document.getElementById(serviceId);
+            modal.style.display = "block";
+        }
+
+        function closeServiceModal(serviceId) {
+            var modal = document.getElementById(serviceId);
+            modal.style.display = "none";
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            var modals = document.getElementsByClassName("service-modal");
+            for (var i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
