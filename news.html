@@ -7,117 +7,75 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
-    <div class="header-content">
-        <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="news.html">News & Updates</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
-        <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
-        <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
-    </div>
-</header>
+    <header>
+        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
+        <div class="header-content">
+            <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="news.html">News & Updates</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
+        </div>
+    </header>
 
-    <main>
-        <!-- News Section -->
+    <main id="mainContent">
+        <div class="news-header">
+            <h2>News & Updates</h2>
+            <button class="hiring-btn" onclick="window.location.href='hiring.html'">We're Hiring!</button>
+        </div>
+
+        <!-- News Items in Staggered Octagon Layout -->
         <div class="news-container">
-            <section id="news-updates">
-                <h1>News & Updates</h1>
-                <div class="quilt-blocks">
-                    <div class="news-item">
-                        <h2>Latest Event Highlights</h2>
-                        <p>Stay up-to-date with our latest events and achievements. From community outreach to industry expos, DNNC is always at the forefront of excellence.</p>
-                        <div class="floating-modal" onclick="showModal('event-modal')" aria-label="Read More about Event Highlights">Read More</div>
-                    </div>
-                    <div class="news-item">
-                        <h2>Featured Blog Post</h2>
-                        <p>Discover insights, tips, and trends in the world of nail care through our curated blog posts. Our experts share their knowledge to help you stay informed.</p>
-                        <div class="floating-modal" onclick="showModal('blog-modal')" aria-label="Read More about Featured Blog Post">Read More</div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Gallery Section -->
-        <section id="gallery">
-            <h1>Our Work</h1>
-            <div class="gallery-item">
-                <figure>
-                    <img src="path/to/image1.jpg" alt="Gallery Image 1">
-                    <figcaption>Description of image 1</figcaption>
-                </figure>
+            <div class="news-frame octagon stagger-left">
+                <h3>Launch of Truth and Freedom Nail Polish Line</h3>
+                <p>Delane's Natural Nail Care is proud to introduce our latest nail polish line, Truth and Freedom, focusing on health-conscious beauty.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
             </div>
-            <div class="gallery-item">
-                <figure>
-                    <img src="path/to/image2.jpg" alt="Gallery Image 2">
-                    <figcaption>Description of image 2</figcaption>
-                </figure>
+            <div class="news-frame octagon stagger-right">
+                <h3>New Senior Wellness Packages</h3>
+                <p>We now offer specialized wellness packages designed for seniors, emphasizing health-first care and relaxation.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
             </div>
-        </section>
-
-        <!-- Modals -->
-        <div id="event-modal" class="modal" role="dialog" aria-labelledby="event-title" aria-hidden="true">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('event-modal')" aria-label="Close Modal">&times;</span>
-                <h2 id="event-title">Event Details</h2>
-                <p>[Placeholder for event details and images]</p>
+            <div class="news-frame octagon stagger-left">
+                <h3>Exciting Partnerships</h3>
+                <p>We’ve partnered with local organizations to bring affordable nail care to underserved communities.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
             </div>
-        </div>
-        <div id="blog-modal" class="modal" role="dialog" aria-labelledby="blog-title" aria-hidden="true">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('blog-modal')" aria-label="Close Modal">&times;</span>
-                <h2 id="blog-title">Blog Post</h2>
-                <p>[Placeholder for blog post content and images]</p>
+            <div class="news-frame octagon stagger-right">
+                <h3>Staff Certification Updates</h3>
+                <p>All our technicians are now certified in advanced prosthetic nail care to better serve our clients.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
+            </div>
+            <div class="news-frame octagon stagger-left">
+                <h3>Eco-Friendly Initiative</h3>
+                <p>We’ve committed to sustainability by incorporating eco-friendly materials in our packaging and services.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
             </div>
         </div>
     </main>
+
     <footer>
         <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
         <nav>
-            <ul aria-label="Footer Navigation">
+            <ul>
                 <li><a href="privacy.html">Privacy Policy</a></li>
                 <li><a href="terms.html">Terms of Service</a></li>
             </ul>
         </nav>
     </footer>
+
     <div class="donation-frame">
         <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
+        <a href="steps-to-success.html" class="donate-btn">Donate Now</a>
     </div>
-
-    <script>
-        // Show Modal Function
-        function showModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = "block";
-            modal.setAttribute("aria-hidden", "false");
-        }
-
-        // Close Modal Function
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = "none";
-            modal.setAttribute("aria-hidden", "true");
-        }
-
-        // Close modals with Escape key
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                    modal.setAttribute("aria-hidden", "true");
-                });
-            }
-        });
-    </script>
 </body>
 </html>

@@ -149,3 +149,77 @@ self.addEventListener('activate', (event) => {
     );
     return self.clients.claim();
 });
+
+
+// Close modal on 'Esc' key press
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modals = document.querySelectorAll('.service-modal');
+        modals.forEach(modal => {
+            modal.style.display = "none";
+        });
+    }
+});
+
+
+// Modal open and close functionality
+function openServiceModal(serviceId) {
+    const modal = document.getElementById(serviceId);
+    modal.setAttribute('aria-hidden', 'false');
+    modal.querySelector('.service-modal-content').focus();
+}
+
+function closeServiceModal(serviceId) {
+    const modal = document.getElementById(serviceId);
+    modal.setAttribute('aria-hidden', 'true');
+}
+
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        document.querySelectorAll('.service-modal[aria-hidden="false"]').forEach(modal => {
+            modal.setAttribute('aria-hidden', 'true');
+        });
+    }
+});
+
+window.onclick = function(event) {
+    const modals = document.querySelectorAll('.service-modal[aria-hidden="false"]');
+    modals.forEach(modal => {
+        if (event.target === modal) {
+            modal.setAttribute('aria-hidden', 'true');
+        }
+    });
+};
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.querySelector('.carousel-control.prev');
+    const nextButton = document.querySelector('.carousel-control.next');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = i === index ? 'block' : 'none';
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+
+    // Auto-rotate slides every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Initialize the carousel
+    showSlide(currentIndex);
+});

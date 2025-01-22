@@ -5,76 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Popup Modal Styles */
-        .service-modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        .service-modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-    <script>
-        function openServiceModal(serviceId) {
-            document.getElementById(serviceId).style.display = "block";
-        }
-
-        function closeServiceModal(serviceId) {
-            document.getElementById(serviceId).style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.service-modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
-        }
-    </script>
 </head>
 <body>
     <header>
-        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
+        <a href="#mainContent" class="skip-link">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
                     <li><a href="news.html">News & Updates</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -82,62 +23,36 @@
             </nav>
             <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
             <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
-            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
+            <button class="get-started" onclick="window.location.href='booking.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
     </header>
-    
+
     <main>
+        <h2 class="page-title">Our Services</h2>
         <div class="services-container">
-            <section id="services" class="grid-item">
-                <h2>Comprehensive Services for Hands & Feet</h2>
-                <div class="service">
-                    <h3>Spa Manicure</h3>
-                    <p>Experience a luxurious manicure that includes nail shaping, cuticle care, exfoliation, a relaxing hand massage, and your choice of polish. Our focus is on the health of your nails and hands.</p>
-                    <button class="book-now" onclick="openServiceModal('spa-manicure')">Book Now</button>
-                </div>
-                <div class="service">
-                    <h3>Spa Pedicure</h3>
-                    <p>Indulge in our spa pedicure featuring a soothing foot soak, nail shaping, cuticle care, exfoliation, a relaxing foot massage, and polish application. We prioritize the health and care of your feet.</p>
-                    <button class="book-now" onclick="openServiceModal('spa-pedicure')">Book Now</button>
-                </div>
-                <div class="service">
-                    <h3>Manicure & Pedicure</h3>
-                    <p>Enjoy both manicure and pedicure services together, ensuring complete care for your hands and feet.</p>
-                    <button class="book-now" onclick="openServiceModal('manicure-pedicure')">Book Now</button>
-                </div>
-                <div class="service">
-                    <h3>Specialized Foot Treatments</h3>
-                    <p>Our specialized foot treatments are designed to address specific concerns such as calluses, cracked heels, and foot pain. These treatments include exfoliation, hydration, and targeted care to ensure your feet are healthy and beautiful.</p>
-                    <button class="book-now" onclick="openServiceModal('specialized-foot-treatments')">Book Now</button>
-                </div>
-                <div class="service">
-                    <h3>Paraffin Aroma Vapors Treatment</h3>
-                    <p>Enjoy the ultimate relaxation with our paraffin aroma vapors treatment. This service includes a soothing paraffin wax dip, infused with essential oils to hydrate and soften your skin.</p>
-                    <button class="book-now" onclick="openServiceModal('paraffin-aroma-vapors')">Book Now</button>
-                </div>
-                <div class="service">
-                    <h3>Deep Moisturizing Hand & Feet Treatment</h3>
-                    <p>This treatment provides intense hydration for your hands and feet, leaving your skin feeling soft and rejuvenated.</p>
-                    <button class="book-now" onclick="openServiceModal('deep-moisturizing')">Book Now</button>
-                </div>
-                <div class="service">
-                    <h3>Prosthetic Toenail Remedies</h3>
-                    <p>We offer prosthetic remedies for missing toenails. Our expert technicians will provide custom solutions that look natural and feel comfortable.</p>
-                    <button class="book-now" onclick="openServiceModal('prosthetic-toenail-remedies')">Book Now</button>
-                </div>
-                <div class="service">
-                    <h3>Candy's Touch</h3>
-                    <p>A signature service that combines nail care with a personalized touch, ensuring a unique and delightful experience.</p>
-                    <button class="book-now" onclick="openServiceModal('candys-touch')">Book Now</button>
-                </div>
-                <div class="service">
-                    <h3>Private Parties</h3>
-                    <p>Host a private nail party with your friends or family. Enjoy our luxurious nail services in a private setting, complete with complimentary champagne and personalized attention.</p>
-                    <button class="book-now" onclick="openServiceModal('private-parties')">Book Now</button>
-                </div>
+            <section class="service-frame" style="box-shadow: 0 5px 15px rgba(0, 188, 212, 0.6);">
+                <h3>Manicure</h3>
+                <p>Enjoy a relaxing manicure tailored to your nail care needs. We use the finest products to ensure the health and beauty of your nails.</p>
+                <button onclick="window.location.href='booking.html'">Learn More & Book</button>
+            </section>
+            <section class="service-frame" style="box-shadow: 0 5px 15px rgba(255, 87, 34, 0.6);">
+                <h3>Pedicure</h3>
+                <p>Indulge in a luxurious pedicure experience designed to rejuvenate your feet and leave them feeling refreshed.</p>
+                <button onclick="window.location.href='booking.html'">Learn More & Book</button>
+            </section>
+            <section class="service-frame" style="box-shadow: 0 5px 15px rgba(76, 175, 80, 0.6);">
+                <h3>Specialized Nail Care</h3>
+                <p>Our specialized nail care services cater to seniors and individuals needing prosthetic precision care.</p>
+                <button onclick="window.location.href='booking.html'">Learn More & Book</button>
+            </section>
+            <section class="service-frame" style="box-shadow: 0 5px 15px rgba(63, 81, 181, 0.6);">
+                <h3>Custom Nail Designs</h3>
+                <p>Express your creativity with our custom nail designs, tailored to your unique preferences and style.</p>
+                <button onclick="window.location.href='booking.html'">Learn More & Book</button>
             </section>
         </div>
     </main>
+
     <footer>
         <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
         <nav>
@@ -147,33 +62,5 @@
             </ul>
         </nav>
     </footer>
-    <div class="donation-frame">
-        <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
-    </div>
-
-    <!-- Floating Frames for Services -->
-    <div id="spa-manicure" class="service-modal">
-        <div class="service-modal-content">
-            <span class="close" onclick="closeServiceModal('spa-manicure')">&times;</span>
-            <h3>Spa Manicure</h3>
-            <p>Experience a luxurious manicure that includes nail shaping, cuticle care, exfoliation, a relaxing hand massage, and your choice of polish. Our focus is on the health of your nails and hands.</p>
-            <form>
-                <label for="date">Date:</label><br>
-                <input type="date" id="date" name="date" required><br>
-                <label for="time">Time:</label><br>
-                <input type="time" id="time" name="time" required><br>
-                <label for="stylist">Select Stylist:</label><br>
-                <select id="stylist" name="stylist" required>
-                    <option value="stylist1">Stylist 1</option>
-                    <option value="stylist2">Stylist 2</option>
-                </select><br>
-                <label for="coupon">Coupon Code:</label><br>
-                <input type="text" id="coupon" name="coupon"><br>
-                <button type="submit">Book & Pay</button>
-            </form>
-        </div>
-    </div>
-    <!-- Additional service modals will follow the same structure -->
 </body>
 </html>

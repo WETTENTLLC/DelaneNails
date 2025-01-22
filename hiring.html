@@ -15,13 +15,15 @@
 
         // Close the modal
         function closeModal() {
-            document.getElementById('emailModal').style.display = 'none';
+            const modal = document.getElementById('emailModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
         }
 
         // Validate and submit email
         function submitEmail(event) {
             event.preventDefault();
-            const email = document.getElementById('emailInput').value;
+            const email = document.getElementById('emailInput').value.trim();
             if (email && /\S+@\S+\.\S+/.test(email)) {
                 alert('Thank you for your interest! We will contact you soon.');
                 document.getElementById('emailForm').reset();
@@ -47,13 +49,13 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
-            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
-            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
-            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
+            <h1 class="header-title">Delane's Natural Nail Care</h1>
+            <p class="header-tagline">Relaxing, Private, Professional, and Clean</p>
+            <button class="button get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
     </header>
-    
-    <main>
+
+    <main id="mainContent">
         <section class="hiring-section">
             <h2>Become a DNNC Team Member</h2>
             <p>We are hiring! Come join our team as a Salon Administrator! Are you...</p>
@@ -66,7 +68,7 @@
             </ul>
             <p>Then this job is for YOU! This is a great opportunity to level-up your career in a Part-Time Position, solidify some experience in the beauty industry, and be a part of giving back to the community through our Steps for Success program.</p>
             <p>Check out our Salon Administrator posting and apply, or share this with your networks to help us spread the word.</p>
-            <p>Apply here: <a href="https://www.indeedjobs.com/delanes-natural-nail-care/_hl/en?cpref=JXWAtnzf3XW5aRnY2g_zos_1WAXHb5RLey6_OdwtCiQ" target="_blank">Apply on Indeed</a></p>
+            <p>Apply here: <a href="https://www.indeedjobs.com/delanes-natural-nail-care/_hl/en?cpref=JXWAtnzf3XW5aRnY2g_zos_1WAXHb5RLey6_OdwtCiQ" target="_blank" rel="noopener">Apply on Indeed</a></p>
             <p>Suggested hashtags for social media:</p>
             <ul>
                 <li>#JobSearch #JobOpening #Hiring</li>
@@ -79,17 +81,19 @@
             <a href="steps-to-success.html" class="button">Steps to Success Facebook Page</a>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
     </footer>
 
     <!-- Modal for Email Collection -->
-    <div id="emailModal" class="modal">
+    <div id="emailModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Join Our Team</h2>
+            <span class="close" onclick="closeModal()" aria-label="Close Modal">&times;</span>
+            <h2 id="modalTitle">Join Our Team</h2>
             <p>Enter your email below to receive updates on employment opportunities.</p>
             <form id="emailForm" onsubmit="submitEmail(event)">
+                <label for="emailInput" class="visually-hidden">Email Address:</label>
                 <input type="email" id="emailInput" placeholder="Enter your email" required>
                 <button type="submit" class="button">Submit</button>
             </form>

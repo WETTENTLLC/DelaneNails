@@ -5,10 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delane's Natural Nail Care - Book Your Appointment</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        h2, h3 {
+            color: #00bcd4;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, textarea, button {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #00bcd4;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #008ba3;
+        }
+
+        .floating-frame {
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .service-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: red;
+        }
+
+        @media (min-width: 768px) {
+            main {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
+        <a href="#mainContent" class="skip-link">Skip to main content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
@@ -21,46 +131,53 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
-            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
-            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+            <h1>Delane's Natural Nail Care</h1>
+            <p>Relaxing, Private, Professional, and Clean</p>
             <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
     </header>
     
-    <main>
-        <section id="booking-form" class="grid-item">
+    <main id="mainContent">
+        <!-- Booking Form -->
+        <section id="booking-form" class="floating-frame">
             <h2>Book Your Appointment</h2>
             <form id="bookingForm">
-                <label for="date">Date:</label><br>
-                <input type="date" id="date" name="date" required><br>
-                <label for="time">Time:</label><br>
-                <input type="time" id="time" name="time" required><br>
-                <label for="stylist">Select Stylist:</label><br>
-<select id="stylist" name="stylist" required aria-label="Select Stylist">
-    <option value="stylist1">Jane Doe</option>
-    <option value="stylist2">John Smith</option>
-</select><br>
-
-                <label for="coupon">Coupon Code:</label><br>
-                <input type="text" id="coupon" name="coupon"><br>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+                
+                <label for="stylist">Select Stylist:</label>
+                <select id="stylist" name="stylist" required aria-label="Select Stylist">
+                    <option value="stylist1">Jane Doe</option>
+                    <option value="stylist2">John Smith</option>
+                </select>
+                
+                <label for="coupon">Coupon Code (Optional):</label>
+                <input type="text" id="coupon" name="coupon" placeholder="Enter coupon code">
+                
                 <button type="submit">Book & Pay</button>
             </form>
         </section>
+
+        <!-- Preferences Form -->
         <section id="preferences-form" class="floating-frame">
-            <div class="preferences-container">
-                <h3>Preferred Music & Scents</h3>
-                <form id="preferencesForm">
-                    <label for="music">Preferred Music:</label><br>
-                    <input type="text" id="music" name="music"><br>
-                    <label for="scents">Preferred Scents:</label><br>
-                    <input type="text" id="scents" name="scents"><br>
-                    <button type="submit">Save Preferences</button>
-                </form>
-            </div>
+            <h3>Preferred Music & Scents</h3>
+            <form id="preferencesForm">
+                <label for="music">Preferred Music:</label>
+                <input type="text" id="music" name="music" placeholder="E.g., Classical, Jazz">
+                
+                <label for="scents">Preferred Scents:</label>
+                <input type="text" id="scents" name="scents" placeholder="E.g., Lavender, Vanilla">
+                
+                <button type="submit">Save Preferences</button>
+            </form>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
         <nav>
             <ul>
                 <li><a href="privacy.html">Privacy Policy</a></li>
@@ -68,39 +185,42 @@
             </ul>
         </nav>
     </footer>
+
+    <!-- Donation Frame -->
     <div class="donation-frame">
         <p>Support Steps to Success</p>
         <a href="steps-to-success.html">Donate Now</a>
-
     </div>
-<div id="service-modal" class="service-modal" style="display:none;">
-    <div class="modal-content">
-        <span class="close" onclick="closeServiceModal('service-modal')">&times;</span>
-        <p>Modal Content Goes Here</p>
-    </div>
-</div>
-<script>
 
+    <!-- Modal -->
+    <div id="service-modal" class="service-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeServiceModal('service-modal')">&times;</span>
+            <p>Additional service information goes here.</p>
+        </div>
+    </div>
+
+    <script>
+        // Modal Functionality
         function openServiceModal(serviceId) {
-            var modal = document.getElementById(serviceId);
-            modal.style.display = "block";
+            const modal = document.getElementById(serviceId);
+            modal.style.display = 'flex';
         }
 
         function closeServiceModal(serviceId) {
-            var modal = document.getElementById(serviceId);
-            modal.style.display = "none";
-        }
-
-        // Close the modal when clicking outside of it
-        window.addEventListener('click', function (event) {
-    var modals = document.querySelectorAll('.service-modal');
-    modals.forEach(function (modal) {
-        if (event.target === modal) {
+            const modal = document.getElementById(serviceId);
             modal.style.display = 'none';
         }
-    });
-});
 
+        // Close modal when clicking outside the content
+        window.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.service-modal');
+            modals.forEach(function(modal) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>

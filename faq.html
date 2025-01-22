@@ -6,67 +6,55 @@
     <title>FAQ - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .faq-container {
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        .faq-item {
-            background: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .faq-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             padding: 20px;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
         }
-        .faq-item h2 {
-            margin: 0 0 10px;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 188, 212, 0.5);
         }
-        .faq-item h2::before {
-            content: '?';
-            font-size: 2rem;
-            color: #ff4081;
-            animation: heartbeat 1.5s infinite;
+
+        .faq-item h3 {
+            margin-top: 0;
         }
-        .faq-item p {
-            margin: 0;
-            line-height: 1.6;
+
+        .faq-item .question-icon {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 3rem;
+            color: rgba(0, 188, 212, 0.6);
+            animation: pulse 1.5s infinite;
         }
-        @keyframes heartbeat {
+
+        @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
+                opacity: 0.8;
             }
             50% {
                 transform: scale(1.2);
-            }
-        }
-        @media (max-width: 768px) {
-            .faq-container {
-                margin: 10px;
-                gap: 20px;
-            }
-            .faq-item {
-                padding: 15px;
-            }
-            .faq-item h2 {
-                font-size: 1.2rem;
-            }
-            .faq-item h2::before {
-                font-size: 1.6rem;
+                opacity: 1;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
+        <a href="#mainContent" class="skip-link">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
@@ -75,40 +63,47 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="faq.html" class="active">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
             <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
             <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
-            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
+            <button class="get-started" onclick="window.location.href='booking.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
     </header>
-    
+
     <main>
-        <div class="faq-container">
-            <section id="faq">
-                <h1>Frequently Asked Questions</h1>
-                <div class="faq-item">
-                  <h2>What services do you offer?</h2>
-                  <p>We offer a wide range of services, including manicures, pedicures, private parties, and mobile services. Our services are designed to provide a luxurious and relaxing experience.</p>
-                </div>
-                <div class="faq-item">
-                  <h2>What is your cancellation policy?</h2>
-                  <p>We require a 24-hour notice for cancellations. If you do not inform us within this timeframe, you will be charged for the missed appointment.</p>
-                </div>
-                <div class="faq-item">
-                  <h2>Can I bring my children to the salon?</h2>
-                  <p>While we do not allow children unless they are receiving a service, we do allow mothers to bring their new babies and breastfed children. Our private rooms and toxic-free environment make for a perfect place for new moms with their precious new bundles of joy.</p>
-                </div>
-                <div class="faq-item">
-                  <h2>How can I book a mobile appointment or a private party?</h2>
-                  <p>Please call our salon for availability and to book a mobile appointment or a private party. Our private parties are great for birthdays, bridal showers, girls spa parties, and more!</p>
-                </div>
-                <!-- Add more FAQ items as needed -->
-              </section>
+        <h2 class="page-title">Frequently Asked Questions</h2>
+        <div class="faq-section">
+            <div class="faq-item">
+                <h3>What makes Delane's unique?</h3>
+                <p>We specialize in health-first nail care, prioritizing sanitation and senior-focused services.</p>
+                <span class="question-icon">?</span>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer walk-ins?</h3>
+                <p>To provide the best experience, we operate by appointment only.</p>
+                <span class="question-icon">?</span>
+            </div>
+            <div class="faq-item">
+                <h3>Are your products hypoallergenic?</h3>
+                <p>Yes, we use products that are gentle and suitable for sensitive skin.</p>
+                <span class="question-icon">?</span>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer group bookings?</h3>
+                <p>Yes, we accommodate group bookings for special events. Please contact us in advance.</p>
+                <span class="question-icon">?</span>
+            </div>
+            <div class="faq-item">
+                <h3>What payment methods do you accept?</h3>
+                <p>We accept PayPal, credit, debit, and Affirm for easy payment processing.</p>
+                <span class="question-icon">?</span>
+            </div>
         </div>
     </main>
+
     <footer>
         <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
         <nav>
@@ -118,9 +113,5 @@
             </ul>
         </nav>
     </footer>
-    <div class="donation-frame">
-        <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
-    </div>
 </body>
 </html>
