@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimonials - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="scripts.js"></script>
 </head>
 <body>
     <header>
+        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
@@ -16,48 +18,66 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="steps-to-success.html">Steps to Success</a></li>
                 </ul>
             </nav>
+            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
-        <h1>Testimonials</h1>
     </header>
+    
     <main>
         <div class="testimonials-container">
             <section id="client-testimonials">
                 <h2>What Our Clients Say</h2>
-                <div class="testimonial">
-                    <p>"Delane's transformed my feet! Not only do they look beautiful, but I feel healthier and more confident than ever." - A Happy Client</p>
-                    <img src="images/testimonial1.jpg" alt="Client photo">
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <p>"Delane's is not just a nail salon; it's a wellness experience. My brittle nails have never been healthier!"</p>
+                        <span>- Jessica T.</span>
+                    </div>
+                    <div class="carousel-slide">
+                        <p>"I suffer from arthritis, and Delane's team provided a service tailored just for me. It’s life-changing!"</p>
+                        <span>- Robert K.</span>
+                    </div>
+                    <div class="carousel-slide">
+                        <p>"As a senior, I appreciate the care and attention I receive here. The clean environment is reassuring, and my nails always look amazing."</p>
+                        <span>- Evelyn S.</span>
+                    </div>
+                    <div class="carousel-slide">
+                        <p>"Delane’s Natural Nail Care feels like home. Their new Truth and Freedom nail polish line is stunning!"</p>
+                        <span>- Naomi R.</span>
+                    </div>
+                    <div class="carousel-slide">
+                        <p>"This is the first salon I’ve been to where the focus is on health first. Delane's team truly cares about their clients."</p>
+                        <span>- Michael L.</span>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <p>"I've been a loyal client for over a decade, and the service has always been impeccable. Delane and her team are the best!" - Another Satisfied Client</p>
-                    <img src="images/testimonial2.jpg" alt="Client photo">
-                </div>
-                <!-- More testimonials can be added here -->
+                <button class="carousel-control prev" aria-label="Previous testimonial">&lt;</button>
+                <button class="carousel-control next" aria-label="Next testimonial">&gt;</button>
             </section>
+            
             <section id="video-testimonials">
                 <h2>Video Testimonials</h2>
                 <div class="video-testimonial">
                     <video controls>
-                        <source src="path/to/your-video1.mp4" type="video/mp4">
+                        <source src="videos/testimonial1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <p>Jessica shares how Delane's changed her nail health journey.</p>
                 </div>
                 <div class="video-testimonial">
                     <video controls>
-                        <source src="path/to/your-video2.mp4" type="video/mp4">
+                        <source src="videos/testimonial2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <p>Robert speaks about the specialized care he received for his arthritis.</p>
                 </div>
-                <!-- More video testimonials can be added here -->
             </section>
         </div>
     </main>
+
     <footer>
         <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
         <nav>
@@ -67,10 +87,10 @@
             </ul>
         </nav>
     </footer>
+
     <div class="donation-frame">
         <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
+        <a href="steps-to-success.html" class="donate-btn">Donate Now</a>
     </div>
 </body>
 </html>
-

@@ -8,6 +8,7 @@
 </head>
 <body>
     <header>
+        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
@@ -16,54 +17,52 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="steps-to-success.html">Steps to Success</a></li>
                 </ul>
             </nav>
+            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
-        <h1>News & Updates</h1>
     </header>
-    <main>
+
+    <main id="mainContent">
+        <div class="news-header">
+            <h2>News & Updates</h2>
+            <button class="hiring-btn" onclick="window.location.href='hiring.html'">We're Hiring!</button>
+        </div>
+
+        <!-- News Items in Staggered Octagon Layout -->
         <div class="news-container">
-            <section id="latest-news">
-                <h2>Latest News</h2>
-                <!-- Real-time information and video updates will go here -->
-                <div class="video-updates">
-                    <h3>Video Updates</h3>
-                    <!-- Placeholder for video updates -->
-                    <video controls>
-                        <source src="path/to/your-video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </section>
-            <section id="blog">
-                <h2>Our Blog</h2>
-                <article>
-                    <h3>Innovative Nail Care Techniques</h3>
-                    <p>Discover the latest trends and techniques in nail care, from advanced manicure methods to specialized pedicures. Stay updated with our expert insights.</p>
-                    <a href="blog-post-1.html">Read More</a>
-                </article>
-                <article>
-                    <h3>Sanitary and Safe Services</h3>
-                    <p>Learn about the importance of maintaining high standards of hygiene in nail care. We share our best practices to ensure a safe and relaxing experience for all clients.</p>
-                    <a href="blog-post-2.html">Read More</a>
-                </article>
-                <!-- More blog articles can be added here -->
-            </section>
-            <section id="social-media">
-                <h2>Follow Us on Social Media</h2>
-                <div class="social-links">
-                    <a href="https://www.facebook.com" target="_blank">Facebook</a>
-                    <a href="https://www.instagram.com" target="_blank">Instagram</a>
-                    <a href="https://www.twitter.com" target="_blank">Twitter</a>
-                </div>
-            </section>
+            <div class="news-frame octagon stagger-left">
+                <h3>Launch of Truth and Freedom Nail Polish Line</h3>
+                <p>Delane's Natural Nail Care is proud to introduce our latest nail polish line, Truth and Freedom, focusing on health-conscious beauty.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
+            </div>
+            <div class="news-frame octagon stagger-right">
+                <h3>New Senior Wellness Packages</h3>
+                <p>We now offer specialized wellness packages designed for seniors, emphasizing health-first care and relaxation.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
+            </div>
+            <div class="news-frame octagon stagger-left">
+                <h3>Exciting Partnerships</h3>
+                <p>We’ve partnered with local organizations to bring affordable nail care to underserved communities.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
+            </div>
+            <div class="news-frame octagon stagger-right">
+                <h3>Staff Certification Updates</h3>
+                <p>All our technicians are now certified in advanced prosthetic nail care to better serve our clients.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
+            </div>
+            <div class="news-frame octagon stagger-left">
+                <h3>Eco-Friendly Initiative</h3>
+                <p>We’ve committed to sustainability by incorporating eco-friendly materials in our packaging and services.</p>
+                <a href="news-details.html" class="read-more">Read More</a>
+            </div>
         </div>
     </main>
+
     <footer>
         <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
         <nav>
@@ -73,9 +72,10 @@
             </ul>
         </nav>
     </footer>
+
     <div class="donation-frame">
         <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
+        <a href="steps-to-success.html" class="donate-btn">Donate Now</a>
     </div>
 </body>
 </html>
