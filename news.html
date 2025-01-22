@@ -7,76 +7,83 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="steps-to-success.html">Steps to Success</a></li>
-                </ul>
-            </nav>
-        </div>
-        <h1>News & Updates</h1>
-    </header>
+  <header>
+    <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
+    <div class="header-content">
+        <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="news.html">News & Updates</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+        <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+        <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
+    </div>
+</header>
+
     <main>
+        <!-- News Section -->
         <div class="news-container">
             <section id="news-updates">
                 <h1>News & Updates</h1>
                 <div class="quilt-blocks">
-                  <div class="news-item">
-                    <h2>Latest Event Highlights</h2>
-                    <p>Stay up-to-date with our latest events and achievements. From community outreach to industry expos, DNNC is always at the forefront of excellence.</p>
-                    <div class="floating-modal" onclick="showModal('event-modal')">Read More</div>
-                  </div>
-                  <div class="news-item">
-                    <h2>Featured Blog Post</h2>
-                    <p>Discover insights, tips, and trends in the world of nail care through our curated blog posts. Our experts share their knowledge to help you stay informed.</p>
-                    <div class="floating-modal" onclick="showModal('blog-modal')">Read More</div>
-                  </div>
-                  <!-- Add more news items as needed -->
+                    <div class="news-item">
+                        <h2>Latest Event Highlights</h2>
+                        <p>Stay up-to-date with our latest events and achievements. From community outreach to industry expos, DNNC is always at the forefront of excellence.</p>
+                        <div class="floating-modal" onclick="showModal('event-modal')" aria-label="Read More about Event Highlights">Read More</div>
+                    </div>
+                    <div class="news-item">
+                        <h2>Featured Blog Post</h2>
+                        <p>Discover insights, tips, and trends in the world of nail care through our curated blog posts. Our experts share their knowledge to help you stay informed.</p>
+                        <div class="floating-modal" onclick="showModal('blog-modal')" aria-label="Read More about Featured Blog Post">Read More</div>
+                    </div>
                 </div>
-              </section>
-              
-              <!-- Modals -->
-              <div id="event-modal" class="modal">
-                <div class="modal-content">
-                  <span class="close" onclick="closeModal('event-modal')">&times;</span>
-                  <h2>Event Details</h2>
-                  <p>[Placeholder for event details and images]</p>
-                </div>
-              </div>
-              
-              <div id="blog-modal" class="modal">
-                <div class="modal-content">
-                  <span class="close" onclick="closeModal('blog-modal')">&times;</span>
-                  <h2>Blog Post</h2>
-                  <p>[Placeholder for blog post content and images]</p>
-                </div>
-              </div>
-              
-              <script>
-              function showModal(modalId) {
-                document.getElementById(modalId).style.display = "block";
-              }
-              
-              function closeModal(modalId) {
-                document.getElementById(modalId).style.display = "none";
-              }
-              </script>
-              
+            </section>
+        </div>
+
+        <!-- Gallery Section -->
+        <section id="gallery">
+            <h1>Our Work</h1>
+            <div class="gallery-item">
+                <figure>
+                    <img src="path/to/image1.jpg" alt="Gallery Image 1">
+                    <figcaption>Description of image 1</figcaption>
+                </figure>
+            </div>
+            <div class="gallery-item">
+                <figure>
+                    <img src="path/to/image2.jpg" alt="Gallery Image 2">
+                    <figcaption>Description of image 2</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        <div id="event-modal" class="modal" role="dialog" aria-labelledby="event-title" aria-hidden="true">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('event-modal')" aria-label="Close Modal">&times;</span>
+                <h2 id="event-title">Event Details</h2>
+                <p>[Placeholder for event details and images]</p>
+            </div>
+        </div>
+        <div id="blog-modal" class="modal" role="dialog" aria-labelledby="blog-title" aria-hidden="true">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('blog-modal')" aria-label="Close Modal">&times;</span>
+                <h2 id="blog-title">Blog Post</h2>
+                <p>[Placeholder for blog post content and images]</p>
+            </div>
+        </div>
     </main>
     <footer>
         <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
         <nav>
-            <ul>
+            <ul aria-label="Footer Navigation">
                 <li><a href="privacy.html">Privacy Policy</a></li>
                 <li><a href="terms.html">Terms of Service</a></li>
             </ul>
@@ -86,20 +93,31 @@
         <p>Support Steps to Success</p>
         <a href="steps-to-success.html">Donate Now</a>
     </div>
+
+    <script>
+        // Show Modal Function
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = "block";
+            modal.setAttribute("aria-hidden", "false");
+        }
+
+        // Close Modal Function
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = "none";
+            modal.setAttribute("aria-hidden", "true");
+        }
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                    modal.setAttribute("aria-hidden", "true");
+                });
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-<section id="gallery">
-    <h1>Our Work</h1>
-    <div class="gallery-item">
-      <img src="path/to/image1.jpg" alt="Gallery Image 1">
-      <p>Description of image 1</p>
-    </div>
-    <div class="gallery-item">
-      <img src="path/to/image2.jpg" alt="Gallery Image 2">
-      <p>Description of image 2</p>
-    </div>
-    <!-- Add more gallery items as needed -->
-  </section>
-  

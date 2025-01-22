@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - Delane's Natural Nail Care</title>
+    <title>Shop - Steps to Success</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
+        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
@@ -16,42 +19,63 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="steps-to-success.html">Steps to Success</a></li>
                 </ul>
             </nav>
+            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
-        <h1>Shop</h1>
     </header>
+    
     <main>
-        <div class="shop-container">
-            <section id="nail-polish" class="grid-item">
-                <h2>Truth and Freedom Nail Polish Line</h2>
-                <p>Coming in the summer of 2025, our special line of polish features colors that represent prominent women. For example, Harriet Tubman would be black polish with sparkles to represent the night sky and stars that led her and others to freedom. Part of our Truth and Freedom Nail Polish Line - Polish with a Purpose!</p>
-                <img src="images/nail-polish.jpg" alt="Nail Polish Line">
-            </section>
-            <section id="organic-lotion" class="grid-item">
-                <h2>Fully Organic Lotion</h2>
-                <p>Our special lotion has taken 25 years to perfect. It's fully organic and designed to provide intense hydration and care for your hands and feet. Experience the difference with our unique blend of natural ingredients.</p>
-                <img src="images/organic-lotion.jpg" alt="Organic Lotion">
-            </section>
-        </div>
+        <section class="shop-intro">
+            <div class="floating-frame multi-color-shadow">
+                <h1>Welcome to Our Shop</h1>
+                <p>Support our mission by purchasing products that empower change. All proceeds go toward helping single mothers build brighter futures.</p>
+            </div>
+        </section>
+
+        <section class="shop-products">
+            <div class="product-grid">
+                <div class="product-item floating-frame">
+                    <img src="product1.jpg" alt="Product 1">
+                    <h2>Product 1</h2>
+                    <p>Description of product 1 goes here.</p>
+                    <p class="price">$25.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-item floating-frame">
+                    <img src="product2.jpg" alt="Product 2">
+                    <h2>Product 2</h2>
+                    <p>Description of product 2 goes here.</p>
+                    <p class="price">$30.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-item floating-frame">
+                    <img src="product3.jpg" alt="Product 3">
+                    <h2>Product 3</h2>
+                    <p>Description of product 3 goes here.</p>
+                    <p class="price">$20.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="shop-mission">
+            <div class="floating-frame">
+                <h2>Why Shop With Us?</h2>
+                <p>When you purchase from our shop, you're not just buying a product – you're helping us provide resources, training, and support to underserved women and single mothers in need. Together, we can create a future full of possibilities.</p>
+            </div>
+        </section>
     </main>
-    <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
-        <nav>
-            <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
-            </ul>
-        </nav>
+
+    <footer class="footer">
+        <p>© 2024 DNNC Steps to Success</p>
+        <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms and Conditions</a></p>
+        <p>Website Created By DNNC Steps to Success</p>
     </footer>
-    <div class="donation-frame">
-        <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
-    </div>
 </body>
+
 </html>

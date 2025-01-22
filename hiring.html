@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Team - Delane's Natural Nail Care</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Show modal after a delay
+        window.onload = function () {
+            setTimeout(() => {
+                document.getElementById('emailModal').style.display = 'block';
+            }, 3000); // 3-second delay
+        };
+
+        // Close the modal
+        function closeModal() {
+            document.getElementById('emailModal').style.display = 'none';
+        }
+
+        // Validate and submit email
+        function submitEmail(event) {
+            event.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            if (email && /\S+@\S+\.\S+/.test(email)) {
+                alert('Thank you for your interest! We will contact you soon.');
+                document.getElementById('emailForm').reset();
+                closeModal();
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
+        <div class="header-content">
+            <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="news.html">News & Updates</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hiring-section">
+            <h2>Become a DNNC Team Member</h2>
+            <p>We are hiring! Come join our team as a Salon Administrator! Are you...</p>
+            <ul>
+                <li>Beauty industry obsessed?</li>
+                <li>A do-er?</li>
+                <li>A people lover?</li>
+                <li>A customer service guru?</li>
+                <li>An organization junky?</li>
+            </ul>
+            <p>Then this job is for YOU! This is a great opportunity to level-up your career in a Part-Time Position, solidify some experience in the beauty industry, and be a part of giving back to the community through our Steps for Success program.</p>
+            <p>Check out our Salon Administrator posting and apply, or share this with your networks to help us spread the word.</p>
+            <p>Apply here: <a href="https://www.indeedjobs.com/delanes-natural-nail-care/_hl/en?cpref=JXWAtnzf3XW5aRnY2g_zos_1WAXHb5RLey6_OdwtCiQ" target="_blank">Apply on Indeed</a></p>
+            <p>Suggested hashtags for social media:</p>
+            <ul>
+                <li>#JobSearch #JobOpening #Hiring</li>
+                <li>#NowHiring #Resume #Job #salonjobs</li>
+                <li>#nails #nailsalon #beautyindustryjobs</li>
+                <li>#sanleandro #bayarea</li>
+            </ul>
+            <h3>Become part of DNNC Steps to Success</h3>
+            <p>Wanted - YOU! Are you a manicurist or want to become one? Our salon has been in business for the past 18 years, and we want to impart knowledge and expertise to someone ready to learn, work, and become successful. We have done all the work to become a 5-star salon, and now you can reap the benefits!</p>
+            <a href="steps-to-success.html" class="button">Steps to Success Facebook Page</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Email Collection -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Join Our Team</h2>
+            <p>Enter your email below to receive updates on employment opportunities.</p>
+            <form id="emailForm" onsubmit="submitEmail(event)">
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+                <button type="submit" class="button">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -5,9 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .faq-container {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .faq-item {
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+        }
+        .faq-item h2 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .faq-item h2::before {
+            content: '?';
+            font-size: 2rem;
+            color: #ff4081;
+            animation: heartbeat 1.5s infinite;
+        }
+        .faq-item p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        @media (max-width: 768px) {
+            .faq-container {
+                margin: 10px;
+                gap: 20px;
+            }
+            .faq-item {
+                padding: 15px;
+            }
+            .faq-item h2 {
+                font-size: 1.2rem;
+            }
+            .faq-item h2::before {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
+        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
@@ -16,16 +75,16 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="steps-to-success.html">Steps to Success</a></li>
                 </ul>
             </nav>
+            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
-        <h1>Frequently Asked Questions</h1>
     </header>
+    
     <main>
         <div class="faq-container">
             <section id="faq">
@@ -48,7 +107,6 @@
                 </div>
                 <!-- Add more FAQ items as needed -->
               </section>
-              
         </div>
     </main>
     <footer>

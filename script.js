@@ -3,12 +3,7 @@ document.getElementById('addToAppointment').addEventListener('click', function()
     const music = document.getElementById('music').value;
     const scents = document.getElementById('scents').value;
 
-    // Simulate storing preferences logic (e.g., saving to a user profile or local storage)
-    console.log('Preferences added to appointment:', {
-        music,
-        scents
-    });
-
+    console.log('Preferences added to appointment:', { music, scents });
     alert('Your preferences have been added to your appointment!');
 });
 
@@ -16,18 +11,10 @@ document.getElementById('addToAppointment').addEventListener('click', function()
 document.getElementById('bookingForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Retrieve preferences
     const music = document.getElementById('music').value;
     const scents = document.getElementById('scents').value;
 
-    // Simulate storing booking details logic (e.g., saving to a database)
-    console.log('Booking details:', {
-        music,
-        scents,
-        // Add other booking form data here
-    });
-
-    // Show confirmation message or proceed with booking logic
+    console.log('Booking details:', { music, scents });
     alert('Thank you for booking! Your preferences and appointment details have been noted.');
 });
 
@@ -43,18 +30,13 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
 
 // "Book Now" button functionality
 document.getElementById('bookNow').addEventListener('click', function() {
-    // Handle the booking logic here
     alert('Booking initiated!');
 });
 
 // Contact form submission functionality
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault();
-
-    // Simulate message storage logic (e.g., saving to a database)
     console.log('Message stored');
-
-    // Show confirmation message
     document.getElementById('confirmationMessage').innerText = 'Thank you! Your message has been sent.';
 });
 
@@ -101,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
             lazyImageObserver.observe(lazyImage);
         });
     } else {
-        // Fallback for browsers without IntersectionObserver support
         let lazyLoad = function() {
             lazyImages.forEach(function(lazyImage) {
                 if (lazyImage.offsetTop < window.innerHeight + window.pageYOffset) {
@@ -123,7 +104,7 @@ document.getElementById('menuToggle').addEventListener('click', function() {
 
 // Ensure all interactive elements are focusable
 document.querySelectorAll('a, button, input, textarea').forEach(element => {
-    if (!element hasAttribute('tabindex')) {
+    if (!element.hasAttribute('tabindex')) {
         element.setAttribute('tabindex', '0');
     }
 });
@@ -140,4 +121,31 @@ if ('serviceWorker' in navigator) {
 }
 
 
+// Check if service workers are supported
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/service-worker.js')
+            .then((registration) => {
+                console.log('ServiceWorker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('ServiceWorker registration failed:', error);
+            });
+    });
+}
 
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    if (cacheName !== CACHE_NAME) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+    return self.clients.claim();
+});

@@ -8,6 +8,7 @@
 </head>
 <body>
     <header>
+        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
@@ -16,16 +17,16 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="steps-to-success.html">Steps to Success</a></li>
                 </ul>
             </nav>
+            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+            <p style="color: #00bcd4;">Relaxing, Private, Professional, and Clean</p>
+            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
-        <h1>Book Your Appointment</h1>
     </header>
+    
     <main>
         <section id="booking-form" class="grid-item">
             <h2>Book Your Appointment</h2>
@@ -35,10 +36,11 @@
                 <label for="time">Time:</label><br>
                 <input type="time" id="time" name="time" required><br>
                 <label for="stylist">Select Stylist:</label><br>
-                <select id="stylist" name="stylist" required>
-                    <option value="stylist1">Stylist 1</option>
-                    <option value="stylist2">Stylist 2</option>
-                </select><br>
+<select id="stylist" name="stylist" required aria-label="Select Stylist">
+    <option value="stylist1">Jane Doe</option>
+    <option value="stylist2">John Smith</option>
+</select><br>
+
                 <label for="coupon">Coupon Code:</label><br>
                 <input type="text" id="coupon" name="coupon"><br>
                 <button type="submit">Book & Pay</button>
@@ -69,8 +71,16 @@
     <div class="donation-frame">
         <p>Support Steps to Success</p>
         <a href="steps-to-success.html">Donate Now</a>
+
     </div>
-    <script>
+<div id="service-modal" class="service-modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeServiceModal('service-modal')">&times;</span>
+        <p>Modal Content Goes Here</p>
+    </div>
+</div>
+<script>
+
         function openServiceModal(serviceId) {
             var modal = document.getElementById(serviceId);
             modal.style.display = "block";
@@ -82,14 +92,15 @@
         }
 
         // Close the modal when clicking outside of it
-        window.onclick = function(event) {
-            var modals = document.getElementsByClassName("service-modal");
-            for (var i = 0; i < modals.length; i++) {
-                if (event.target == modals[i]) {
-                    modals[i].style.display = "none";
-                }
-            }
+        window.addEventListener('click', function (event) {
+    var modals = document.querySelectorAll('.service-modal');
+    modals.forEach(function (modal) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
         }
+    });
+});
+
     </script>
 </body>
 </html>

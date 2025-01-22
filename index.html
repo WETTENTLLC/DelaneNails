@@ -4,77 +4,232 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delane's Natural Nail Care</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', Arial, sans-serif;
+            font-size: 18px;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #00bcd4;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1001;
+            transform: translateY(-200%);
+            transition: transform 0.3s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0%);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: #00bcd4;
+            text-decoration: none;
+            padding: 5px 10px;
+            display: inline-block;
+            font-size: 1.1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        header .get-started {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        header .get-started:hover {
+            background-color: #800080;
+            transform: translateY(-3px);
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-item {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            box-shadow: 0 0 20px #00bcd4;
+            transform: translateY(-5px);
+        }
+
+        h1, h2 {
+            font-size: 32px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #800080;
+        }
+
+        p, ul {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .donation-frame {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00bcd4;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .donation-frame a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .donation-frame a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .donation-frame {
+                margin: 20px 0;
+                font-size: 18px;
+                position: relative;
+                bottom: auto;
+                right: auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <a href="#mainContent" class="skip-link">Skip to content</a>
+        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
-                <button id="menuToggle" aria-label="Toggle menu">☰</button>
-                <ul id="navMenu">
-                    <li><a href="#welcome">Welcome</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#news-updates">News & Updates</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="news.html">News & Updates</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <button id="darkModeToggle">Toggle Dark Mode</button>
             </nav>
+            <h1>Delane's Natural Nail Care</h1>
+            <p>Relaxing, Private, Professional, and Clean</p>
+            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
-        <h1>Delane's Natural Nail Care</h1>
-        <p>Relaxing, Private, Professional and Clean</p>
-        <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
     </header>
     <main>
         <div class="grid-container">
             <section id="home" class="grid-item">
                 <h2>Welcome to Delane's Natural Nail Care</h2>
-                <p>Experience the epitome of elegance and health at Delane’s Natural Nail Care. Our sanctuary of beauty and relaxation invites you to indulge in the finest toxin-free nail services, tailored to uplift and rejuvenate. Join us on a journey where excellence meets serenity. Ready to be pampered? Book your appointment today and immerse yourself in pure luxury!</p>
-                <button onclick="window.location.href='about.html'">Learn More</button>
+                <p>Experience the epitome of elegance and health at Delane’s Natural Nail Care...</p>
             </section>
             <section id="pivot" class="grid-item">
                 <h2>Our 2025 Pivot: DNNC and Medi Spa</h2>
-                <p>In 2025, Delane's Natural Nail Care is proud to introduce DNNC and Medi Spa, focusing on the health of your feet and hands. We offer prosthetic remedies for missing toenails and specialize in cosmetic transformation rather than just aesthetic enhancement.</p>
-                <div class="testimonial">
-                    <h3>Testimonials</h3>
-                    <p>"Delane's transformed my feet! Not only do they look beautiful, but I feel healthier and more confident than ever." - A Happy Client</p>
-                </div>
-                <div class="images">
-                    <img src="images/foot-care.jpg" alt="Foot Care">
-                    <img src="images/hand-care.jpg" alt="Hand Care">
-                </div>
-                <button onclick="window.location.href='news.html'">Learn More</button>
+                <p>In 2025, Delane’s Natural Nail Care expands its mission to include a Medi Spa, integrating beauty, health, and wellness into one cohesive experience...</p>
             </section>
-            <section id="polish-line" class="grid-item">
+            <section id="truth-and-freedom" class="grid-item">
                 <h2>Truth and Freedom Nail Polish Line</h2>
-                <p>Coming in the summer of 2025, our special line of polish features colors that represent prominent women. For example, Harriet Tubman would be black polish with sparkles to represent the night sky and stars that led her and others to freedom. Part of our Truth and Freedom Nail Polish Line - Polish with a Purpose!</p>
-                <img src="images/nail-polish.jpg" alt="Nail Polish Line">
-                <button onclick="window.location.href='shop.html'">Shop Now</button>
+                <p>Celebrate self-expression and health with our Truth and Freedom nail polish line, featuring vibrant, toxin-free colors for everyone...</p>
             </section>
-        </div>
-        <div class="yelp-rating">
-            <img src="images/yelp-logo.png" alt="Yelp Logo">
-            <p>5 star on Yelp</p>
-            <p class="yelp-location">Reno, Nevada</p>
-            <a href="https://www.yelp.com" class="yelp-link">Check us out on Yelp!</a>
+            <section id="testimonials" class="grid-item">
+                <h2>Client Testimonials</h2>
+                <p>"I’ve never felt so cared for in a nail salon. Delane’s focus on health and professionalism is unmatched." – A Happy Client</p>
+            </section>
         </div>
     </main>
-    <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
-        <nav>
-            <ul>
-                <li><a href="policies.html" target="_blank">Policies</a></li>
-                <li><a href="terms.html" target="_blank">Terms of Service</a></li>
-            </ul>
-        </nav>
-    </footer>
-    <div class="donation-frame">
-        <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
-    </div>
-    <img src="low-res-placeholder.jpg" data-src="high-res-image.jpg" alt="Description" class="lazy">
 </body>
 </html>
