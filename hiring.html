@@ -3,40 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Our Team - Delane's Natural Nail Care</title>
+    <title>Hiring - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // Show modal after a delay
-        window.onload = function () {
-            setTimeout(() => {
-                document.getElementById('emailModal').style.display = 'block';
-            }, 3000); // 3-second delay
-        };
-
-        // Close the modal
-        function closeModal() {
-            const modal = document.getElementById('emailModal');
-            modal.style.display = 'none';
-            modal.setAttribute('aria-hidden', 'true');
+    <style>
+        /* Styles for the application page */
+        .application-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
         }
 
-        // Validate and submit email
-        function submitEmail(event) {
-            event.preventDefault();
-            const email = document.getElementById('emailInput').value.trim();
-            if (email && /\S+@\S+\.\S+/.test(email)) {
-                alert('Thank you for your interest! We will contact you soon.');
-                document.getElementById('emailForm').reset();
-                closeModal();
-            } else {
-                alert('Please enter a valid email address.');
-            }
+        .application-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
-    </script>
+
+        .application-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 188, 212, 0.5);
+        }
+
+        .application-form h3 {
+            margin-top: 0;
+        }
+
+        .application-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .application-form input, 
+        .application-form select, 
+        .application-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .application-form button {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .application-form button:hover {
+            background-color: #007a8f;
+        }
+
+        .application-form p {
+            text-align: center;
+            color: green;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
+        <a href="#mainContent" class="skip-link">Skip to content</a>
         <div class="header-content">
             <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
             <nav>
@@ -47,57 +84,92 @@
                     <li><a href="news.html">News & Updates</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="hiring.html" class="active">Hiring</a></li>
                 </ul>
             </nav>
-            <h1 class="header-title">Delane's Natural Nail Care</h1>
-            <p class="header-tagline">Relaxing, Private, Professional, and Clean</p>
-            <button class="button get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
+            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
+            <p style="color: #00bcd4;">Elevating Wellness with Prosthetic Precision</p>
+            <button class="get-started" onclick="window.location.href='booking.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
     </header>
 
-    <main id="mainContent">
-        <section class="hiring-section">
-            <h2>Become a DNNC Team Member</h2>
-            <p>We are hiring! Come join our team as a Salon Administrator! Are you...</p>
-            <ul>
-                <li>Beauty industry obsessed?</li>
-                <li>A do-er?</li>
-                <li>A people lover?</li>
-                <li>A customer service guru?</li>
-                <li>An organization junky?</li>
-            </ul>
-            <p>Then this job is for YOU! This is a great opportunity to level-up your career in a Part-Time Position, solidify some experience in the beauty industry, and be a part of giving back to the community through our Steps for Success program.</p>
-            <p>Check out our Salon Administrator posting and apply, or share this with your networks to help us spread the word.</p>
-            <p>Apply here: <a href="https://www.indeedjobs.com/delanes-natural-nail-care/_hl/en?cpref=JXWAtnzf3XW5aRnY2g_zos_1WAXHb5RLey6_OdwtCiQ" target="_blank" rel="noopener">Apply on Indeed</a></p>
-            <p>Suggested hashtags for social media:</p>
-            <ul>
-                <li>#JobSearch #JobOpening #Hiring</li>
-                <li>#NowHiring #Resume #Job #salonjobs</li>
-                <li>#nails #nailsalon #beautyindustryjobs</li>
-                <li>#sanleandro #bayarea</li>
-            </ul>
-            <h3>Become part of DNNC Steps to Success</h3>
-            <p>Wanted - YOU! Are you a manicurist or want to become one? Our salon has been in business for the past 18 years, and we want to impart knowledge and expertise to someone ready to learn, work, and become successful. We have done all the work to become a 5-star salon, and now you can reap the benefits!</p>
-            <a href="steps-to-success.html" class="button">Steps to Success Facebook Page</a>
-        </section>
+    <main>
+        <h2 class="page-title">Join Our Team</h2>
+        <div class="application-container">
+            <div class="application-form">
+                <h3>Employee Application Form</h3>
+                <form id="applicationForm" action="submit_application.php" method="POST" enctype="multipart/form-data" onsubmit="return handleApplicationSubmit(event)">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                    <label for="position">Position Applying For</label>
+                    <select id="position" name="position" required>
+                        <option value="" disabled selected>Select a position</option>
+                        <option value="Nail Technician">Nail Technician</option>
+                        <option value="Receptionist">Receptionist</option>
+                        <option value="Manager">Manager</option>
+                    </select>
+
+                    <label for="experience">Previous Experience</label>
+                    <textarea id="experience" name="experience" rows="5" placeholder="Briefly describe your experience..." required></textarea>
+
+                    <label for="resume">Upload Resume</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+
+                    <button type="submit">Submit Application</button>
+                </form>
+                <p id="applicationResponse">Application submitted successfully!</p>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
+        <nav>
+            <ul>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </nav>
     </footer>
 
-    <!-- Modal for Email Collection -->
-    <div id="emailModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()" aria-label="Close Modal">&times;</span>
-            <h2 id="modalTitle">Join Our Team</h2>
-            <p>Enter your email below to receive updates on employment opportunities.</p>
-            <form id="emailForm" onsubmit="submitEmail(event)">
-                <label for="emailInput" class="visually-hidden">Email Address:</label>
-                <input type="email" id="emailInput" placeholder="Enter your email" required>
-                <button type="submit" class="button">Submit</button>
-            </form>
-        </div>
+    <div class="donation-frame">
+        <p>Support Steps to Success</p>
+        <a href="steps-to-success.html">Donate Now</a>
     </div>
+
+    <script>
+        function handleApplicationSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('applicationForm');
+            const formData = new FormData(form);
+            const responseElement = document.getElementById('applicationResponse');
+
+            fetch('submit_application.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                responseElement.style.display = 'block';
+                responseElement.style.color = 'green';
+                responseElement.innerText = 'Application submitted successfully!';
+                form.reset();
+            })
+            .catch(err => {
+                responseElement.style.display = 'block';
+                responseElement.style.color = 'red';
+                responseElement.innerText = 'Failed to submit the application. Please try again later.';
+            });
+
+            return false;
+        }
+    </script>
 </body>
 </html>

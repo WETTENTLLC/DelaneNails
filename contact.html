@@ -69,6 +69,12 @@
             height: 300px;
             border: none;
         }
+
+        #formResponse {
+            color: green;
+            margin-top: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -97,7 +103,7 @@
         <div class="contact-container">
             <div class="contact-form">
                 <h3>Send Us a Message</h3>
-                <form action="submit_form.php" method="POST">
+                <form id="contactForm" action="submit_form.php" method="POST" onsubmit="return handleFormSubmit(event)">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name" required>
                     
@@ -109,6 +115,7 @@
                     
                     <button type="submit">Submit</button>
                 </form>
+                <p id="formResponse"></p>
             </div>
 
             <div class="contact-info">
@@ -116,6 +123,7 @@
                 <p><strong>Address:</strong> 123 Wellness St., Nail City, NC 56789</p>
                 <p><strong>Phone:</strong> (555) 123-4567</p>
                 <p><strong>Email:</strong> <a href="mailto:info@dnnc.com">info@dnnc.com</a></p>
+
                 <p><strong>Business Hours:</strong> Monday - Saturday: 9:00 AM - 6:00 PM</p>
             </div>
         </div>
@@ -140,5 +148,33 @@
         <p>Support Steps to Success</p>
         <a href="steps-to-success.html">Donate Now</a>
     </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('contactForm');
+            const formData = new FormData(form);
+            const responseElement = document.getElementById('formResponse');
+
+            fetch('submit_form.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                responseElement.style.display = 'block';
+                responseElement.style.color = 'green';
+                responseElement.innerText = 'Message sent successfully!';
+                form.reset();
+            })
+            .catch(err => {
+                responseElement.style.display = 'block';
+                responseElement.style.color = 'red';
+                responseElement.innerText = 'Failed to send the message. Please try again later.';
+            });
+
+            return false;
+        }
+    </script>
 </body>
 </html>
