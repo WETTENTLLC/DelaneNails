@@ -1,175 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join Delane's Natural Nail Care and contribute to our mission of health-first nail care and wellness.">
     <title>Hiring - Delane's Natural Nail Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Styles for the application page */
-        .application-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            gap: 20px;
-        }
-
-        .application-form {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        .application-form:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 188, 212, 0.5);
-        }
-
-        .application-form h3 {
-            margin-top: 0;
-        }
-
-        .application-form label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-
-        .application-form input, 
-        .application-form select, 
-        .application-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .application-form button {
-            background-color: #00bcd4;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .application-form button:hover {
-            background-color: #007a8f;
-        }
-
-        .application-form p {
-            text-align: center;
-            color: green;
-            display: none;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
+
 <body>
+    <!-- Header -->
     <header>
-        <a href="#mainContent" class="skip-link">Skip to content</a>
+        <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
         <div class="header-content">
-            <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="hiring.html" class="active">Hiring</a></li>
-                </ul>
-            </nav>
-            <h1 style="color: #00bcd4;">Delane's Natural Nail Care</h1>
-            <p style="color: #00bcd4;">Elevating Wellness with Prosthetic Precision</p>
-            <button class="get-started" onclick="window.location.href='booking.html'">BOOK YOUR APPOINTMENT NOW</button>
+            <h1>We're Hiring!</h1>
+            <p>Join our team of passionate professionals.</p>
         </div>
-    </header>
-
-    <main>
-        <h2 class="page-title">Join Our Team</h2>
-        <div class="application-container">
-            <div class="application-form">
-                <h3>Employee Application Form</h3>
-                <form id="applicationForm" action="submit_application.php" method="POST" enctype="multipart/form-data" onsubmit="return handleApplicationSubmit(event)">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-
-                    <label for="position">Position Applying For</label>
-                    <select id="position" name="position" required>
-                        <option value="" disabled selected>Select a position</option>
-                        <option value="Nail Technician">Nail Technician</option>
-                        <option value="Receptionist">Receptionist</option>
-                        <option value="Manager">Manager</option>
-                    </select>
-
-                    <label for="experience">Previous Experience</label>
-                    <textarea id="experience" name="experience" rows="5" placeholder="Briefly describe your experience..." required></textarea>
-
-                    <label for="resume">Upload Resume</label>
-                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
-
-                    <button type="submit">Submit Application</button>
-                </form>
-                <p id="applicationResponse">Application submitted successfully!</p>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
+        <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         <nav>
             <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="news.html">News & Updates</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#apply">Click Here To Apply</a></li>
             </ul>
         </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Job Details Section -->
+        <section id="job-details" class="floating-frame">
+            <h2>Why Join Delane's Natural Nail Care?</h2>
+            <p>Delane’s is a leader in health-first, prosthetic-precision nail care. We are expanding and looking for passionate professionals to join our team.</p>
+            <ul>
+                <li>Flexible scheduling</li>
+                <li>Competitive pay</li>
+                <li>Opportunities for growth</li>
+                <li>Supportive, team-oriented environment</li>
+            </ul>
+        </section>
+
+        <!-- Application Section -->
+        <section id="apply" class="floating-frame">
+            <h2>Application</h2>
+            <p>Ready to join our team? Click the button below to complete our application process.</p>
+            <button onclick="window.location.href='new-application.html'" class="get-started">Apply Now</button>
+        </section>
+
+        <!-- Yelp Review Section -->
+        <section id="yelp-review" class="floating-frame" style="background-color: #d32f2f; color: #ffffff; padding: 20px; border-radius: 8px;">
+            <h2>Yelp Reviews</h2>
+            <p>"Delane's is truly amazing! The level of care and attention is unmatched. Highly recommend!" - A Satisfied Client</p>
+            <a href="https://www.yelp.com/biz/delanes-natural-nail-care" target="_blank" class="cta-link" style="color: #ffffff; font-weight: bold;">Read More Reviews</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
     </footer>
-
-    <div class="donation-frame">
-        <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
-    </div>
-
-    <script>
-        function handleApplicationSubmit(event) {
-            event.preventDefault();
-            const form = document.getElementById('applicationForm');
-            const formData = new FormData(form);
-            const responseElement = document.getElementById('applicationResponse');
-
-            fetch('submit_application.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                responseElement.style.display = 'block';
-                responseElement.style.color = 'green';
-                responseElement.innerText = 'Application submitted successfully!';
-                form.reset();
-            })
-            .catch(err => {
-                responseElement.style.display = 'block';
-                responseElement.style.color = 'red';
-                responseElement.innerText = 'Failed to submit the application. Please try again later.';
-            });
-
-            return false;
-        }
-    </script>
 </body>
+
 </html>
