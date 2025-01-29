@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+k<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,6 +58,38 @@
             margin-bottom: 15px;
         }
 
+        .frame {
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        ul li img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
         .donation-frame {
             text-align: center;
             margin: 20px 0;
@@ -76,71 +108,81 @@
 </head>
 <body>
     <header>
-        <a href="#mainContent" class="skip-link" title="Skip to main content">Skip to content</a>
+        <a href="#mainContent" class="skip-link" title="Skip to main 
+content">Skip to content</a>
         <div class="header-content">
-            <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+            <img src="images/logo-images.png" alt="Delane's Natural Nail 
+Care Logo" class="logo">
             <nav>
                 <ul>
                     <li><a href="index.html" title="Home">Home</a></li>
                     <li><a href="about.html" title="About">About</a></li>
-                    <li><a href="services.html" title="Services">Services</a></li>
-                    <li><a href="news.html" title="News & Updates">News & Updates</a></li>
-                    <li><a href="faq.html" title="Frequently Asked Questions">FAQ</a></li>
-                    <li><a href="contact.html" title="Contact Us">Contact</a></li>
+                    <li><a href="services.html" 
+title="Services">Services</a></li>
+                    <li><a href="masterclass.html" 
+title="Masterclass">Masterclass</a></li>
+                    <li><a href="contact.html" 
+title="Contact">Contact</a></li>
+                    <li><a href="shop.html" title="Shop">Shop</a></li>
                 </ul>
             </nav>
-            <h1>Delane's Natural Nail Care</h1>
-            <p>Relaxing, Private, Professional, and Clean</p>
-            <button class="get-started" onclick="window.location.href='services.html'" title="Book your appointment now">BOOK YOUR APPOINTMENT NOW</button>
         </div>
     </header>
-    
+
     <main id="mainContent">
         <div class="about-container">
-            <section id="about">
-                <h1>About Delane’s Natural Nail Care</h1>
-                <article>
-                    <h2>Our Story</h2>
-                    <p>At Delane’s Natural Nail Care, we pride ourselves on delivering exceptional nail care services with a commitment to health, wellness, and community. Founded by Delane Sims, a visionary and passionate advocate for natural beauty, our salon has grown into a haven for those seeking quality and comfort.</p>
-                </article>
-
-                <article>
-                    <h2>Meet Delane Sims</h2>
-                    <p>Delane Sims, the heart and soul of DNNC, has dedicated her career to transforming lives through beauty. With her extensive knowledge, unwavering dedication, and an eye for detail, Delane has built a legacy of excellence. Her journey from overcoming personal challenges to becoming a beacon of hope for many is truly inspiring.</p>
-                </article>
-
-                <article>
-                    <h2>Meet Myeshia Jefferson</h2>
-                    <p>Myeshia Jefferson, co-owner and a testament to the success of the DNNC Steps to Success program, is a talented and dedicated professional. Her journey from a program participant to a co-owner exemplifies the transformative power of empowerment and support. Myeshia’s passion for nail care and her commitment to uplifting others make her an invaluable asset to DNNC.</p>
-                </article>
-
-                <article>
-                    <h2>Our Accomplishments</h2>
-                    <p>Over the years, DNNC has garnered numerous accolades and recognition for its excellence in nail care and community service. Our unwavering commitment to quality and our clients has earned us the esteemed "Business of the Year" award by the African American Business Council, presented by the San Leandro Chamber of Commerce.</p>
-                </article>
-
-                <article>
-                    <h2>Our Vision</h2>
-                    <p>We believe in not just offering beauty services but also empowering individuals to lead better lives. Through our DNNC Steps to Success program, we help low-income women achieve their dreams of becoming licensed manicurists, breaking the cycle of poverty, and building a brighter future for their families.</p>
-                    <p>Join us at Delane’s Natural Nail Care and be a part of our journey. We look forward to serving you and making your visit an unforgettable experience.</p>
-                </article>
+            <section>
+                <h1>About Delane's Natural Nail Care</h1>
+                <div class="frame">
+                    <p>Delane's Natural Nails specializes in taking care 
+of your natural nails, hands, and feet. Your experience in nail care 
+should be relaxing and safe in a clean environment. That is what you will 
+receive at Delane’s Natural Nail Care.</p>
+                    <ul>
+                        <li><img src="images/nail-polish-icon.png" 
+alt="Icon"> Reclining chairs for relaxation during manicure/pedicure 
+services.</li>
+                        <li><img src="images/nail-polish-icon.png" 
+alt="Icon"> Private/semi-private rooms with WiFi access.</li>
+                        <li><img src="images/nail-polish-icon.png" 
+alt="Icon"> Extended foot massages with pedicure services.</li>
+                        <li><img src="images/nail-polish-icon.png" 
+alt="Icon"> Disposable foot tubs and personal nail files to prevent 
+bacteria spread.</li>
+                        <li><img src="images/nail-polish-icon.png" 
+alt="Icon"> Complimentary blankets for added comfort.</li>
+                    </ul>
+                    <p>Not only do we care about the health and 
+beautification of your hands and feet, but we also care about the 
+pampering of your soul.</p>
+                </div>
             </section>
+
+            <div class="donation-frame">
+                <p>Support Steps to Success</p>
+                <a href="steps-to-success.html" title="Learn more about 
+Steps to Success">Donate Now</a>
+            </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
         <nav>
             <ul>
-                <li><a href="privacy.html" title="Read our Privacy Policy">Privacy Policy</a></li>
-                <li><a href="terms.html" title="Read our Terms of Service">Terms of Service</a></li>
+                <li><a href="index.html" title="Home">Home</a></li>
+                <li><a href="about.html" title="About">About</a></li>
+                <li><a href="services.html" 
+title="Services">Services</a></li>
+                <li><a href="masterclass.html" 
+title="Masterclass">Masterclass</a></li>
+                <li><a href="contact.html" 
+title="Contact">Contact</a></li>
+                <li><a href="shop.html" title="Shop">Shop</a></li>
             </ul>
         </nav>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights 
+reserved.</p>
     </footer>
-
-    <div class="donation-frame">
-        <p>Support Steps to Success</p>
-        <a href="steps-to-success.html" title="Learn more about Steps to Success">Donate Now</a>
-    </div>
 </body>
 </html>
+
