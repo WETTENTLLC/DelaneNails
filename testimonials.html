@@ -27,65 +27,80 @@
             <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
     </header>
-    
+
     <main>
-        <div class="testimonials-container">
-            <section id="client-testimonials">
-                <h2>What Our Clients Say</h2>
-                <div class="carousel">
-                    <div class="carousel-slide">
-                        <p>"Delane's is not just a nail salon; it's a wellness experience. My brittle nails have never been healthier!"</p>
-                        <span>- Jessica T.</span>
-                    </div>
-                    <div class="carousel-slide">
-                        <p>"I suffer from arthritis, and Delane's team provided a service tailored just for me. It’s life-changing!"</p>
-                        <span>- Robert K.</span>
-                    </div>
-                    <div class="carousel-slide">
-                        <p>"As a senior, I appreciate the care and attention I receive here. The clean environment is reassuring, and my nails always look amazing."</p>
-                        <span>- Evelyn S.</span>
-                    </div>
-                    <div class="carousel-slide">
-                        <p>"Delane’s Natural Nail Care feels like home. Their new Truth and Freedom nail polish line is stunning!"</p>
-                        <span>- Naomi R.</span>
-                    </div>
-                    <div class="carousel-slide">
-                        <p>"This is the first salon I’ve been to where the focus is on health first. Delane's team truly cares about their clients."</p>
-                        <span>- Michael L.</span>
-                    </div>
+        <!-- Client Testimonials Section -->
+        <section id="client-testimonials">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonial frame">
+                    <p>"Delane's is not just a nail salon; it's a wellness experience. My brittle nails have never been healthier!"</p>
+                    <span>- Jessica T.</span>
                 </div>
-                <button class="carousel-control prev" aria-label="Previous testimonial">&lt;</button>
-                <button class="carousel-control next" aria-label="Next testimonial">&gt;</button>
-            </section>
-            
-            <section id="video-testimonials">
-                <h2>Video Testimonials</h2>
-                <div class="video-testimonial">
-                    <video controls>
-                        <source src="videos/testimonial1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p>Jessica shares how Delane's changed her nail health journey.</p>
+                <div class="testimonial frame">
+                    <p>"I suffer from arthritis, and Delane's team provided a service tailored just for me. It’s life-changing!"</p>
+                    <span>- Robert K.</span>
                 </div>
-                <div class="video-testimonial">
-                    <video controls>
-                        <source src="videos/testimonial2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p>Robert speaks about the specialized care he received for his arthritis.</p>
+                <div class="testimonial frame">
+                    <p>"As a senior, I appreciate the care and attention I receive here. The clean environment is reassuring, and my nails always look amazing."</p>
+                    <span>- Evelyn S.</span>
                 </div>
-            </section>
-        </div>
+                <div class="testimonial frame">
+                    <p>"Delane’s Natural Nail Care feels like home. Their new Truth and Freedom nail polish line is stunning!"</p>
+                    <span>- Naomi R.</span>
+                </div>
+                <div class="testimonial frame">
+                    <p>"This is the first salon I’ve been to where the focus is on health first. Delane's team truly cares about their clients."</p>
+                    <span>- Michael L.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Testimonials Section -->
+        <section id="video-testimonials">
+            <h2>Video Testimonials</h2>
+            <div class="video-testimonial tv-frame">
+                <video controls>
+                    <source src="videos/testimonial1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>Jessica shares how Delane's changed her nail health journey.</p>
+            </div>
+            <div class="video-testimonial tv-frame">
+                <video controls>
+                    <source src="videos/testimonial2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>Robert speaks about the specialized care he received for his arthritis.</p>
+            </div>
+        </section>
+
+<!-- New Field -->
+
+        <button type="submit">Submit Testimonial</button>
+    </form>
+</section>
+
+
+        <!-- Testimonial Submission Form -->
+        <section id="submit-testimonial">
+            <h2>Share Your Experience</h2>
+            <form id="testimonial-form">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="testimonial">Your Testimonial:</label>
+                <textarea id="testimonial" name="testimonial" rows="4" 
+required></textarea>
+
+                <button type="submit">Submit Testimonial</button>
+            </form>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
-        <nav>
-            <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
-            </ul>
-        </nav>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights 
+reserved.</p>
     </footer>
 
     <div class="donation-frame">
@@ -94,3 +109,4 @@
     </div>
 </body>
 </html>
+

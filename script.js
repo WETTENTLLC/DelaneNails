@@ -102,6 +102,16 @@ document.getElementById('menuToggle').addEventListener('click', function() {
     document.getElementById('navMenu').classList.toggle('active');
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("fetch_approved_testimonials.php")
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector("#client-testimonials 
+.testimonials-container").innerHTML = data;
+        });
+});
+
+
 // Ensure all interactive elements are focusable
 document.querySelectorAll('a, button, input, textarea').forEach(element => {
     if (!element.hasAttribute('tabindex')) {

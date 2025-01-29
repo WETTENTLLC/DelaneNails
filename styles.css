@@ -260,3 +260,134 @@ nav ul li a:hover {
     box-shadow: 0px 4px 8px rgba(108, 117, 125, 0.5);
 }
 
+.service-frame {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Neutral default shadow 
+*/
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.service-frame:hover {
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.6); /* Activated shadow 
+effect */
+    transform: translateY(-5px);
+}
+
+/* Foot-Shaped Frame Styling */
+.foot-shaped-frame {
+    background-color: #fff;
+    border-radius: 50% 50% 40% 40%; /* Creates a rounded foot shape */
+    padding: 20px;
+    margin: 20px;
+    width: 250px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    overflow: hidden; /* Ensures text does not overflow */
+}
+
+.foot-shaped-frame h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.foot-shaped-frame p {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0 10px;
+    max-height: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.foot-shaped-frame:hover {
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.6);
+    transform: translateY(-5px);
+}
+
+.medi-spa-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: auto;
+}
+
+.medi-spa-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Floating Frames for Testimonials */
+.testimonial.frame {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.6);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.testimonial.frame:hover {
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.8);
+    transform: translateY(-5px);
+}
+
+/* TV-Shaped Frame for Videos */
+.tv-frame {
+    background: #222;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    margin: auto;
+}
+
+.tv-frame video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Testimonial Form */
+#testimonial-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#testimonial-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+#testimonial-form input,
+#testimonial-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#testimonial-form button {
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
