@@ -1,35 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Form</title>
-</head>
-<body>
-    <form action="submit_application.php" method="POST" 
-enctype="multipart/form-data">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-        
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" required><br>
-        
-        <label for="position">Position:</label>
-        <input type="text" id="position" name="position" required><br>
-        
-        <label for="experience">Experience:</label>
-        <textarea id="experience" name="experience" 
-required></textarea><br>
-        
-        <label for="resume">Resume:</label>
-        <input type="file" id="resume" name="resume" 
-accept=".pdf,.doc,.docx" required><br>
-        
-        <button type="submit">Submit Application</button>
-    </form>
-</body>
-</html>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $full_name = htmlspecialchars($_POST['full_name']);
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    $phone = htmlspecialchars($_POST['phone']);
+    $position = htmlspecialchars($_POST['position']);
+    $additional_info = htmlspecialchars($_POST['additional_info']);
+
+    if (!$email) {
+        die("Invalid email address.");
+    }
+
+    // File Upload Handling
+    $upload_dir = "uploads/";
+    if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0777, true);
+    }
+
+    $resume = $_FILES['resume'];
+    $resume_path = $upload_dir . basename($resume["name"]);
+    $allowed_extensions = ["pdf", "docx"];
+
+    $file_extension = pathinfo($resume_path, PATHINFO_EXTENSION);
+    if (!in_array(strtolower($file_extension), $allowed_extensions)) {
+        die("Only PDF and DOCX files are allowed.");
+    }
+
+    if (move_uploaded_file($resume["tmp_name"], $resume_path)) {
+        // Email Notification
+        $to = "your-email@example.com"; // Replace with your email
+        $subject = "New Job Application from $full_name";
+        $message = "Name: $full_name\nEmail: $email\nPhone: 
+$phone\nPosition: $position\nAdditional Info: $additional_info\nResume: 
+$resume_path";
+        $headers = "From: noreply@delanesnails.com";
+
+        mail($to, $subject, $message, $headers);
+
+        echo "Application submitted successfully!";
+    } else {
+        echo "Error uploading file.";
+    }
+}
+?>
 

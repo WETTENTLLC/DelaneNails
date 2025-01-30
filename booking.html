@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delane's Natural Nail Care - Book Your Appointment</title>
+    <title>Delane's Natural Nail Care & Medi-Spa - Book Your Appointment</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -117,25 +117,43 @@
     </style>
 </head>
 <body>
-    <header>
-        <a href="#mainContent" class="skip-link">Skip to main content</a>
-        <div class="header-content">
-            <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <h1>Delane's Natural Nail Care</h1>
+<header>
+    <div class="header-placeholder left"></div> <!-- Left Placeholder -->
+
+    <div class="header-content">
+        <!-- Logo -->
+        <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+
+        <!-- Title & Slogan -->
+        <div class="title-and-slogan">
+            <h1>Delane's Natural Nail Care & Medi-Spa</h1>
             <p>Relaxing, Private, Professional, and Clean</p>
-            <button class="get-started" onclick="window.location.href='services.html'">BOOK YOUR APPOINTMENT NOW</button>
         </div>
-    </header>
+
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="news.html">News & Updates</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="steps-to-success.html">Steps to Success</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="header-placeholder right"></div> <!-- Right Placeholder 
+-->
+
+    <!-- Header Buttons -->
+    <div class="header-buttons">
+        <button class="get-started" onclick="window.location.href='booking.html'">RESET BOOKING</button>
+        <button class="donate-now" onclick="window.location.href='steps-to-success.html'">DONATE</button>
+    </div>
+</header>
     
     <main id="mainContent">
         <!-- Booking Form -->
@@ -163,11 +181,14 @@
 
         <!-- Preferences Form -->
         <section id="preferences-form" class="floating-frame">
-            <h3>Preferred Music & Scents</h3>
+            <h3>Preferences & Health Concerns</h3>
             <form id="preferencesForm">
                 <label for="music">Preferred Music:</label>
                 <input type="text" id="music" name="music" placeholder="E.g., Classical, Jazz">
                 
+                <label for="diabetic">Health Concerns:</label>
+                <input type="text" id="Health Concerns" name="answer" 
+placeholder="E.g., Explain-E.g. Are you diabetic">
                 <label for="scents">Preferred Scents:</label>
                 <input type="text" id="scents" name="scents" placeholder="E.g., Lavender, Vanilla">
                 
