@@ -169,6 +169,46 @@ nav ul li a:hover {
 }
 
 
+/* Additional CSS for News Page */
+.tv-frame {
+    width: 320px; /* Width of the TV frame */
+    margin: 20px; /* Space between frames */
+    position: relative;
+    overflow: hidden; /* To hide overflow */
+}
+
+.tv-screen {
+    background-color: #000; /* Black screen effect */
+    border-radius: 20px; /* Rounded corners for the screen */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.tv-frame:hover .tv-screen {
+    box-shadow: 0 8px 16px rgba(0, 188, 212, 0.8);
+    transform: translateY(-5px);
+}
+
+/* Adding Graphics */
+.tv-frame::before {
+    content: '';
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
+    width: 40px; /* Width of graphic */
+    height: 40px; /* Height of graphic */
+    background-image: url('path/to/graphic.png'); /* Replace with your graphic */
+    background-size: cover;
+    border-radius: 50%; /* Rounded graphic */
+}
+
+/* Adjusting text styles */
+.tv-screen h3, .tv-screen p {
+    color: #fff; /* White text for contrast */
+}
+
+
 
 /* === CONTACT PAGE SPECIFIC STYLES === */
 .contact-container {
