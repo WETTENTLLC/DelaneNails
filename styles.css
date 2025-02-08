@@ -1,360 +1,207 @@
-/* === MASTERCLASS PAGE STYLING === */
-.masterclass-hero {
-  background-image: url('images/masterclass-hero.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  position: relative;
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-.masterclass-hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+body {
+    background-color: #f9f9f9;
+    line-height: 1.6;
 }
 
-.masterclass-hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 20px;
-}
-
-.masterclass-hero h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.masterclass-hero p {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.masterclass-hero .cta-button {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0.8rem 2rem;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.masterclass-hero .cta-button:hover {
-  background-color: var(--hover-color);
-  transform: scale(1.05);
-}
-
-/* === HEADER STYLING (FINALIZED) === */
-header {
-    background-color: #000000;
-    color: white;
-    padding: 15px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* Header Styles */
+.header {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 95vw;
-    max-width: 100%;
-    overflow-x: hidden;
-    height: 215px; /* Adjusted to properly fit all elements */
-}
-
-/* Header Structure */
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    width: 100%;
-    max-width: 100vs;
-    overflow-x: hidden;
-    position: relative;
-    text-align: center;
+    align-items: center;
 }
 
-/* Logo */
+.logo-container {
+    margin-bottom: 15px;
+}
+
 .logo {
-    width: 140px; /* Adjusted for better visibility */
+    max-width: 150px;
     height: auto;
+}
+
+.header-title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.header-title h1 {
+    font-size: 28px;
+    color: #333;
     margin-bottom: 5px;
 }
 
-/* Title & Slogan */
-.title-and-slogan h1 {
-    font-size: 1.8rem;
-    color: #00bcd4;
-    margin: 5px 0;
+.slogan {
+    font-size: 18px;
+    color: #666;
+    font-style: italic;
 }
 
-.title-and-slogan p {
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-/* Navigation */
-nav {
-    width: 100%;
-    text-align: center;
-    margin-top: 5px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Navigation Links */
+.nav-links ul {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    list-style: none;
+    gap: 25px;
+    margin-bottom: 20px;
 }
 
-nav ul li a {
-    color: #00bcd4;
+.nav-links a {
     text-decoration: none;
-    padding: 5px 10px;
-    font-size: 1rem;
+    color: #444;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
-/* Left & Right Header Placeholders */
-.header-placeholder {
-    width: 100px;
-    max-width: 100%
-    height: auto;
-    border: 2px dashed #ccc;
-    background-color: #f0f0f0;
-    position: absolute;
-    top: 10px;
-}
-
-.header-placeholder.left {
-    left: 20px;
-}
-
-.header-placeholder.right {
-    right: 20px;
+.nav-links a:hover {
+    color: #ff0000;
 }
 
 /* Header Buttons */
 .header-buttons {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
+    gap: 15px;
 }
 
-/* Book Now & Donate Buttons */
-.get-started, .donate-now {
-    background-color: #ff0000;
-    color: white;
+.btn-primary, .btn-donate {
+    padding: 12px 25px;
     border: none;
-    padding: 8px 16px;
-    font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-right: 100px;
-}
-
-.get-started:hover {
-    background-color: #cc0000;
-    transform: scale(1.05);
-}
-
-.donate-now {
-    background-color: #ff0000;
-}
-
-.donate-now:hover {
-    background-color: #0096b3;
-    transform: scale(1.05);
-}
-
-/* RESPONSIVE FIXES */
-@media (max-width: 768px) {
-    header {
-        height: auto;
-        flex-direction: column;
-    }
-
-    .header-content {
-        flex-direction: column;
-    }
-
-    .header-buttons {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        padding: 0 10px;
-    }
-
-    .header-placeholder {
-        position: static;
-        margin-bottom: 10px;
-    }
-
-    nav ul {
-        flex-wrap: wrap;
-    }
-}
-
-/* Floating Frame Base Styles */
-.floating-frame {
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    margin: 20px auto;
-    width: 80%;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
-
-/* Hover Effect for Floating Frames */
-.floating-frame:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 8px 16px rgba(0, 188, 212, 0.6);
-}
-
-/* Section-Specific Floating Frames */
-#home .floating-frame {
-    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.5);
-}
-
-#shop .floating-frame {
-    box-shadow: 0px 4px 8px rgba(255, 193, 7, 0.5);
-}
-
-#steps-to-success .floating-frame {
-    box-shadow: 0px 4px 8px rgba(40, 167, 69, 0.5);
-}
-
-#news .floating-frame {
-    box-shadow: 0px 4px 8px rgba(108, 117, 125, 0.5);
-}
-
-/* TV-Shaped Floating Frames for News Page */
-.tv-frame {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,255,255);
-    max-width: 500px;
-    margin: auto;
-}
-
-.tv-frame:hover {
-    box-shadow: 0px 8px 16px rgba(255,215,0);
-    transform: translateY(-10px);
-}
-
-
-
-/* === FOOT SHAPED FRAMES === */
-.foot-shaped-frame {
-    background-color: #fff;
-    border-radius: 50% 50% 40% 40%;
-    padding: 20px;
-    margin: 20px;
-    width: 250px;
-    text-align: center;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.foot-shaped-frame:hover {
-    box-shadow: 0px 5px 15px rgba(0, 188, 212, 0.6);
-    transform: translateY(-5px);
-}
-
-
-.tv-frame video {
-    width: 100%;
-    border-radius: 10px;
-}
-
-/* === RESPONSIVE DESIGN === */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-    }
-
-    .header-buttons {
-        flex-direction: column;
-        align-items: center;
-        bottom: 20px; /* Adjust positioning */
-        right: auto; /* Reset right positioning */
-        left: auto; /* Reset left positioning */
-    }
-
-    .header-placeholder-left,
-    .header-placeholder-right {
-        position: relative;
-        margin: 10px;
-        top: auto; /* Reset top positioning */
-        left: auto; /* Reset left positioning */
-        right: auto; /* Reset right positioning */
-    }
-}
-
-
-/* 5 Star Yelp Graphic */
-.yelp-rating {
-    background-color: #ff0000; /* Red background */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-align: center;
-    margin: 20px 0;
-}
-
-.yelp-rating img {
-    width: 50px; /* Adjust size as needed */
-    height: auto;
-    vertical-align: middle;
-}
-
-.yelp-link {
-    background-color: #00bcd4; /* Blue background */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 1.2em;
-    display: inline-block;
-    margin-top: 10px;
     font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #ff0000;
+    color: white;
+}
+
+.btn-donate {
+    background-color: #ff0000;
+    color: white;
+}
+
+.btn-primary:hover, .btn-donate:hover {
+    background-color: #cc0000;
+}
+
+/* Floating Frames (Added for Sections) */
+.floating-frame {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin: 25px auto;
+    max-width: 1200px;
+}
+
+/* Main Content Sections */
+.hero-section {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about-section, .services-section, .shop-section, .contact-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h3 {
+    margin-bottom: 15px;
+    color: #ff0000;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
     text-decoration: none;
-    transition: background-color 0.3s ease; /* Smooth transition for hover 
-effect */
 }
 
-.yelp-link:hover {
-    background-color: #333; /* Darker background on hover */
-    color: white;
+.footer-section a:hover {
+    color: #ff0000;
 }
 
-/* Adding Location to Yelp Floating Frame */
-.yelp-location {
-    color: white;
-    font-size: 1.1em;
-    margin-top: 10px;
+.social-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .header-buttons {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .btn-primary, .btn-donate {
+        width: 80%;
+        margin: 5px 0;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
