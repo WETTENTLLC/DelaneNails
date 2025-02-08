@@ -5,71 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News & Updates - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Additional CSS for News Page */
-        .tv-frame {
-            width: 320px; /* Width of the TV frame */
-            margin: 20px; /* Space between frames */
-            position: relative;
-            overflow: hidden; /* To hide overflow */
-        }
-
-        .tv-screen {
-            background-color: #000; /* Black screen effect */
-            border-radius: 20px; /* Rounded corners for the screen */
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        .tv-frame:hover .tv-screen {
-            box-shadow: 0 8px 16px rgba(0, 188, 212, 0.8);
-            transform: translateY(-5px);
-        }
-
-        /* Adding Graphics */
-        .tv-frame::before {
-            content: '';
-            position: absolute;
-            top: 10px; /* Adjust as needed */
-            left: 10px; /* Adjust as needed */
-            width: 40px; /* Width of graphic */
-            height: 40px; /* Height of graphic */
-            background-image: url('path/to/graphic.png'); /* Replace with your graphic */
-            background-size: cover;
-            border-radius: 50%; /* Rounded graphic */
-        }
-
-        /* Adjusting text styles */
-        .tv-screen h3, .tv-screen p {
-            color: #fff; /* White text for contrast */
-        }
-
-        /* News Header */
-        .news-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .news-header h2 {
-            font-size: 2rem; /* Increased size for better readability */
-        }
-
-        .news-header .hiring-btn {
-            font-size: 1.2rem; /* Increased size for better visibility */
-            padding: 10px 20px;
-            background-color: #00bcd4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .news-header .hiring-btn:hover {
-            background-color: #0097a7;
-        }
-    </style>
+    
 </head>
 <body>
 <header>
@@ -110,42 +46,42 @@
 </header>
 
 <main id="mainContent">
-    <div class="news-header">
+    <div class="news-container">
         <h2>News & Updates</h2>
         <button class="hiring-btn" onclick="window.location.href='hiring.html'">We're Hiring!</button>
     </div>
 
     <!-- News Items in TV Screen Layout -->
-    <div class="tv-frame">
-        <div class="tv-screen">
+    <div class="news-frame">
+        <div class="news-frame">
             <h3>Launch of Truth and Freedom Nail Polish Line</h3>
             <p>Delane's Natural Nail Care is proud to introduce our latest nail polish line, Truth and Freedom, focusing on health-conscious beauty.</p>
             <a href="news-details.html" class="read-more">Read More</a>
         </div>
     </div>
-    <div class="tv-frame">
+    <div class="news-frame">
         <div class="tv-screen">
             <h3>New Senior Wellness Packages</h3>
             <p>We now offer specialized wellness packages designed for seniors, emphasizing health-first care and relaxation.</p>
             <a href="news-details.html" class="read-more">Read More</a>
         </div>
     </div>
-    <div class="tv-frame">
-        <div class="tv-screen">
+    <div class="news-frame">
+        <div class="news-frame">
             <h3>Exciting Partnerships</h3>
             <p>We’ve partnered with local organizations to bring affordable nail care to underserved communities.</p>
             <a href="news-details.html" class="read-more">Read More</a>
         </div>
     </div>
-    <div class="tv-frame">
-        <div class="tv-screen">
+    <div class="news-frame">
+        <div class="news-frame">
             <h3>Staff Certification Updates</h3>
             <p>All our technicians are now certified in advanced prosthetic nail care to better serve our clients.</p>
             <a href="news-details.html" class="read-more">Read More</a>
         </div>
     </div>
-    <div class="tv-frame">
-        <div class="tv-screen">
+    <div class="news-frame">
+        <div class="news-frame">
             <h3>Eco-Friendly Initiative</h3>
             <p>We’ve committed to sustainability by incorporating eco-friendly materials in our packaging and services.</p>
             <a href="news-details.html" class="read-more">Read More</a>
