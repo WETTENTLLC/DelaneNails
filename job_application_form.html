@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application - Delane's Natural Nail Care</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="#mainContent" class="skip-link">Skip to content</a>
+        <div class="header-content">
+            <img src="images/logo-images.png" alt="Delane's Natural Nail 
+Care Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="hiring.html" 
+class="active">Hiring</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <h1>Join Our Team</h1>
+            <p>Apply today to become part of Delane's Natural Nail 
+Care!</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="floating-frame">
+            <h2>Job Application</h2>
+            <form action="submit_application.php" method="POST" 
+enctype="multipart/form-data">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full_name" 
+required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="position">Position Applying For:</label>
+                <select id="position" name="position" required>
+                    <option value="nail_technician">Nail 
+Technician</option>
+                    <option value="receptionist">Receptionist</option>
+                    <option value="spa_assistant">Spa Assistant</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="resume">Upload Resume (PDF/DOCX):</label>
+                <input type="file" id="resume" name="resume" accept=".pdf, 
+.docx" required>
+
+                <label for="additional-info">Additional 
+Information:</label>
+                <textarea id="additional-info" name="additional_info" 
+rows="4" placeholder="Tell us why you’d be a great fit!"></textarea>
+
+                <button type="submit">Submit Application</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Delane's Natural Nail Care. All rights 
+reserved.</p>
+    </footer>
+</body>
+</html>
+
