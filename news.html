@@ -8,20 +8,41 @@
     <style>
         /* Additional CSS for News Page */
         .tv-frame {
-            background-color: #fff;
-            border-radius: 10px; /* Rounded corners */
-            padding: 20px;
-            width: 300px; /* Adjust width as necessary */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            width: 320px; /* Width of the TV frame */
             margin: 20px; /* Space between frames */
             position: relative;
+            overflow: hidden; /* To hide overflow */
         }
 
-        /* Hover Effect */
-        .tv-frame:hover {
-            box-shadow: 0 8px 16px rgba(0, 188, 212, 0.6);
+        .tv-screen {
+            background-color: #000; /* Black screen effect */
+            border-radius: 20px; /* Rounded corners for the screen */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .tv-frame:hover .tv-screen {
+            box-shadow: 0 8px 16px rgba(0, 188, 212, 0.8);
             transform: translateY(-5px);
+        }
+
+        /* Adding Graphics */
+        .tv-frame::before {
+            content: '';
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            left: 10px; /* Adjust as needed */
+            width: 40px; /* Width of graphic */
+            height: 40px; /* Height of graphic */
+            background-image: url('path/to/graphic.png'); /* Replace with your graphic */
+            background-size: cover;
+            border-radius: 50%; /* Rounded graphic */
+        }
+
+        /* Adjusting text styles */
+        .tv-screen h3, .tv-screen p {
+            color: #fff; /* White text for contrast */
         }
 
         /* News Header */
@@ -94,31 +115,41 @@
         <button class="hiring-btn" onclick="window.location.href='hiring.html'">We're Hiring!</button>
     </div>
 
-    <!-- News Items in Staggered Layout -->
+    <!-- News Items in TV Screen Layout -->
     <div class="tv-frame">
-        <h3>Launch of Truth and Freedom Nail Polish Line</h3>
-        <p>Delane's Natural Nail Care is proud to introduce our latest nail polish line, Truth and Freedom, focusing on health-conscious beauty.</p>
-        <a href="news-details.html" class="read-more">Read More</a>
+        <div class="tv-screen">
+            <h3>Launch of Truth and Freedom Nail Polish Line</h3>
+            <p>Delane's Natural Nail Care is proud to introduce our latest nail polish line, Truth and Freedom, focusing on health-conscious beauty.</p>
+            <a href="news-details.html" class="read-more">Read More</a>
+        </div>
     </div>
     <div class="tv-frame">
-        <h3>New Senior Wellness Packages</h3>
-        <p>We now offer specialized wellness packages designed for seniors, emphasizing health-first care and relaxation.</p>
-        <a href="news-details.html" class="read-more">Read More</a>
+        <div class="tv-screen">
+            <h3>New Senior Wellness Packages</h3>
+            <p>We now offer specialized wellness packages designed for seniors, emphasizing health-first care and relaxation.</p>
+            <a href="news-details.html" class="read-more">Read More</a>
+        </div>
     </div>
     <div class="tv-frame">
-        <h3>Exciting Partnerships</h3>
-        <p>We’ve partnered with local organizations to bring affordable nail care to underserved communities.</p>
-        <a href="news-details.html" class="read-more">Read More</a>
+        <div class="tv-screen">
+            <h3>Exciting Partnerships</h3>
+            <p>We’ve partnered with local organizations to bring affordable nail care to underserved communities.</p>
+            <a href="news-details.html" class="read-more">Read More</a>
+        </div>
     </div>
     <div class="tv-frame">
-        <h3>Staff Certification Updates</h3>
-        <p>All our technicians are now certified in advanced prosthetic nail care to better serve our clients.</p>
-        <a href="news-details.html" class="read-more">Read More</a>
+        <div class="tv-screen">
+            <h3>Staff Certification Updates</h3>
+            <p>All our technicians are now certified in advanced prosthetic nail care to better serve our clients.</p>
+            <a href="news-details.html" class="read-more">Read More</a>
+        </div>
     </div>
     <div class="tv-frame">
-        <h3>Eco-Friendly Initiative</h3>
-        <p>We’ve committed to sustainability by incorporating eco-friendly materials in our packaging and services.</p>
-        <a href="news-details.html" class="read-more">Read More</a>
+        <div class="tv-screen">
+            <h3>Eco-Friendly Initiative</h3>
+            <p>We’ve committed to sustainability by incorporating eco-friendly materials in our packaging and services.</p>
+            <a href="news-details.html" class="read-more">Read More</a>
+        </div>
     </div>
 </main>
 
