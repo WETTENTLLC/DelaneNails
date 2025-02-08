@@ -12,110 +12,124 @@ body {
 }
 
 /* Header Styles */
-.header {
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+header {
+    background-color: #000000; /* Updated from previous */
+    color: white; /* Updated from previous */
+    padding: 15px 20px; /* Adjusted */
+    position: sticky; /* Added */
+    top: 0; /* Added */
+    z-index: 1000; /* Added */
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    width: 95vw;
+    max-width: 100%;
+    overflow-x: hidden;
+    height: 215px; /* Adjusted */
 }
 
-.logo-container {
-    margin-bottom: 15px;
-}
-
-.logo {
-    max-width: 150px;
-    height: auto;
-}
-
-.header-title {
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100vs;
+    overflow-x: hidden;
+    position: relative;
     text-align: center;
-    margin-bottom: 15px;
 }
 
+/* Logo */
+.logo {
+    max-width: 150px; /* Updated */
+    height: auto; /* Updated */
+    margin-bottom: 5px; /* Updated */
+}
+
+/* Title & Slogan */
 .header-title h1 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 5px;
+    font-size: 28px; /* Updated */
+    color: #00bcd4; /* Updated */
+    margin-bottom: 5px; /* Updated */
 }
 
 .slogan {
-    font-size: 18px;
-    color: #666;
-    font-style: italic;
+    font-size: 18px; /* Updated */
+    color: #666; /* Updated */
+    font-style: italic; /* Updated */
 }
 
 /* Navigation Links */
-.nav-links ul {
+nav {
+    width: 100%; /* Added */
+    text-align: center; /* Added */
+    margin-top: 5px; /* Added */
+}
+
+nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
-    gap: 25px;
-    margin-bottom: 20px;
+    gap: 25px; /* Updated */
+    padding: 0; /* Added */
+    margin: 0; /* Added */
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #444;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #ff0000;
+nav ul li a {
+    color: #00bcd4; /* Updated */
+    text-decoration: none; /* Updated */
+    padding: 5px 10px; /* Added */
+    font-size: 1rem; /* Added */
 }
 
 /* Header Buttons */
 .header-buttons {
     display: flex;
     gap: 15px;
+    position: absolute; /* Updated */
+    bottom: 10px; /* Updated */
+    width: 100%; /* Updated */
+    justify-content: space-between; /* Updated */
 }
 
-.btn-primary, .btn-donate {
-    padding: 12px 25px;
+/* Buttons */
+.btn-primary, .btn-donate, .get-started, .donate-now {
+    padding: 12px 25px; /* Updated */
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; /* Updated */
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    font-weight: bold; /* Updated */
+    transition: background-color 0.3s; /* Updated */
 }
 
-.btn-primary {
-    background-color: #ff0000;
-    color: white;
+.btn-primary, .get-started, .donate-now {
+    background-color: #ff0000; /* Updated */
+    color: white; /* Updated */
 }
 
-.btn-donate {
-    background-color: #ff0000;
-    color: white;
+.get-started:hover, .btn-primary:hover, .btn-donate:hover {
+    background-color: #cc0000; /* Updated */
 }
 
-.btn-primary:hover, .btn-donate:hover {
-    background-color: #cc0000;
+.donate-now:hover {
+    background-color: #0096b3; /* Updated */
 }
 
-/* Floating Frames (Added for Sections) */
+/* Floating Frames */
 .floating-frame {
     background: white;
-    border-radius: 10px;
+    border-radius: 20px; /* Updated */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    margin: 25px auto;
-    max-width: 1200px;
+    padding: 25px; /* Updated */
+    margin: 25px auto; /* Updated */
+    max-width: 1200px; /* Updated */
 }
 
 /* Main Content Sections */
 .hero-section {
     text-align: center;
     padding: 50px 20px;
-}
-
-.hero-section h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #333;
 }
 
 .about-section, .services-section, .shop-section, .contact-section {
@@ -150,58 +164,28 @@ body {
     color: #ff0000;
 }
 
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 10px;
-}
-
-.footer-section a {
-    color: white;
-    text-decoration: none;
-}
-
-.footer-section a:hover {
-    color: #ff0000;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #555;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-links ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+    header {
+        height: auto; /* Updated */
+        flex-direction: column; /* Updated */
     }
 
     .header-buttons {
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
+        flex-direction: column; /* Updated */
+        width: 100%; /* Updated */
+        align-items: center; /* Updated */
     }
 
-    .btn-primary, .btn-donate {
-        width: 80%;
-        margin: 5px 0;
+    .nav-links ul {
+        flex-direction: column; /* Updated */
+        align-items: center; /* Updated */
+        gap: 15px; /* Updated */
     }
 
     .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        flex-direction: column; /* Updated */
+        align-items: center; /* Updated */
+        text-align: center; /* Updated */
     }
 }
