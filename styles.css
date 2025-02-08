@@ -9,23 +9,22 @@
 body {
     background-color: #f9f9f9;
     line-height: 1.6;
+    font-size: 1.2rem; /* Increased body text size */
 }
 
 /* === HEADER STYLING === */
 header {
     background-color: #000000;
     color: white;
-    padding: 15px 20px;
-    position: sticky;
-    top: 0;
+    padding: 20px 10px; /* Adjusted padding for more space */
+    position: relative; /* Changed from sticky to relative */
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 95vw;
-    max-width: 100%;
-    overflow-x: hidden;
-    height: 215px; /* Adjusted */
+    justify-content: center; /* Centered content */
+    flex-direction: column; /* Stack elements vertically */
+    width: 100%;
+    height: auto; /* Allow height to adjust based on content */
 }
 
 .header-content {
@@ -34,28 +33,25 @@ header {
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    max-width: 100vs;
-    overflow-x: hidden;
-    position: relative;
     text-align: center;
 }
 
 /* Logo */
 .logo {
-    max-width: 150px; /* Updated */
-    height: auto; /* Updated */
-    margin-bottom: 5px; /* Updated */
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 10px; /* Updated for spacing */
 }
 
 /* Title & Slogan */
 .title-and-slogan h1 {
-    font-size: 1.8rem;
+    font-size: 2rem; /* Increased size for better readability */
     color: #00bcd4;
     margin: 5px 0;
 }
 
 .title-and-slogan p {
-    font-size: 1.2rem;
+    font-size: 1.5rem; /* Increased size for better readability */
     margin: 0;
 }
 
@@ -63,7 +59,7 @@ header {
 nav {
     width: 100%;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 10px; /* Adjusted margin */
 }
 
 nav ul {
@@ -72,24 +68,21 @@ nav ul {
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px; /* Increased gap for better spacing */
 }
 
 nav ul li a {
     color: #00bcd4;
     text-decoration: none;
-    padding: 5px 10px;
-    font-size: 1rem;
+    padding: 10px 15px; /* Increased padding for better touch targets */
+    font-size: 1.2rem; /* Increased size for better readability */
 }
 
 /* Header Buttons */
 .header-buttons {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
+    justify-content: center;
+    padding: 10px 0; /* Added padding for spacing */
 }
 
 /* Book Now & Donate Buttons */
@@ -97,12 +90,12 @@ nav ul li a {
     background-color: #ff0000;
     color: white;
     border: none;
-    padding: 8px 16px;
-    font-size: 1rem;
+    padding: 10px 20px;
+    font-size: 1.2rem; /* Increased size for better readability */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-right: 100px;
+    margin: 0 10px; /* Adjusted margin for spacing */
 }
 
 .get-started:hover {
@@ -135,55 +128,6 @@ nav ul li a {
 .floating-frame:hover {
     transform: translateY(-10px);
     box-shadow: 0px 8px 16px rgba(0, 188, 212, 0.6);
-}
-
-/* Section-Specific Floating Frames */
-#home .floating-frame {
-    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.5);
-}
-
-#shop .floating-frame {
-    box-shadow: 0px 4px 8px rgba(255, 193, 7, 0.5);
-}
-
-#steps-to-success .floating-frame {
-    box-shadow: 0px 4px 8px rgba(40, 167, 69, 0.5);
-}
-
-#news .floating-frame {
-    box-shadow: 0px 4px 8px rgba(108, 117, 125, 0.5);
-}
-
-/* TV-Shaped Floating Frames for News Page */
-.tv-frame {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,255,255);
-    max-width: 500px;
-    margin: auto;
-}
-
-.tv-frame:hover {
-    box-shadow: 0px 8px 16px rgba(255,215,0);
-    transform: translateY(-10px);
-}
-
-/* === FOOT SHAPED FRAMES === */
-.foot-shaped-frame {
-    background-color: #fff;
-    border-radius: 50% 50% 40% 40%;
-    padding: 20px;
-    margin: 20px;
-    width: 250px;
-    text-align: center;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.foot-shaped-frame:hover {
-    box-shadow: 0px 5px 15px rgba(0, 188, 212, 0.6);
-    transform: translateY(-5px);
 }
 
 /* === CONTACT PAGE SPECIFIC STYLES === */
@@ -282,24 +226,18 @@ footer {
 /* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
     header {
-        height: auto;
-        flex-direction: column;
-    }
-
-    .header-buttons {
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
+        flex-direction: column; /* Stack elements vertically */
+        padding: 20px; /* Adjusted padding for mobile */
     }
 
     nav ul {
         flex-direction: column;
         align-items: center;
-        gap: 15px;
+        gap: 15px; /* Increased gap for better spacing */
     }
 
     .contact-container {
-        flex-direction: column;
+        flex-direction: column; /* Stack contact elements */
     }
 
     .map {
