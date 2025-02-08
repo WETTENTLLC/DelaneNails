@@ -117,6 +117,59 @@ nav ul li a:hover {
     box-shadow: 0px 8px 16px rgba(0, 188, 212, 0.6);
 }
 
+
+/* Special Polishes Section */
+#special-polishes {
+    padding: 40px 20px;
+    background-color: #f0f0f0; /* Background for the section */
+    text-align: center;
+}
+
+.polish-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between frames */
+}
+
+/* Polish Frame Styles */
+.polish-frame {
+    background-color: #fff;
+    border-radius: 20px 20px 5px 5px; /* Rounded top corners to mimic a bottle */
+    padding: 20px;
+    width: 150px; /* Adjust width as necessary */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+/* Hover Effect */
+.polish-frame:hover {
+    box-shadow: 0 8px 16px rgba(0, 188, 212, 0.6);
+    transform: translateY(-5px);
+}
+
+/* Specific Styles for Each Polish */
+.healing-lavender {
+    background-color: #e6e6fa; /* Light lavender */
+}
+
+.strengthening-formula {
+    background-color: #f0e68c; /* Light yellow */
+}
+
+/* Additional styles for text */
+.polish-frame h3 {
+    font-size: 1.5rem; /* Adjust as needed */
+    margin-bottom: 10px;
+}
+
+.polish-frame p {
+    font-size: 1rem; /* Adjust as needed */
+}
+
+
+
 /* === CONTACT PAGE SPECIFIC STYLES === */
 .contact-container {
     display: flex;
