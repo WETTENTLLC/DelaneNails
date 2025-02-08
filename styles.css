@@ -11,14 +11,14 @@ body {
     line-height: 1.6;
 }
 
-/* Header Styles */
+/* === HEADER STYLING === */
 header {
-    background-color: #000000; /* Updated from previous */
-    color: white; /* Updated from previous */
-    padding: 15px 20px; /* Adjusted */
-    position: sticky; /* Added */
-    top: 0; /* Added */
-    z-index: 1000; /* Added */
+    background-color: #000000;
+    color: white;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -48,97 +48,212 @@ header {
 }
 
 /* Title & Slogan */
-.header-title h1 {
-    font-size: 28px; /* Updated */
-    color: #00bcd4; /* Updated */
-    margin-bottom: 5px; /* Updated */
+.title-and-slogan h1 {
+    font-size: 1.8rem;
+    color: #00bcd4;
+    margin: 5px 0;
 }
 
-.slogan {
-    font-size: 18px; /* Updated */
-    color: #666; /* Updated */
-    font-style: italic; /* Updated */
+.title-and-slogan p {
+    font-size: 1.2rem;
+    margin: 0;
 }
 
-/* Navigation Links */
+/* Navigation */
 nav {
-    width: 100%; /* Added */
-    text-align: center; /* Added */
-    margin-top: 5px; /* Added */
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
 }
 
 nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
-    list-style: none;
-    gap: 25px; /* Updated */
-    padding: 0; /* Added */
-    margin: 0; /* Added */
+    gap: 15px;
 }
 
 nav ul li a {
-    color: #00bcd4; /* Updated */
-    text-decoration: none; /* Updated */
-    padding: 5px 10px; /* Added */
-    font-size: 1rem; /* Added */
+    color: #00bcd4;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-size: 1rem;
 }
 
 /* Header Buttons */
 .header-buttons {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
     display: flex;
-    gap: 15px;
-    position: absolute; /* Updated */
-    bottom: 10px; /* Updated */
-    width: 100%; /* Updated */
-    justify-content: space-between; /* Updated */
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
-/* Buttons */
-.btn-primary, .btn-donate, .get-started, .donate-now {
-    padding: 12px 25px; /* Updated */
+/* Book Now & Donate Buttons */
+.get-started, .donate-now {
+    background-color: #ff0000;
+    color: white;
     border: none;
-    border-radius: 5px; /* Updated */
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
     cursor: pointer;
-    font-weight: bold; /* Updated */
-    transition: background-color 0.3s; /* Updated */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-right: 100px;
 }
 
-.btn-primary, .get-started, .donate-now {
-    background-color: #ff0000; /* Updated */
-    color: white; /* Updated */
+.get-started:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
 }
 
-.get-started:hover, .btn-primary:hover, .btn-donate:hover {
-    background-color: #cc0000; /* Updated */
+.donate-now {
+    background-color: #ff0000;
 }
 
 .donate-now:hover {
-    background-color: #0096b3; /* Updated */
+    background-color: #0096b3;
+    transform: scale(1.05);
 }
 
-/* Floating Frames */
+/* === FLOATING FRAME BASE STYLES === */
 .floating-frame {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Hover Effect for Floating Frames */
+.floating-frame:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 16px rgba(0, 188, 212, 0.6);
+}
+
+/* Section-Specific Floating Frames */
+#home .floating-frame {
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.5);
+}
+
+#shop .floating-frame {
+    box-shadow: 0px 4px 8px rgba(255, 193, 7, 0.5);
+}
+
+#steps-to-success .floating-frame {
+    box-shadow: 0px 4px 8px rgba(40, 167, 69, 0.5);
+}
+
+#news .floating-frame {
+    box-shadow: 0px 4px 8px rgba(108, 117, 125, 0.5);
+}
+
+/* TV-Shaped Floating Frames for News Page */
+.tv-frame {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,255,255);
+    max-width: 500px;
+    margin: auto;
+}
+
+.tv-frame:hover {
+    box-shadow: 0px 8px 16px rgba(255,215,0);
+    transform: translateY(-10px);
+}
+
+/* === FOOT SHAPED FRAMES === */
+.foot-shaped-frame {
+    background-color: #fff;
+    border-radius: 50% 50% 40% 40%;
+    padding: 20px;
+    margin: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.foot-shaped-frame:hover {
+    box-shadow: 0px 5px 15px rgba(0, 188, 212, 0.6);
+    transform: translateY(-5px);
+}
+
+/* === CONTACT PAGE SPECIFIC STYLES === */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.contact-form, .contact-info {
     background: white;
-    border-radius: 20px; /* Updated */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 25px; /* Updated */
-    margin: 25px auto; /* Updated */
-    max-width: 1200px; /* Updated */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(50% - 20px);
+    min-width: 300px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Main Content Sections */
-.hero-section {
+.contact-form:hover, .contact-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 188, 212, 0.5);
+}
+
+.contact-form h3, .contact-info h3 {
+    margin-top: 0;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #007a8f;
+}
+
+/* Map Styles */
+.map {
+    margin-top: 20px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     text-align: center;
-    padding: 50px 20px;
 }
 
-.about-section, .services-section, .shop-section, .contact-section {
-    text-align: center;
-    padding: 40px 20px;
+.map iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
 }
 
-/* Footer Styles */
-.footer {
+/* === FOOTER STYLES === */
+footer {
     background-color: #333;
     color: white;
     padding: 40px 20px;
@@ -164,28 +279,36 @@ nav ul li a {
     color: #ff0000;
 }
 
-/* Responsive Design */
+/* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
     header {
-        height: auto; /* Updated */
-        flex-direction: column; /* Updated */
+        height: auto;
+        flex-direction: column;
     }
 
     .header-buttons {
-        flex-direction: column; /* Updated */
-        width: 100%; /* Updated */
-        align-items: center; /* Updated */
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
     }
 
-    .nav-links ul {
-        flex-direction: column; /* Updated */
-        align-items: center; /* Updated */
-        gap: 15px; /* Updated */
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .map {
+        margin-top: 20px;
     }
 
     .footer-content {
-        flex-direction: column; /* Updated */
-        align-items: center; /* Updated */
-        text-align: center; /* Updated */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }
