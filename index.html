@@ -4,95 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delane's Natural Nail Care & Medi-Spa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-<header>
-    <div class="header-placeholder"> <!-- Left Placeholder -->
-
-    <div class="header-content">
-        <!-- Logo -->
-        <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
-
-        <!-- Title & Slogan -->
-        <div class="title-and-slogan">
-            <h1>Delane's Natural Nail Care & Medi-Spa</h1>
-            <p>Relaxing, Private, Professional, and Clean</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="assets/images/logo.png" alt="Delane's Natural Nail Care & Medi-Spa Logo" class="logo">
         </div>
-
-        <!-- Navigation -->
-        <nav>
+        <nav class="nav-links">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="news.html">News & Updates</a></li>
-                <li><a href="faq.html">FAQ</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="steps-to-success.html">Steps to Success</a></li>
             </ul>
         </nav>
-    </div>
-
-    <div class="header-placeholder right"></div> <!-- Right Placeholder 
--->
-
-    <!-- Header Buttons -->
-    <div class="header-buttons">
-        <button class="get-started" onclick="window.location.href='booking.html'">BOOK NOW</button>
-        <button class="donate-now" onclick="window.location.href='steps-to-success.html'">DONATE</button>
-    </div>
-</header>
-
-    <main>
-            <section class="about-section">
-            <div class="floating-frame"
-            <section id="home" class=floating-"frame">
-                <h2>Welcome to Delane's Natural Nail Care</h2>
-                <p>Experience the epitome of elegance and health at Delane’s Natural Nail Care. Our mission is to provide high-quality, natural nail care in a relaxing, safe, and professional environment.</p>
-                <a href="about.html" class="nav-link">Learn More</a>
-            </section>
-
-            <section class="2025-pivot">
-            <div class="floating-frame"
-            <section id="pivot" class=floating-"frame">
-            <h2>Our 2025 Pivot: DNNC and Medi Spa</h2>
-                <p>In 2025, Delane’s Natural Nail Care expands its mission to include a Medi Spa, integrating beauty, health, and wellness into one cohesive experience.</p>
-                <p>We are committed to elevating the nail care industry by introducing medical-grade services, holistic wellness treatments, and advanced education programs.</p>
-                <p>At Delane’s Natural Nail Care, we believe in a holistic approach to beauty, prioritizing nail health and wellness. Our goal is to create a relaxing, private, and professional experience for every client.
-                <a href="services.html#medi-spa" class="nav-link">Learn More</a>
-            </section>
-
-            <section class="truth-and-freedom">
-            <div class="floating-frame"
-            <section id="truth-and-freedom" class=floating-"frame">
-                <h2>Truth and Freedom Nail Polish Line</h2>
-                <p>Celebrate self-expression and health with our Truth and Freedom nail polish line, featuring vibrant, toxin-free colors for everyone.</p>
-                <p>Our nail polish is designed for long-lasting wear while maintaining a commitment to non-toxic, cruelty-free ingredients.</p>
-                <a href="shop.html" class="nav-link">Explore Collection</a>
-            </section>
-
-            <section class="testimonials">
-            <div class="floating-frame"
-            <section id="testimonials" class=floating-"frame">
-                <h2>Client Testimonials</h2>
-                <p>"I’ve never felt so cared for in a nail salon. Delane’s focus on health and professionalism is unmatched." – A Happy Client</p>
-                <p>"Their new wellness approach has completely changed the way I think about nail care. The Medi Spa services are a game-changer!" – Satisfied Customer</p>
-                <a href="testimonials.html" class="nav-link">Read More</a>
-            </section>
+        <div class="header-buttons">
+            <button class="btn-primary" onclick="location.href='booking.html'">Book Now</button>
+            <button class="btn-secondary" onclick="location.href='login.html'">Login</button>
         </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero-section">
+            <h1>Welcome to Delane's Natural Nail Care & Medi-Spa</h1>
+            <p>Your destination for luxury nail care and wellness services.</p>
+            <button class="btn-primary" onclick="location.href='booking.html'">Book Your Appointment</button>
+        </section>
+
+        <!-- Additional sections go here -->
     </main>
 
-<footer>
-            <section class="yelp-reviews">
-            <div class="floating-frame"
-            <section id="yelp-rating" class=floating-"frame">
-            <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
-            <div class="yelp-rating">
-            <p>See What Our Customers Are Saying!</p>
-            <a href="https://www.yelp.com/biz/delanes-natural-nail-care" class="yelp-link" target="_blank" title="Delane's Nails Reviews">View Yelp Reviews</a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@delanesnailcare.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Address: 123 Spa Lane, Beauty City, USA</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-links">
+                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                    <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Delane's Natural Nail Care & Medi-Spa. All rights reserved.</p>
         </div>
     </footer>
 </body>
