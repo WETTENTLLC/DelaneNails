@@ -5,6 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News & Updates - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for News Page */
+        .tv-frame {
+            background-color: #fff;
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px;
+            width: 300px; /* Adjust width as necessary */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            margin: 20px; /* Space between frames */
+            position: relative;
+        }
+
+        /* Hover Effect */
+        .tv-frame:hover {
+            box-shadow: 0 8px 16px rgba(0, 188, 212, 0.6);
+            transform: translateY(-5px);
+        }
+
+        /* News Header */
+        .news-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .news-header h2 {
+            font-size: 2rem; /* Increased size for better readability */
+        }
+
+        .news-header .hiring-btn {
+            font-size: 1.2rem; /* Increased size for better visibility */
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .news-header .hiring-btn:hover {
+            background-color: #0097a7;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -12,8 +56,7 @@
 
     <div class="header-content">
         <!-- Logo -->
-        <img src="images/logo-images.png" alt="Delane's Natural Nail Care 
-Logo" class="logo">
+        <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
 
         <!-- Title & Slogan -->
         <div class="title-and-slogan">
@@ -36,66 +79,62 @@ Logo" class="logo">
         </nav>
     </div>
 
-    <div class="header-placeholder right"></div> <!-- Right Placeholder 
--->
+    <div class="header-placeholder right"></div> <!-- Right Placeholder -->
 
     <!-- Header Buttons -->
     <div class="header-buttons">
-        <button class="get-started" 
-onclick="window.location.href='booking.html'">BOOK NOW</button>
+        <button class="get-started" onclick="window.location.href='booking.html'">BOOK NOW</button>
         <button class="donate-now" onclick="window.location.href='steps-to-success.html'">DONATE</button>
     </div>
 </header>
 
-    <main id="mainContent">
-        <div class="news-header">
-            <h2>News & Updates</h2>
-            <button class="hiring-btn" onclick="window.location.href='hiring.html'">We're Hiring!</button>
-        </div>
-
-        <!-- News Items in Staggered Octagon Layout -->
-            <div class="tv-frame">
-            <div class="tv-frame">
-                <h3>Launch of Truth and Freedom Nail Polish Line</h3>
-                <p>Delane's Natural Nail Care is proud to introduce our latest nail polish line, Truth and Freedom, focusing on health-conscious beauty.</p>
-                <a href="news-details.html" class="read-more">Read More</a>
-            </div>
-            <div class="tv-frame octagon stagger-right">
-                <h3>New Senior Wellness Packages</h3>
-                <p>We now offer specialized wellness packages designed for seniors, emphasizing health-first care and relaxation.</p>
-                <a href="news-details.html" class="read-more">Read More</a>
-            </div>
-            <div class="tv-frame octagon stagger-left">
-                <h3>Exciting Partnerships</h3>
-                <p>We’ve partnered with local organizations to bring affordable nail care to underserved communities.</p>
-                <a href="news-details.html" class="read-more">Read More</a>
-            </div>
-            <div class="tv-frame octagon stagger-right">
-                <h3>Staff Certification Updates</h3>
-                <p>All our technicians are now certified in advanced prosthetic nail care to better serve our clients.</p>
-                <a href="news-details.html" class="read-more">Read More</a>
-            </div>
-            <div class="tv-frame octagon stagger-left">
-                <h3>Eco-Friendly Initiative</h3>
-                <p>We’ve committed to sustainability by incorporating eco-friendly materials in our packaging and services.</p>
-                <a href="news-details.html" class="read-more">Read More</a>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
-        <nav>
-            <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
-            </ul>
-        </nav>
-    </footer>
-
-    <div class="donation-frame">
-        <p>Support Steps to Success</p>
-        <a href="steps-to-success.html" class="donate-btn">Donate Now</a>
+<main id="mainContent">
+    <div class="news-header">
+        <h2>News & Updates</h2>
+        <button class="hiring-btn" onclick="window.location.href='hiring.html'">We're Hiring!</button>
     </div>
+
+    <!-- News Items in Staggered Layout -->
+    <div class="tv-frame">
+        <h3>Launch of Truth and Freedom Nail Polish Line</h3>
+        <p>Delane's Natural Nail Care is proud to introduce our latest nail polish line, Truth and Freedom, focusing on health-conscious beauty.</p>
+        <a href="news-details.html" class="read-more">Read More</a>
+    </div>
+    <div class="tv-frame">
+        <h3>New Senior Wellness Packages</h3>
+        <p>We now offer specialized wellness packages designed for seniors, emphasizing health-first care and relaxation.</p>
+        <a href="news-details.html" class="read-more">Read More</a>
+    </div>
+    <div class="tv-frame">
+        <h3>Exciting Partnerships</h3>
+        <p>We’ve partnered with local organizations to bring affordable nail care to underserved communities.</p>
+        <a href="news-details.html" class="read-more">Read More</a>
+    </div>
+    <div class="tv-frame">
+        <h3>Staff Certification Updates</h3>
+        <p>All our technicians are now certified in advanced prosthetic nail care to better serve our clients.</p>
+        <a href="news-details.html" class="read-more">Read More</a>
+    </div>
+    <div class="tv-frame">
+        <h3>Eco-Friendly Initiative</h3>
+        <p>We’ve committed to sustainability by incorporating eco-friendly materials in our packaging and services.</p>
+        <a href="news-details.html" class="read-more">Read More</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved. This website is copyrighted to protect our unique direction and mission.</p>
+    <nav>
+        <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+    </nav>
+</footer>
+
+<div class="donation-frame">
+    <p>Support Steps to Success</p>
+    <a href="steps-to-success.html" class="donate-btn">Donate Now</a>
+</div>
 </body>
 </html>
