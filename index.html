@@ -3,34 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delane's Natural Nail Care & Medi-Spa</title>
+    <title>About - Delane's Natural Nail Care & Medi-Spa</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        .header-content h1, .header-content p {
+            margin: 10px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section h1, section h2 {
+            color: #00bcd4;
+        }
+
+        section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .frame {
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        ul li img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .donation-frame {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .donation-frame a {
+            color: #00bcd4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo-container">
-            <img src="assets/images/logo.png" alt="Delane's Natural Nail Care & Medi-Spa Logo" class="logo">
+
+<header>
+    <div class="header-placeholder left"></div> <!-- Left Placeholder -->
+
+    <div class="header-content">
+        <!-- Logo -->
+        <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+
+        <!-- Title & Slogan -->
+        <div class="title-and-slogan">
+            <h1>Delane's Natural Nail Care & Medi Spa</h1>
+            <p>Relaxing, Private, Professional, and Clean</p>
         </div>
-        <div class="header-title">
-            <h1>Delane's Natural Nail Care & Medi-Spa</h1>
-            <p class="slogan">"Where Beauty Meets Wellness"</p>
-        </div>
-        <nav class="nav-links">
+
+        <!-- Navigation -->
+        <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="shop.html">Shop</a></li>
+                <li><a href="news.html">News & Updates</a></li>
+                <li><a href="faq.html">FAQ</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="steps-to-success.html">Steps to Success</a></li>
             </ul>
         </nav>
-        <div class="header-buttons">
-            <button class="btn-primary" onclick="location.href='booking.html'">Book Now</button>
-            <button class="btn-donate" onclick="location.href='donate.html'">Donate</button>
-        </div>
-    </header>
+    </div>
+
+    <div class="header-placeholder right"></div> <!-- Right Placeholder 
+-->
+
+    <!-- Header Buttons -->
+    <div class="header-buttons">
+        <button class="get-started" onclick="window.location.href='booking.html'">BOOK NOW</button>
+        <button class="donate-now" onclick="window.location.href='steps-to-success.html'">DONATE</button>
+    </div>
+</header>
 
     <!-- Main Content -->
     <main>
