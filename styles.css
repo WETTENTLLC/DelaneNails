@@ -130,6 +130,20 @@ nav ul li a:hover {
     object-fit: contain; /* Ensures the image scales properly */
 }
 
+/* Specialized Pedi */
+.special-pedi-container ul li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between image and text */
+}
+
+.special-pedi-container ul li img {
+    width: 240px; /* Adjust size as needed */
+    height: 240px; /* Adjust size as needed */
+    flex-shrink: 0; /* Prevent image from shrinking */
+    object-fit: contain; /* Ensures the image scales properly */
+}
 /* === FLOATING FRAME BASE STYLES === */
 .floating-frame, .service-frame {
     background-color: #fff;
