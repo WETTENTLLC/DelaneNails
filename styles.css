@@ -124,8 +124,8 @@ nav ul li a:hover {
 }
 
 .about-container ul li img {
-    width: 30px; /* Adjust size as needed */
-    height: 30px; /* Adjust size as needed */
+    width: 60px; /* Adjust size as needed */
+    height: 60px; /* Adjust size as needed */
     flex-shrink: 0; /* Prevent image from shrinking */
     object-fit: contain; /* Ensures the image scales properly */
 }
