@@ -140,6 +140,25 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
+/* === ABOUT IMAGES === */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+ul li img {
+    width: 50px; /* Adjust size */
+    height: auto;
+    margin-right: 10px; /* Space between image and text */
+    flex-shrink: 0; /* Prevents image shrinking */
+}
+
 /* === HERO FLOATING FRAME STYLES === */
 .hero-section floating-frame {
     width: 600px;  /* Adjust width */
