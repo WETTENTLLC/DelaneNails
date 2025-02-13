@@ -140,7 +140,8 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-.hero-floating-frame {
+/* === HERO FLOATING FRAME STYLES === */
+.hero-section floating-frame {
     width: 600px;  /* Adjust width */
     height: 400px;  /* Adjust height */
     background-image: url("images/your-background.jpg"); /* Path to your image */
