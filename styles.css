@@ -43,7 +43,6 @@ header {
     object-fit: contain; /* Ensures the image fits properly */
 }
 
-
 /* Logo */
 .logo {
     max-width: 180px; /* Increased size for better visibility */
@@ -132,50 +131,37 @@ nav ul li a:hover {
     transform: scale(1.02);
 }
 
-.floating-frame img, .service-frame img {
-    width: 100%;
-    max-width: 400px;
-    display: block;
-    margin: 15px auto;
-    border-radius: 5px;
-}
-
-/* === ABOUT IMAGES === */
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
+/* Container for image and text */
+.image-text-container {
     display: flex;
-    align-items: center;
-    margin: 10px 0;
+    align-items: center; /* Vertically center items */
+    gap: 20px; /* Space between image and text */
 }
 
-ul li img {
-    width: 50px; /* Adjust size */
-    height: auto;
-    margin-right: 10px; /* Space between image and text */
-    flex-shrink: 0; /* Prevents image shrinking */
+/* Image styling */
+.image-text-container img {
+    width: 150px; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+    flex-shrink: 0; /* Prevent image from shrinking */
 }
 
-/* === HERO FLOATING FRAME STYLES === */
-.hero-section floating-frame {
-    width: 600px;  /* Adjust width */
-    height: 400px;  /* Adjust height */
-    background-image: url("images/your-background.jpg"); /* Path to your image */
-    background-size: cover; /* Ensures full coverage */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents tiling */
-    border-radius: 20px; /* Optional: Round edges */
-    box-shadow: 0px 0px 15px rgba(255, 204, 102, 0.6); /* Optional: Glow effect */
+/* Text content styling */
+.text-content {
+    flex: 1; /* Allow text to take up remaining space */
 }
 
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .image-text-container {
+        flex-direction: column; /* Stack image and text vertically */
+        text-align: center; /* Center-align text */
+    }
 
-/* Hover Effect for Floating Frames */
-.floating-frame:hover, .service-frame:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 8px 16px rgba(0, 188, 212, 0.6);
+    .image-text-container img {
+        width: 100%; /* Full width for smaller screens */
+        max-width: 300px; /* Limit maximum width */
+    }
 }
 
 /* === SERVICES GRID === */
@@ -225,55 +211,6 @@ ul li img {
 
 .service-frame button:hover, .medi-spa-item button:hover {
     background-color: #007a8f;
-}
-
-/* === FOOT-SHAPED FRAME === */
-.foot-shaped-frame {
-    position: relative;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    width: 320px;  /* Adjust based on your layout */
-    height: 400px; /* Adjust based on content */
-    border-radius: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    margin: 30px auto;
-    transition: all 0.3s ease-in-out;
-    clip-path: path(
-        "M 50 60 
-        C 40 20, 90 10, 100 50 
-        C 140 -10, 200 10, 190 60 
-        C 230 50, 270 100, 240 140 
-        C 270 150, 290 200, 250 250 
-        C 260 270, 250 300, 200 350 
-        C 160 380, 100 380, 60 350 
-        C 20 300, 10 250, 50 200 
-        C 20 150, 30 100, 50 60 Z"
-    );
-}
-
-.foot-shaped-frame:hover {
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-    transform: scale(1.03);
-}
-
-.foot-shaped-frame img {
-    width: 80%;
-    display: block;
-    margin: 10px auto;
-    border-radius: 5px;
-}
-
-.foot-shaped-frame h2 {
-    text-align: center;
-    font-size: 1.4em;
-    color: #333;
-}
-
-.foot-shaped-frame p {
-    text-align: center;
-    font-size: 1em;
-    color: #555;
-    padding: 10px;
 }
 
 /* === FOOTER STYLES === */
