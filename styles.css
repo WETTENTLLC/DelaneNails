@@ -115,6 +115,21 @@ nav ul li a:hover {
     transform: scale(1.05);
 }
 
+/* About Page Specific Styles */
+.about-container ul li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between image and text */
+}
+
+.about-container ul li img {
+    width: 30px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    flex-shrink: 0; /* Prevent image from shrinking */
+    object-fit: contain; /* Ensures the image scales properly */
+}
+
 /* === FLOATING FRAME BASE STYLES === */
 .floating-frame, .service-frame {
     background-color: #fff;
