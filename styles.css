@@ -198,6 +198,72 @@ nav ul li a:hover {
     border-radius: 10px; /* Optional: Rounded corners */
     margin-bottom: 15px; /* Space between video and text */
 }
+
+/* TV Frame Styling */
+.tv-frame {
+    position: relative;
+    width: 90%; /* Adjust width as needed */
+    max-width: 600px; /* Limit maximum width */
+    margin: 20px auto; /* Center the frame */
+    padding: 20px;
+    background-color: #333; /* Dark background for TV frame */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* TV Screen Styling */
+.tv-screen {
+    background-color: #fff; /* White background for the screen */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for the screen */
+    text-align: center; /* Center-align content */
+}
+
+.tv-screen h3 {
+    color: #00bcd4; /* Blue color for headings */
+    margin-top: 0;
+}
+
+.tv-screen p {
+    color: #555; /* Dark gray for text */
+    line-height: 1.6;
+}
+
+.tv-screen .read-more {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #00bcd4; /* Blue button */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.tv-screen .read-more:hover {
+    background-color: #007a8f; /* Darker blue on hover */
+}
+
+/* TV Logo Styling */
+.tv-logo {
+    position: absolute;
+    bottom: 10px; /* Position at the bottom of the frame */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    text-align: center;
+}
+
+.tv-logo img {
+    width: 80px; /* Adjust logo size */
+    height: auto;
+}
+
+/* Hover Effect for TV Frame */
+.tv-frame:hover {
+    transform: translateY(-10px); /* Float effect */
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6); /* Blue glow effect */
+}
 /* === FLOATING FRAME BASE STYLES === */
 .floating-frame, .service-frame {
     background-color: #fff;
