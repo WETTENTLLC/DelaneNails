@@ -189,6 +189,15 @@ nav ul li a:hover {
 .medi-spa-item button:hover {
     background-color: #007a8f;
 }
+
+/* Video Styling */
+.medi-spa-item video {
+    width: 100%; /* Ensure the video takes up the full width of its container */
+    max-width: 300px; /* Limit the maximum width of the video */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+    margin-bottom: 15px; /* Space between video and text */
+}
 /* === FLOATING FRAME BASE STYLES === */
 .floating-frame, .service-frame {
     background-color: #fff;
