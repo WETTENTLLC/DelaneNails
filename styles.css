@@ -216,8 +216,10 @@ nav ul li a:hover {
 .tv-screen {
     background-color: #fff; /* White background for the screen */
     padding: 20px;
+    padding-bottom: 60px; /* Add extra padding at the bottom */
     border-radius: 10px; /* Rounded corners for the screen */
     text-align: center; /* Center-align content */
+    position: relative; /* Ensure the screen is positioned correctly */
 }
 
 .tv-screen h3 {
@@ -233,6 +235,7 @@ nav ul li a:hover {
 .tv-screen .read-more {
     display: inline-block;
     margin-top: 15px;
+    margin-bottom: 20px; /* Add margin at the bottom */
     padding: 10px 20px;
     background-color: #00bcd4; /* Blue button */
     color: white;
@@ -252,6 +255,7 @@ nav ul li a:hover {
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
     text-align: center;
+    z-index: 1; /* Ensure the logo is above the screen */
 }
 
 .tv-logo img {
