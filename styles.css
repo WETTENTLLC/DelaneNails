@@ -130,19 +130,64 @@ nav ul li a:hover {
     object-fit: contain; /* Ensures the image scales properly */
 }
 
-/* Specialized Pedi */
-.special-pedi-container ul li {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Space between image and text */
+/* Services Grid and Medi-Spa Grid */
+.services-grid, .medi-spa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
-.special-pedi-container ul li img {
-    width: 240px; /* Adjust size as needed */
-    height: 240px; /* Adjust size as needed */
-    flex-shrink: 0; /* Prevent image from shrinking */
-    object-fit: contain; /* Ensures the image scales properly */
+/* Service Frame and Medi-Spa Item */
+.service-frame, .medi-spa-item {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-frame:hover, .medi-spa-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 188, 212, 0.6);
+}
+
+/* Image Styling */
+.medi-spa-item img {
+    width: 100%; /* Ensure the image takes up the full width of its container */
+    max-width: 300px; /* Limit the maximum width of the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+    margin-bottom: 15px; /* Space between image and text */
+}
+
+/* Text Content Styling */
+.medi-spa-item h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.medi-spa-item p {
+    font-size: 1.3rem;
+    color: #555;
+    margin: 15px 0;
+}
+
+.medi-spa-item button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease;
+}
+
+.medi-spa-item button:hover {
+    background-color: #007a8f;
 }
 /* === FLOATING FRAME BASE STYLES === */
 .floating-frame, .service-frame {
