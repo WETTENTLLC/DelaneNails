@@ -472,14 +472,42 @@ const NailAide = {
         setTimeout(() => {
             let response;
             
+            // Try to use the salon-specialized AI if available
+            if (typeof NailAideSalonAI !== 'undefined') {
+                response = NailAideSalonAI.processMessage(message, {
+                    name: this.customerName || null
+                });
+                
+                if (response) {
+                    this.addMessage(response, 'assistant');
+                    
+                    // Check if we should activate voice reading
+                    if (this.config.enableVoice && typeof VoiceAssistant !== 'undefined') {
+                        VoiceAssistant.speak(response);
+                    }
+                    
+                    return;
+                }
+            }
+            
             const lowerMessage = message.toLowerCase();
+            
+            // Extract potential customer name
+            const nameMatch = message.match(/my name is ([A-Za-z]+)/i);
+            if (nameMatch && nameMatch[1]) {
+                this.customerName = nameMatch[1];
+            }
             
             // Check if we're waiting for booking confirmation
             if (this.conversationState.awaitingBookingConfirmation && 
                 (lowerMessage.includes('yes') || lowerMessage.includes('yeah') || lowerMessage === 'y')) {
                 
                 // User confirmed they want to book - open booking page
-                this.addMessage("Great! I'm opening the booking page for you now.", 'assistant');
+                const confirmMsg = this.customerName ? 
+                    `Great, ${this.customerName}! I'm opening the booking page for you now.` : 
+                    `Great! I'm opening the booking page for you now.`;
+                
+                this.addMessage(confirmMsg, 'assistant');
                 this.openBookingPage();
                 
                 // Reset conversation state
@@ -487,6 +515,7 @@ const NailAide = {
                 return;
             }
             
+            // Continue with existing response logic
             if (lowerMessage.includes('book') || lowerMessage.includes('appointment') || lowerMessage.includes('schedule')) {
                 response = `You can book an appointment through our online scheduling system. Would you like me to open the booking page for you?`;
                 this.addBookingButton();
@@ -517,7 +546,12 @@ const NailAide = {
                 this.conversationState.awaitingBookingConfirmation = false;
             }
             else {
-                response = "Thank you for your message. I'm here to help with booking appointments, answering questions about our services, hours, or providing general information about our nail care services. How can I assist you today?";
+                // Use personalized greeting if we have customer name
+                if (this.customerName) {
+                    response = `Thank you for your message, ${this.customerName}. I'm here to help with booking appointments, answering questions about our services, hours, or providing general information about our nail care services. How can I assist you today?`;
+                } else {
+                    response = "Thank you for your message. I'm here to help with booking appointments, answering questions about our services, hours, or providing general information about our nail care services. How can I assist you today?";
+                }
                 this.conversationState.awaitingBookingConfirmation = false;
             }
             
