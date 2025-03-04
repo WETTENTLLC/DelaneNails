@@ -293,10 +293,27 @@
 <!-- Container for the widget with guaranteed visibility -->
 <div id="nailaide-root"></div>
 
+<!-- Add debug-toggle class to the debug switch -->
+<div class="debug-toggle">Debug Mode</div>
+
+<!-- Fix AI widget container -->
+<div class="ai-widget-container">
+  <!-- Remove any inline styling that adds red borders -->
+  <div class="ai-widget">
+    <!-- For debug purposes only, add a separate debug element -->
+    <div class="debug-border"></div>
+    
+    <!-- ... existing widget content ... -->
+  </div>
+</div>
+
 <!-- Load dependencies -->
 <script src="js/content/website-parser.js"></script>
 <script src="js/integrations/booksy-service.js"></script>
 <script src="js/nailaide.js"></script>
+
+<!-- Add the debug manager script -->
+<script src="js/debug-manager.js"></script>
 
 <script>
     // Initialization script with fixes

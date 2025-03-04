@@ -271,45 +271,78 @@ const WidgetDoctor = {
     },
     
     forceShowWidget: function() {
+        console.log("Widget Doctor: Attempting to force show the widget...");
+        
+        // Try to find the container
         const container = document.getElementById('nailaide-root');
         if (!container) {
-            this.fixMissingContainer();
-            setTimeout(() => this.runWidget(), 100);
+            console.error("Widget Doctor: Container not found!");
             return;
         }
         
-        // Clear container and start fresh
-        container.innerHTML = '';
-        container.style.display = 'block';
-        container.style.visibility = 'visible';
-        container.style.opacity = '1';
-        
-        // Add basic fallback button if all else fails
-        if (!document.querySelector('.nailaide-chat-button')) {
-            const fallbackButton = document.createElement('div');
-            fallbackButton.className = 'nailaide-fallback-button';
-            fallbackButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0034 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90001C9.87812 3.30494 11.1801 2.99659 12.5 3.00001H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-            fallbackButton.style.position = 'fixed';
-            fallbackButton.style.bottom = '20px';
-            fallbackButton.style.right = '20px';
-            fallbackButton.style.width = '60px';
-            fallbackButton.style.height = '60px';
-            fallbackButton.style.borderRadius = '50%';
-            fallbackButton.style.backgroundColor = '#9333ea';
-            fallbackButton.style.display = 'flex';
-            fallbackButton.style.justifyContent = 'center';
-            fallbackButton.style.alignItems = 'center';
-            fallbackButton.style.cursor = 'pointer';
-            fallbackButton.style.zIndex = '2147483647';
-            fallbackButton.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
-            
-            fallbackButton.addEventListener('click', () => {
-                alert('Chat is temporarily unavailable. Please try refreshing the page.');
-            });
-            
-            container.appendChild(fallbackButton);
-            console.log('✅ Added fallback chat button');
+        // Check if NailAide exists
+        if (typeof NailAide === 'undefined') {
+            console.error("Widget Doctor: NailAide object is not defined!");
+            return;
         }
+        
+        // Try to force show the chat button
+        const chatButton = container.querySelector('.nailaide-chat-button');
+        if (chatButton) {
+            chatButton.style.display = 'flex';
+            chatButton.style.visibility = 'visible';
+            chatButton.style.opacity = '1';
+            console.log("Widget Doctor: Chat button visibility forced.");
+        } else {
+            console.error("Widget Doctor: Chat button not found!");
+        }
+    },
+
+    testBookingURL: function() {
+        console.log("Widget Doctor: Testing booking URL...");
+        
+        // Check if NailAide exists
+        if (typeof NailAide === 'undefined') {
+            console.error("Widget Doctor: NailAide object is not defined!");
+            return;
+        }
+        
+        const bookingUrl = NailAide.config?.bookingUrl || 'https://delanesnaturalnailcare.booksy.com/';
+        console.log("Widget Doctor: Booking URL is:", bookingUrl);
+        
+        // Try opening the URL
+        try {
+            const testWindow = window.open(bookingUrl, '_blank');
+            if (testWindow) {
+                console.log("Widget Doctor: Booking URL opened successfully.");
+                // Close the test window after 3 seconds
+                setTimeout(() => {
+                    testWindow.close();
+                }, 3000);
+            } else {
+                console.error("Widget Doctor: Booking URL couldn't be opened. Popup might be blocked.");
+            }
+        } catch (error) {
+            console.error("Widget Doctor: Error opening booking URL:", error);
+        }
+    },
+
+    testConversationFlow: function() {
+        console.log("Widget Doctor: Testing conversation flow...");
+        
+        // Check if NailAide exists
+        if (typeof NailAide === 'undefined') {
+            console.error("Widget Doctor: NailAide object is not defined!");
+            return;
+        }
+        
+        // Force the conversation state for testing
+        NailAide.conversationState = {
+            awaitingBookingConfirmation: true,
+            lastQuestion: 'booking'
+        };
+        
+        console.log("Widget Doctor: Conversation state set to awaiting booking confirmation.");
     }
 };
 

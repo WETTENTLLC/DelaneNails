@@ -7,11 +7,8 @@ git status
 # Add all modified files
 git add .
 
-# Alternatively, if you want to add specific files only, uncomment and modify:
-# git add js/widget-doctor.js js/emergency-widget.js js/nailaide.js index.html css/nailaide.css
-
 # Commit the changes with a meaningful message
-git commit -m "Fix AI widget visibility issues and add emergency fallback implementation"
+git commit -m "Add voice features, site tour navigation, and enhanced accessibility to NailAide"
 
 # Push to the main branch (or whatever your default branch is called)
 git push origin main
