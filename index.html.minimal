@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delane Nails</title>
+    
+    <!-- Fix for NailAide -->
+    <script>
+        window.NailAide = window.NailAide || {
+            mount: function() {
+                console.log('Using NailAide fallback implementation');
+            }
+        };
+    </script>
+    
+    <!-- Use the fixed version of client-personalization.js -->
+    <script src="fix-client-personalization.js" type="module"></script>
+</head>
+<body>
+    <h1>Delane Nails</h1>
+    
+    <p>Site is being restored. Please check back soon.</p>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded successfully!');
+            
+            // Safe initialization for NailAide
+            try {
+                NailAide.mount();
+            } catch (error) {
+                console.error('Error initializing NailAide:', error);
+            }
+        });
+    </script>
+</body>
+</html>

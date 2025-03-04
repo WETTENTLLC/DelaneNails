@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recover Website from Browser Cache</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #e83e8c;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #e83e8c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #recovered {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
+            white-space: pre-wrap;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recover Your Website from Browser Cache</h1>
+    <p>This tool can help you extract your previous website content from browser cache.</p>
+    
+    <div class="step">
+        <h2>Step 1: Open Chrome DevTools</h2>
+        <p>Press <code>F12</code> or <code>Ctrl+Shift+I</code> (Windows) / <code>Cmd+Option+I</code> (Mac) to open DevTools.</p>
+    </div>
+    
+    <div class="step">
+        <h2>Step 2: Go to Application Tab</h2>
+        <p>Click on the "Application" tab in the DevTools.</p>
+    </div>
+    
+    <div class="step">
+        <h2>Step 3: Check Cache Storage</h2>
+        <p>In the left sidebar, expand "Cache Storage" and look for your site's cache.</p>
+    </div>
+    
+    <div class="step">
+        <h2>Step 4: Find Your HTML Files</h2>
+        <p>Look for entries with your website URL and check their content type for HTML.</p>
+    </div>
+    
+    <div class="step">
+        <h2>Step 5: View and Copy the Content</h2>
+        <p>Click on the file to view its contents, then copy the HTML code.</p>
+        <p>Alternatively, try the button below to attempt automatic recovery:</p>
+        <button onclick="tryRecoverFromCache()">Try Auto-Recovery</button>
+    </div>
+    
+    <pre id="recovered"></pre>
+    
+    <script>
+        async function tryRecoverFromCache() {
+            const recovered = document.getElementById('recovered');
+            recovered.style.display = 'block';
+            recovered.textContent = 'Checking for cached content...';
+            
+            try {
+                // Try to access cache
+                const caches = await window.caches.keys();
+                recovered.textContent = 'Found caches: ' + caches.join(', ') + '\n\nAttempting to recover content...';
+                
+                // Try to find our page in the cache
+                let foundContent = false;
+                
+                for (const cacheName of caches) {
+                    const cache = await caches.open(cacheName);
+                    const requests = await cache.keys();
+                    
+                    for (const request of requests) {
+                        if (request.url.includes('DelaneNails') || request.url.includes('index.html')) {
+                            const response = await cache.match(request);
+                            const text = await response.text();
+                            recovered.textContent = '/* Recovered from cache: ' + request.url + ' */\n\n' + text;
+                            foundContent = true;
+                            break;
+                        }
+                    }
+                    
+                    if (foundContent) break;
+                }
+                
+                if (!foundContent) {
+                    recovered.textContent = 'Could not find your website in browser cache. Try manual recovery methods.';
+                }
+            } catch (error) {
+                recovered.textContent = 'Error accessing cache: ' + error.message + '\n\nPlease try manual recovery methods.';
+            }
+        }
+    </script>
+</body>
+</html>

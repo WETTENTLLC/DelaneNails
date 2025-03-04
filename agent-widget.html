@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Widget</title>
+    <style>
+        .agent-widget {
+            max-width: 300px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 8px;
+            margin-right: 10px;
+        }
+
+        #sendButton {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="agent-widget">
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Debug function
+        function log(msg) {
+            console.log(`[Agent Widget] ${msg}`);
+        }
+
+        // Wait for DOM to be ready
+        window.addEventListener('load', function() {
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Check if elements exist
+            if (!messageInput || !sendButton || !chatMessages) {
+                log('Error: Required elements not found');
+                return;
+            }
+
+            // Set initial focus
+            messageInput.focus();
+
+            // Simple send message function
+            function sendMessage() {
+                log('Attempting to send message');
+                const message = messageInput.value.trim();
+                
+                if (!message) {
+                    log('Empty message, ignoring');
+                    return;
+                }
+
+                try {
+                    const messageElement = document.createElement('div');
+                    messageElement.textContent = message;
+                    messageElement.style.padding = '8px';
+                    messageElement.style.margin = '4px';
+                    messageElement.style.backgroundColor = '#e6f2ff';
+                    messageElement.style.borderRadius = '4px';
+                    chatMessages.appendChild(messageElement);
+                    messageInput.value = '';
+                    messageInput.focus();
+                    log('Message sent successfully');
+                    
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                } catch (error) {
+                    log('Error sending message: ' + error.message);
+                }
+            }
+
+            // Add direct event listeners
+            messageInput.onkeypress = (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            };
+
+            sendButton.onclick = sendMessage;
+        });
+    </script>
+</body>
+</html>

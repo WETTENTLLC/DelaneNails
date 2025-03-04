@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NailAide Widget Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        header {
+            margin-bottom: 20px;
+        }
+        
+        .test-section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        #nailaide-root {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            border: 2px dashed red;
+            z-index: 9999;
+        }
+        
+        .log-container {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NailAide Widget Test Page</h1>
+        <p>This page is designed to test the NailAide widget in isolation.</p>
+    </header>
+    
+    <div class="test-section">
+        <h2>Widget Container</h2>
+        <p>The container below should display the NailAide widget:</p>
+        <div id="nailaide-root"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Debug Log</h2>
+        <div id="log" class="log-container"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Manual Tests</h2>
+        <button id="check-files">Check Required Files</button>
+        <button id="check-container">Check Container</button>
+        <button id="try-mount">Try Mount Widget</button>
+    </div>
+    
+    <!-- Load Debugger -->
+    <script src="js/debug-nailaide.js"></script>
+    
+    <!-- Load Dependencies -->
+    <script src="js/content/website-parser.js"></script>
+    <script src="js/integrations/booksy-service.js"></script>
+    <script src="js/nailaide.js"></script>
+    
+    <script>
+        // Custom logging to page
+        const logElement = document.getElementById('log');
+        const originalConsoleLog = console.log;
+        const originalConsoleWarn = console.warn;
+        const originalConsoleError = console.error;
+        
+        function addLogEntry(message, type = 'log') {
+            const entry = document.createElement('div');
+            entry.classList.add(type);
+            entry.textContent = message;
+            
+            if (type === 'error') {
+                entry.style.color = 'red';
+            } else if (type === 'warn') {
+                entry.style.color = 'orange';
+            }
+            
+            logElement.appendChild(entry);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        
+        console.log = function(message) {
+            originalConsoleLog.apply(console, arguments);
+            addLogEntry(typeof message === 'object' ? JSON.stringify(message) : message);
+        };
+        
+        console.warn = function(message) {
+            originalConsoleWarn.apply(console, arguments);
+            addLogEntry(typeof message === 'object' ? JSON.stringify(message) : message, 'warn');
+        };
+        
+        console.error = function(message) {
+            originalConsoleError.apply(console, arguments);
+            addLogEntry(typeof message === 'object' ? JSON.stringify(message) : message, 'error');
+        };
+        
+        // Button handlers
+        document.getElementById('check-files').addEventListener('click', function() {
+            NailAideDebugger.checkFiles();
+        });
+        
+        document.getElementById('check-container').addEventListener('click', function() {
+            NailAideDebugger.checkContainer();
+        });
+        
+        document.getElementById('try-mount').addEventListener('click', function() {
+            try {
+                const container = document.getElementById('nailaide-root');
+                if (typeof NailAide === 'undefined') {
+                    throw new Error('NailAide object not found');
+                }
+                
+                console.log('Creating widget manually...');
+                const widget = NailAide.createWidget({
+                    container: container,
+                    theme: {
+                        primaryColor: '#9333ea',
+                        secondaryColor: '#f3f4f6',
+                        textColor: '#1f2937',
+                        buttonTextColor: '#ffffff'
+                    },
+                    welcomeMessage: 'Test widget initialized',
+                    debug: true
+                });
+                
+                widget.mount();
+                console.log('Widget mount attempted');
+            } catch(e) {
+                console.error('Error mounting widget:', e);
+            }
+        });
+        
+        // Initialize test
+        window.addEventListener('load', function() {
+            console.log('Test page loaded');
+            NailAideDebugger.init();
+        });
+    </script>
+</body>
+</html>

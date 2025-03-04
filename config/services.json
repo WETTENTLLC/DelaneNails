@@ -1,0 +1,80 @@
+{
+  "infrastructure": {
+    "hosting": {
+      "provider": "AWS",
+      "region": "us-west-1",
+      "services": ["EC2", "S3", "CloudFront", "Route53"]
+    },
+    "ssl": {
+      "provider": "Let's Encrypt",
+      "autoRenew": true
+    }
+  },
+  "telephony": {
+    "provider": "Twilio",
+    "services": {
+      "voice": {
+        "enabled": true,
+        "number": "1-510-346-2457",
+        "fallbackNumber": "510-910-1570",
+        "recording": true,
+        "transcription": true,
+        "languages": ["en-US", "es-ES", "vi-VN"]
+      },
+      "sms": {
+        "enabled": true,
+        "notifications": true,
+        "marketing": false
+      },
+      "ivr": {
+        "enabled": true,
+        "menuDepth": 3,
+        "timeoutSeconds": 10
+      }
+    }
+  },
+  "notifications": {
+    "email": {
+      "provider": "SendGrid",
+      "from": "info@delanesnailcare.com",
+      "urgent": "maecity@aol.com"
+    },
+    "sms": {
+      "provider": "Twilio",
+      "urgentNumber": "510-910-1570"
+    }
+  },
+  "integrations": {
+    "booking": {
+      "provider": "Booksy",
+      "apiKey": "8048717a-c465-41dc-8fbe-53cad1fb1c48",
+      "webhookEndpoint": "/api/v1/booksy-webhook"
+    },
+    "crm": {
+      "provider": "Salesforce",
+      "syncEnabled": true
+    }
+  },
+  "monitoring": {
+    "apm": {
+      "provider": "New Relic",
+      "errorTracking": true,
+      "performanceMonitoring": true
+    },
+    "logging": {
+      "provider": "CloudWatch",
+      "retentionDays": 30
+    }
+  },
+  "security": {
+    "rateLimit": {
+      "enabled": true,
+      "maxRequests": 100,
+      "windowMs": 900000
+    },
+    "ddos": {
+      "protection": true,
+      "provider": "Cloudflare"
+    }
+  }
+}

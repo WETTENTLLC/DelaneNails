@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Recovery Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #e83e8c;
+            border-bottom: 2px solid #e83e8c;
+            padding-bottom: 10px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        button, .button {
+            background-color: #e83e8c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+        button:hover, .button:hover {
+            background-color: #c71b74;
+        }
+        .backup-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            background: #f5f5f5;
+        }
+        .backup-item {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .backup-item:last-child {
+            border-bottom: none;
+        }
+        .success {
+            color: #28a745;
+        }
+        .error {
+            color: #dc3545;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+        .tab-navigation {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 5px;
+            border: 1px solid transparent;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab.active {
+            border: 1px solid #ddd;
+            border-bottom: 1px solid white;
+            background-color: white;
+            margin-bottom: -1px;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delane Nails Website Recovery Center</h1>
+    
+    <div class="tab-navigation">
+        <div class="tab active" onclick="showTab('browser-recovery')">Browser Recovery</div>
+        <div class="tab" onclick="showTab('local-recovery')">Local Backup Recovery</div>
+        <div class="tab" onclick="showTab('manual-recovery')">Manual Recovery</div>
+    </div>
+    
+    <div id="browser-recovery" class="tab-content active">
+        <div class="card">
+            <h2>Recover From Browser Cache</h2>
+            <p>This tool attempts to find your website in the browser's cache.</p>
+            <button onclick="recoverFromBrowserCache()">Search Browser Cache</button>
+            <div id="browser-results" class="hidden">
+                <h3>Results:</h3>
+                <div id="browser-message"></div>
+                <div id="browser-content" class="hidden">
+                    <h3>Found Content:</h3>
+                    <textarea id="recovered-content" readonly></textarea>
+                    <button onclick="saveRecoveredContent()">Save This Content</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="local-recovery" class="tab-content">
+        <div class="card">
+            <h2>Recover From Local Backups</h2>
+            <p>This tool searches your computer for potential backup files.</p>
+            <p><strong>Note:</strong> For security reasons, browsers cannot search your file system directly. Please use the separate tool:</p>
+            <ol>
+                <li>Run <code>node deep-backup-search.js</code> in your project folder</li>
+                <li>Check the console output for potential backup files</li>
+                <li>Copy any found backup files to your project directory</li>
+            </ol>
+            <a href="javascript:void(0)" class="button" onclick="alert('Please run the deep-backup-search.js script from a terminal/command prompt')">Instructions</a>
+        </div>
+    </div>
+    
+    <div id="manual-recovery" class="tab-content">
+        <div class="card">
+            <h2>Manual Site Reconstruction</h2>
+            <p>Use this tool to manually recreate your site with the essential fixes applied.</p>
+            
+            <div>
+                <h3>Step 1: Start with a basic template</h3>
+                <textarea id="template-code"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delane Nails</title>
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Fix for NailAide -->
+    <script>
+        window.NailAide = window.NailAide || {
+            mount: function() {
+                console.log('Using NailAide fallback implementation');
+            }
+        };
+    </script>
+    
+    <!-- Scripts -->
+    <script src="fix-client-personalization.js" type="module"></script>
+    <script src="website-parser.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Delane Nails</h1>
+        <nav>
+            <!-- Your navigation here -->
+        </nav>
+    </header>
+
+    <main>
+        <!-- Your main content here -->
+        
+        <!-- Example section structure -->
+        <section id="home">
+            <h2>Welcome to Delane Nails</h2>
+            <p>Your premier destination for nail care and beauty services.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Delane Nails. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Safe initialization for NailAide
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                NailAide.mount();
+            } catch (error) {
+                console.error('Error initializing NailAide:', error);
+            }
+        });
+    </script>
+</body>
+</html></textarea>
+                <button onclick="copyToClipboard('template-code')">Copy Template</button>
+            </div>
+            
+            <div>
+                <h3>Step 2: Fix your client-personalization.js</h3>
+                <textarea id="js-fix-code">// Fixed client-personalization.js
+const clientPreferences = {
+    services: [],
+    appointments: [],
+    favorites: {},  // Changed to object instead of array
+    settings: {
+        notifications: true,
+        theme: 'light'
+    }
+};
+
+// Initialize client services
+const initializeClient = () => {
+    return clientPreferences;
+};
+
+let personalizationData = {
+    preferences: ["nail art", "manicure", "pedicure"]
+};
+
+export { clientPreferences, initializeClient };</textarea>
+                <button onclick="copyToClipboard('js-fix-code')">Copy JS Fix</button>
+            </div>
+            
+            <div>
+                <h3>Step 3: Check for image paths</h3>
+                <p>Make sure your image paths are correct. If images are missing, make sure they exist in the images folder or update the paths.</p>
+                <p>Example of image with fallback:</p>
+                <textarea id="image-code"><img src="images/team-member1.jpg" 
+     alt="Team Member 1" 
+     class="team-photo"
+     onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+</textarea>
+                <button onclick="copyToClipboard('image-code')">Copy Image Code</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Deactivate all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content and activate tab
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+        
+        // Browser cache recovery
+        async function recoverFromBrowserCache() {
+            const resultsDiv = document.getElementById('browser-results');
+            const messageDiv = document.getElementById('browser-message');
+            const contentDiv = document.getElementById('browser-content');
+            const textarea = document.getElementById('recovered-content');
+            
+            resultsDiv.classList.remove('hidden');
+            contentDiv.classList.add('hidden');
+            messageDiv.innerHTML = '<p>Searching browser cache...</p>';
+            
+            try {
+                // Try to access cache
+                const caches = await window.caches.keys();
+                
+                if (caches.length === 0) {
+                    messageDiv.innerHTML = '<p class="error">No cache entries found. Your browser may not support this feature or there is no cached content.</p>';
+                    return;
+                }
+                
+                messageDiv.innerHTML = `<p>Found ${caches.length} cache entries. Searching for website content...</p>`;
+                
+                // Try to find our page in the cache
+                let foundContent = false;
+                
+                for (const cacheName of caches) {
+                    const cache = await caches.open(cacheName);
+                    const requests = await cache.keys();
+                    
+                    for (const request of requests) {
+                        if (request.url.includes('DelaneNails') || 
+                            request.url.includes('index.html') ||
+                            request.url.includes('nails') ||
+                            request.url.includes('5500')) { // Port often used by VS Code Live Server
+                            
+                            const response = await cache.match(request);
+                            const text = await response.text();
+                            
+                            if (text.includes('<!DOCTYPE html>') || text.includes('<html')) {
+                                textarea.value = text;
+                                contentDiv.classList.remove('hidden');
+                                messageDiv.innerHTML = `<p class="success">Found a cached version of your website! URL: ${request.url}</p>`;
+                                foundContent = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (foundContent) break;
+                }
+                
+                if (!foundContent) {
+                    messageDiv.innerHTML = '<p class="error">Could not find your website in browser cache. Try manual recovery methods.</p>';
+                }
+            } catch (error) {
+                messageDiv.innerHTML = `<p class="error">Error accessing cache: ${error.message}</p>
+                                       <p>This might be because:</p>
+                                       <ul>
+                                           <li>The browser doesn't support the Cache API</li>
+                                           <li>The browser security settings are preventing access</li>
+                                           <li>You're running this page from a file:// URL instead of a web server</li>
+                                       </ul>
+                                       <p>Try manual recovery methods instead.</p>`;
+            }
+        }
+        
+        // Save recovered content
+        function saveRecoveredContent() {
+            const content = document.getElementById('recovered-content').value;
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'recovered-index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Utility function to copy text to clipboard
+        function copyToClipboard(elementId) {
+            const textarea = document.getElementById(elementId);
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Show feedback
+            const originalText = event.target.textContent;
+            event.target.textContent = 'Copied!';
+            setTimeout(() => {
+                event.target.textContent = originalText;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NailAide Files Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .file-check {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .file-check h3 {
+            margin-top: 0;
+        }
+        
+        .not-found {
+            color: red;
+        }
+        
+        .found {
+            color: green;
+        }
+        
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NailAide Files Check</h1>
+    <p>This page checks if the necessary NailAide files exist and displays their content.</p>
+    
+    <div id="results">
+        <h2>Results:</h2>
+        <!-- Results will be populated here -->
+    </div>
+    
+    <button id="check-button">Check Files</button>
+    
+    <script>
+        const requiredFiles = [
+            'js/nailaide.js',
+            'js/nailaide-telephony.js',
+            'js/content/website-parser.js',
+            'js/integrations/booksy-service.js',
+            'js/features/feature-manager.js',
+            'js/features/voice-interaction.js',
+            'js/features/visual-preview.js',
+            'js/features/ar-preview.js',
+            'js/features/client-personalization.js'
+        ];
+        
+        const resultsElement = document.getElementById('results');
+        
+        async function fetchFileContent(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+                }
+                return await response.text();
+            } catch (error) {
+                console.error(`Error fetching ${url}:`, error);
+                return null;
+            }
+        }
+        
+        async function checkFile(file) {
+            const fileCheckElement = document.createElement('div');
+            fileCheckElement.className = 'file-check';
+            
+            const fileHeading = document.createElement('h3');
+            
+            const fileContent = await fetchFileContent(file);
+            
+            if (fileContent) {
+                fileHeading.textContent = `✅ ${file} - Found`;
+                fileHeading.classList.add('found');
+                
+                // Show first 100 chars of file
+                const contentPreview = document.createElement('pre');
+                contentPreview.textContent = fileContent.substring(0, 100) + (fileContent.length > 100 ? '...' : '');
+                
+                // Check for key functions
+                const checks = [];
+                if (file.includes('nailaide.js')) {
+                    checks.push(`Contains NailAide object: ${fileContent.includes('NailAide') ? 'Yes' : 'No'}`);
+                    checks.push(`Contains createWidget function: ${fileContent.includes('createWidget') ? 'Yes' : 'No'}`);
+                    checks.push(`Contains mount function: ${fileContent.includes('.mount') ? 'Yes' : 'No'}`);
+                }
+                
+                const checksList = document.createElement('ul');
+                checks.forEach(check => {
+                    const li = document.createElement('li');
+                    li.textContent = check;
+                    checksList.appendChild(li);
+                });
+                
+                fileCheckElement.appendChild(fileHeading);
+                fileCheckElement.appendChild(contentPreview);
+                if (checks.length > 0) {
+                    fileCheckElement.appendChild(checksList);
+                }
+            } else {
+                fileHeading.textContent = `❌ ${file} - Not Found`;
+                fileHeading.classList.add('not-found');
+                fileCheckElement.appendChild(fileHeading);
+            }
+            
+            resultsElement.appendChild(fileCheckElement);
+        }
+        
+        document.getElementById('check-button').addEventListener('click', async () => {
+            // Clear previous results except the heading
+            while (resultsElement.childNodes.length > 2) {
+                resultsElement.removeChild(resultsElement.lastChild);
+            }
+            
+            for (const file of requiredFiles) {
+                await checkFile(file);
+            }
+        });
+    </script>
+</body>
+</html>

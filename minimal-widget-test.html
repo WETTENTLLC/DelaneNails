@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal NailAide Widget Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        #widget-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            border: 3px solid red;
+            background-color: rgba(255,0,0,0.1);
+            z-index: 9999;
+        }
+        
+        #fallback-widget {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .widget-header {
+            background-color: #9333ea;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .widget-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .widget-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .message {
+            margin: 8px 0;
+            padding: 8px 12px;
+            border-radius: 20px;
+            max-width: 80%;
+        }
+        
+        .bot-message {
+            background-color: #f0f0f0;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background-color: #9333ea;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        button.widget-button {
+            background-color: #9333ea;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+        
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minimal NailAide Widget Test</h1>
+    
+    <div class="status" id="status">
+        Checking NailAide availability...
+    </div>
+    
+    <button id="load-script">Step 1: Load NailAide Script</button>
+    <button id="init-widget">Step 2: Initialize Widget</button>
+    <button id="show-fallback">Show Fallback Widget</button>
+    
+    <p>You should see the widget in the bottom right corner. If not, check the browser console for errors.</p>
+    
+    <!-- Container for the widget -->
+    <div id="widget-container">
+        <!-- Fallback widget that will be shown if the real widget fails to load -->
+        <div id="fallback-widget">
+            <div class="widget-header">NailAide Chat (Fallback)</div>
+            <div class="widget-body">
+                <div class="messages-container">
+                    <div class="message bot-message">Welcome! How can I help you today?</div>
+                    <div class="message user-message">I'd like to book a nail appointment.</div>
+                    <div class="message bot-message">Great! You can book directly through our website or I can help you with that.</div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <a href="https://delanesnaturalnailcare.booksy.com/" target="_blank">
+                    <button class="widget-button">Book Now</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const statusElem = document.getElementById('status');
+        const widgetContainer = document.getElementById('widget-container');
+        const fallbackWidget = document.getElementById('fallback-widget');
+        
+        function updateStatus(message, type = 'info') {
+            statusElem.textContent = message;
+            statusElem.className = `status ${type}`;
+        }
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = () => resolve();
+                script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
+                document.body.appendChild(script);
+            });
+        }
+        
+        document.getElementById('load-script').addEventListener('click', async () => {
+            try {
+                updateStatus('Loading NailAide script...');
+                
+                // Load main script
+                await loadScript('js/nailaide.js');
+                
+                // After loading, check if NailAide is defined
+                if (typeof NailAide === 'undefined') {
+                    throw new Error('NailAide object not defined after loading script');
+                }
+                
+                updateStatus('NailAide script loaded successfully!', 'success');
+            } catch (error) {
+                console.error('Error loading script:', error);
+                updateStatus(`Error: ${error.message}`, 'error');
+            }
+        });
+        
+        document.getElementById('init-widget').addEventListener('click', async () => {
+            try {
+                // Check if NailAide is loaded
+                if (typeof NailAide === 'undefined') {
+                    throw new Error('NailAide is not loaded. Please load the script first.');
+                }
+                
+                updateStatus('Initializing widget...');
+                
+                // Try to initialize the widget
+                const widget = NailAide.createWidget({
+                    container: widgetContainer,
+                    theme: {
+                        primaryColor: '#9333ea',
+                        secondaryColor: '#f3f4f6',
+                        textColor: '#1f2937',
+                        buttonTextColor: '#ffffff'
+                    },
+                    welcomeMessage: 'Hello! How can I help you today?',
+                    bookingUrl: 'https://delanesnaturalnailcare.booksy.com/',
+                    debug: true
+                });
+                
+                widget.mount();
+                updateStatus('Widget initialized successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Error initializing widget:', error);
+                updateStatus(`Error initializing widget: ${error.message}`, 'error');
+            }
+        });
+        
+        document.getElementById('show-fallback').addEventListener('click', () => {
+            fallbackWidget.style.display = 'flex';
+            updateStatus('Showing fallback widget', 'success');
+        });
+    </script>
+</body>
+</html>

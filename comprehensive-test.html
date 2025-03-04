@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive NailAide Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .test-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        h2 {
+            margin-top: 0;
+            color: #9333ea;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .tab {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #9333ea;
+            color: white;
+            border-color: #9333ea;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        #console-output {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            font-family: monospace;
+            height: 150px;
+            overflow-y: auto;
+        }
+        
+        .control-panel button {
+            background-color: #9333ea;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        #widget-container-full {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            border: 3px solid #9333ea;
+            background-color: rgba(147, 51, 234, 0.1);
+            z-index: 9999;
+        }
+        
+        #widget-container-minimal {
+            /* Same position but different styling for clarity */
+            position: fixed;
+            bottom: 20px;
+            right: 400px; /* Offset to not overlap */
+            width: 350px;
+            height: 500px;
+            border: 3px solid #00bcd4;
+            background-color: rgba(0, 188, 212, 0.1);
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comprehensive NailAide Widget Test</h1>
+    
+    <div class="test-section">
+        <h2>Widget Test Control Panel</h2>
+        <div class="control-panel">
+            <button id="clear-console">Clear Console</button>
+            <button id="check-files">Check Required Files</button>
+            <button id="check-containers">Check Containers</button>
+            <button id="load-basic">Load Basic NailAide</button>
+            <button id="load-full">Load Full NailAide</button>
+            <button id="mount-widget-basic">Mount Basic Widget</button>
+            <button id="mount-widget-full">Mount Full Widget</button>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Output</h2>
+        <div id="console-output"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Tabs</h2>
+        <div class="tab-container">
+            <div class="tab active" data-tab="container-test">Container Test</div>
+            <div class="tab" data-tab="script-test">Script Test</div>
+            <div class="tab" data-tab="object-test">Object Test</div>
+        </div>
+        
+        <div class="tab-content active" id="container-test">
+            <h3>Widget Container Visibility Test</h3>
+            <p>This test makes the widget containers visible with borders to check positioning:</p>
+            <button id="highlight-containers">Highlight Widget Containers</button>
+            <button id="toggle-container-position">Toggle Container Position</button>
+        </div>
+        
+        <div class="tab-content" id="script-test">
+            <h3>Script Loading Test</h3>
+            <p>Dynamically test loading of different script versions:</p>
+            <select id="script-select">
+                <option value="js/nailaide.js">Full NailAide</option>
+                <option value="js/nailaide-basic.js">Basic NailAide</option>
+            </select>
+            <button id="load-selected-script">Load Selected Script</button>
+        </div>
+        
+        <div class="tab-content" id="object-test">
+            <h3>NailAide Object Test</h3>
+            <p>Test if the NailAide object exists and its methods:</p>
+            <button id="check-nailaide-obj">Check NailAide Object</button>
+            <div id="object-result"></div>
+        </div>
+    </div>
+    
+    <p>The widget containers should appear in the bottom right corner of the page.</p>
+    
+    <!-- Widget Containers -->
+    <div id="widget-container-full"></div>
+    <div id="widget-container-minimal"></div>
+    
+    <script>
+        // Console output handling
+        const consoleOutput = document.getElementById('console-output');
+        
+        function logToPage(message, type = 'log') {
+            const entry = document.createElement('div');
+            let formattedMessage = typeof message === 'object' ? 
+                JSON.stringify(message) : message.toString();
+                
+            entry.textContent = formattedMessage;
+            
+            if (type === 'error') {
+                entry.style.color = '#ff6b6b';
+            } else if (type === 'warn') {
+                entry.style.color = '#ffa94d';
+            } else if (type === 'success') {
+                entry.style.color = '#69db7c';
+            }
+            
+            consoleOutput.appendChild(entry);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        // Override console methods
+        const originalConsoleLog = console.log;
+        const originalConsoleWarn = console.warn;
+        const originalConsoleError = console.error;
+        
+        console.log = function() {
+            originalConsoleLog.apply(console, arguments);
+            logToPage(arguments[0]);
+        };
+        
+        console.warn = function() {
+            originalConsoleWarn.apply(console, arguments);
+            logToPage(arguments[0], 'warn');
+        };
+        
+        console.error = function() {
+            originalConsoleError.apply(console, arguments);
+            logToPage(arguments[0], 'error');
+        };
+        
+        // Tab handling
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all tab content
+                const tabContents = document.querySelectorAll('.tab-content');
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Show content for active tab
+                const activeTabId = tab.getAttribute('data-tab');
+                document.getElementById(activeTabId).classList.add('active');
+            });
+        });
+        
+        // Button handlers
+        document.getElementById('clear-console').addEventListener('click', () => {
+            consoleOutput.innerHTML = '';
+            logToPage('Console cleared', 'success');
+        });
+        
+        document.getElementById('check-files').addEventListener('click', async () => {
+            const requiredFiles = [
+                'js/nailaide.js',
+                'js/nailaide-basic.js',
+                'js/nailaide-telephony.js',
+                'js/content/website-parser.js',
+                'js/integrations/booksy-service.js'
+            ];
+            
+            logToPage('Checking required files...', 'log');
+            
+            for (const file of requiredFiles) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        logToPage(`✓ ${file} exists`, 'success');
+                    } else {
+                        logToPage(`✗ ${file} not found - ${response.status}`, 'error');
+                    }
+                } catch (error) {
+                    logToPage(`✗ ${file} error: ${error.message}`, 'error');
+                }
+            }
+        });
+        
+        document.getElementById('check-containers').addEventListener('click', () => {
+            const containers = [
+                document.getElementById('widget-container-full'),
+                document.getElementById('widget-container-minimal')
+            ];
+            
+            logToPage('Checking widget containers...', 'log');
+            
+            containers.forEach((container, index) => {
+                if (!container) {
+                    logToPage(`Container ${index + 1} not found in DOM`, 'error');
+                    return;
+                }
+                
+                const style = window.getComputedStyle(container);
+                logToPage(`Container ${index + 1}:`, 'log');
+                logToPage(`- Position: ${style.position}`, 'log');
+                logToPage(`- Size: ${style.width}x${style.height}`, 'log');
+                logToPage(`- Z-Index: ${style.zIndex}`, 'log');
+                logToPage(`- Visibility: ${style.visibility}`, 'log');
+                logToPage(`- Display: ${style.display}`, 'log');
+            });
+        });
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                // Remove any existing script with the same URL
+                const existingScript = document.querySelector(`script[src="${url}"]`);
+                if (existingScript) {
+                    existingScript.parentNode.removeChild(existingScript);
+                }
+                
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = () => resolve();
+                script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
+                document.body.appendChild(script);
+            });
+        }
+        
+        document.getElementById('load-basic').addEventListener('click', async () => {
+            try {
+                logToPage('Loading basic NailAide implementation...', 'log');
+                await loadScript('js/nailaide-basic.js');
+                logToPage('Basic NailAide loaded successfully', 'success');
+            } catch (error) {
+                logToPage(`Error loading script: ${error.message}`, 'error');
+            }
+        });
+        
+        document.getElementById('load-full').addEventListener('click', async () => {
+            try {
+                logToPage('Loading full NailAide implementation...', 'log');
+                await loadScript('js/nailaide.js');
+                logToPage('Full NailAide loaded successfully', 'success');
+            } catch (error) {
+                logToPage(`Error loading script: ${error.message}`, 'error');
+            }
+        });
+        
+        document.getElementById('mount-widget-basic').addEventListener('click', () => {
+            try {
+                if (typeof NailAide === 'undefined') {
+                    throw new Error('NailAide object not available. Please load a script first.');
+                }
+                
+                logToPage('Mounting basic widget...', 'log');
+                
+                const widget = NailAide.createWidget({
+                    container: document.getElementById('widget-container-minimal'),
+                    theme: {
+                        primaryColor: '#00bcd4',
+                        secondaryColor: '#f3f4f6',
+                        textColor: '#1f2937',
+                        buttonTextColor: '#ffffff'
+                    },
+                    welcomeMessage: 'Basic widget test',
+                    bookingUrl: 'https://delanesnaturalnailcare.booksy.com/'
+                });
+                
+                widget.mount();
+                logToPage('Basic widget mounted', 'success');
+            } catch (error) {
+                logToPage(`Error mounting widget: ${error.message}`, 'error');
+            }
+        });
+        
+        document.getElementById('mount-widget-full').addEventListener('click', () => {
+            try {
+                if (typeof NailAide === 'undefined') {
+                    throw new Error('NailAide object not available. Please load a script first.');
+                }
+                
+                logToPage('Mounting full widget...', 'log');
+                
+                const widget = NailAide.createWidget({
+                    container: document.getElementById('widget-container-full'),
+                    theme: {
+                        primary

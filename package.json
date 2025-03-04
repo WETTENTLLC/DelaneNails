@@ -1,14 +1,12 @@
 {
-  "name": "DelanesNails",
+  "name": "delanes-nails",
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
   "scripts": {
-  "deploy": "gh-pages -d dist"
-},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WETTENTLLC/DelaneNails.git"
+    "start": "vite",
+    "serve": "vite dev",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",
@@ -18,12 +16,14 @@
   },
   "homepage": "https://github.com/WETTENTLLC/DelaneNails#readme",
   "dependencies": {
+    "@sendgrid/mail": "^8.1.4",
     "array-union": "^2.1.0",
     "async": "^3.2.6",
     "braces": "^3.0.3",
     "commander": "^13.1.0",
     "commondir": "^1.0.1",
     "dir-glob": "^3.0.1",
+    "dotenv": "^16.4.7",
     "email-addresses": "^5.0.0",
     "escape-string-regexp": "^1.0.5",
     "fast-glob": "^3.3.3",
@@ -54,6 +54,8 @@
     "picomatch": "^2.3.1",
     "pkg-dir": "^4.2.0",
     "queue-microtask": "^1.2.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "reusify": "^1.0.4",
     "run-parallel": "^1.2.0",
     "semver": "^6.3.1",
@@ -61,9 +63,11 @@
     "strip-outer": "^1.0.1",
     "to-regex-range": "^5.0.1",
     "trim-repeated": "^1.0.0",
+    "twilio": "^5.4.5",
     "universalify": "^2.0.1"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "webpack-cli": "^6.0.1"
   }
 }

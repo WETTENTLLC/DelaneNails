@@ -4,7 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Delane's Natural Nail Care & Medi-Spa</title>
+    
+    <!-- Critical CSS at the top -->
+    <style>
+        /* Essential widget styles to prevent FOUC */
+        #nailaide-root {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            z-index: 999999 !important;
+            width: 350px !important;
+            height: 500px !important;
+            background: transparent !important;
+            pointer-events: auto !important;
+        }
+        
+        .nailaide-chat-button, #emergency-chat-button {
+            position: absolute !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            width: 60px !important;
+            height: 60px !important;
+            border-radius: 50% !important;
+            background-color: #9333ea !important;
+            color: white !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            cursor: pointer !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+            z-index: 999999 !important;
+        }
+    </style>
+
+    <!-- Load emergency widget first -->
+    <script src="js/emergency-widget.js"></script>
+    
+    <!-- Regular stylesheets -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/nailaide.css">
+    <link rel="stylesheet" href="css/features.css">
+    
+    <!-- Load Widget Doctor early -->
+    <script src="js/widget-doctor.js"></script>
+    
+    <!-- Regular styling -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -104,12 +148,25 @@
             text-decoration: none;
             font-weight: bold;
         }
+
+        #nailaide-root {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            z-index: 10000 !important;
+            width: 350px !important;
+            height: 500px !important;
+            background: transparent !important;
+            pointer-events: auto !important;
+        }
     </style>
+
+    <!-- Add debugging script -->
+    <script src="js/debug-nailaide.js"></script>
 </head>
 <body>
 
 <header>
-
     <div class="header-content">
         <!-- Logo -->
         <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
@@ -131,6 +188,7 @@
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="steps-to-success.html">Steps to Success</a></li>
+                <li><a href="#our-team">Our Team</a></li>
             </ul>
         </nav>
     </div>
@@ -142,85 +200,228 @@
     </div>
 </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section floating-frame">
-            <h2>Welcome to Delane's Natural Nail Care & Medi-Spa</h2>
-            <p>Experience luxury nail care and wellness services tailored just for you.</p>
-            <p>
-                At Delane's Natural Nail Care & Medi-Spa, we are dedicated to providing the highest quality nail care and wellness services. Our team of experts is passionate about helping you look and feel your best.
-            </p>
-            <center><a href="about.html" class="btn-secondary">Learn More</a></center>
-        </section>
+<!-- Main Content -->
+<main>
+    <!-- Hero Section -->
+    <section class="hero-section floating-frame">
+        <h2>Welcome to Delane's Natural Nail Care & Medi-Spa</h2>
+        <p>Experience luxury nail care and wellness services tailored just for you.</p>
+        <p>
+            At Delane's Natural Nail Care & Medi-Spa, we are dedicated to providing the highest quality nail care and wellness services. Our team of experts is passionate about helping you look and feel your best.
+        </p>
+        <center><a href="about.html" class="btn-secondary">Learn More</a></center>
+    </section>
 
+    <!-- Floating Frame: 2025 Pivot -->
+    <section id="pivot" class="floating-frame">
+        <h2>Our 2025 Pivot: DNNC and Medi Spa</h2>
+        <p>In 2025, Delane’s Natural Nail Care expands its mission to include a Medi Spa, integrating beauty, health, and wellness into one cohesive experience...</p>
+        <a href="services.html#medi-spa-services" class="btn-secondary">Learn More</a>
+    </section>
 
-        <!-- Floating Frame: 2025 Pivot -->
-        <section id="pivot" class="floating-frame">
-                <h2>Our 2025 Pivot: DNNC and Medi Spa</h2>
-                <p>In 2025, Delane’s Natural Nail Care expands its mission to include a Medi Spa, integrating beauty, health, and wellness into one cohesive experience...</p>
-                <a href="services.html#medi-spa-services" class="btn-secondary">Learn More</a>
-            </section>
+    <!-- Floating Frame: Truth & Freedom -->
+    <section class="floating-frame">
+        <h2>Truth & Freedom Nail Polish Line</h2>
+        <p>
+            DNNC Nail Polish called <strong>Truth & Freedom</strong> is a polish with a purpose. 
+            This exclusive line features colors named in honor of famous women, celebrating their legacy. 
+            A portion of the proceeds from every purchase will go to our nonprofit, <strong>DNNC Steps to Success</strong>, 
+            empowering women through mentorship and career advancement.
+        </p>
+        <a href="shop.html#truth-freedom" class="nav-link">Explore More</a>
+    </section>
 
-        <!-- Floating Frame: Truth & Freedom -->
-        <section class="floating-frame">
-            <h2>Truth & Freedom Nail Polish Line</h2>
-            <p>
-                DNNC Nail Polish called <strong>Truth & Freedom</strong> is a polish with a purpose. 
-                This exclusive line features colors named in honor of famous women, celebrating their legacy. 
-                A portion of the proceeds from every purchase will go to our nonprofit, <strong>DNNC Steps to Success</strong>, 
-                empowering women through mentorship and career advancement.
-            </p>
-            <a href="shop.html#truth-freedom" class="nav-link">Explore More</a>
-        </section>
+    <section id="testimonials" class="floating-frame">
+        <h2>Client Testimonials</h2>
+        <p>"I’ve never felt so cared for in a nail salon. Delane’s focus on health and professionalism is unmatched." – A Happy Client</p>
+        <a href="testimonials.html" class="nav-link">Explore More</a>
+    </section>
 
-        
-
-        <section id="testimonials" class="floating-frame">
-                <h2>Client Testimonials</h2>
-                <p>"I’ve never felt so cared for in a nail salon. Delane’s focus on health and professionalism is unmatched." – A Happy Client</p>
-                <a href="testimonials.html" class="nav-link">Explore More</a>
-            </section>
-
-
-        
-
-        
-
-        
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+    <!-- Our Team Section -->
+    <section id="our-team" class="floating-frame">
+        <h2>Meet Our Team</h2>
+        <p>Our team of professionals is dedicated to providing the best service possible. Get to know the experts who make Delane's Natural Nail Care & Medi-Spa special.</p>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="images/team-member1.jpg" alt="Team Member 1">
+                <h3>Jane Doe</h3>
+                <p>Nail Technician</p>
             </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: info@delanesnailcare.com</p>
-                <p>Phone: (123) 456-7890</p>
-                <p>Address: 123 Spa Lane, Beauty City, USA</p>
+            <div class="team-member">
+                <img src="images/team-member2.jpg" alt="Team Member 2">
+                <h3>John Smith</h3>
+                <p>Spa Therapist</p>
             </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <ul class="social-links">
-                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-                    <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-                </ul>
-            </div>
+            <!-- Add more team members as needed -->
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Delane's Natural Nail Care & Medi-Spa. All rights reserved.</p>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </div>
-    </footer>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: info@delanesnailcare.com</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Address: 123 Spa Lane, Beauty City, USA</p>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <ul class="social-links">
+                <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 Delane's Natural Nail Care & Medi-Spa. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Container for the widget with guaranteed visibility -->
+<div id="nailaide-root"></div>
+
+<!-- Load dependencies -->
+<script src="js/content/website-parser.js"></script>
+<script src="js/integrations/booksy-service.js"></script>
+<script src="js/nailaide.js"></script>
+
+<script>
+    // Initialization script with fixes
+    document.addEventListener('DOMContentLoaded', async function() {
+        console.log('DOM fully loaded, initializing NailAide...');
+        
+        try {
+            // First check for container
+            const container = document.getElementById('nailaide-root');
+            if (!container) {
+                console.error('Container not found, creating...');
+                const newContainer = document.createElement('div');
+                newContainer.id = 'nailaide-root';
+                newContainer.style.position = 'fixed';
+                newContainer.style.bottom = '20px';
+                newContainer.style.right = '20px';
+                newContainer.style.width = '350px';
+                newContainer.style.height = '500px';
+                newContainer.style.zIndex = '999999';
+                newContainer.style.pointerEvents = 'auto';
+                document.body.appendChild(newContainer);
+            }
+            
+            // Force initialize WebsiteContent
+            if (typeof WebsiteContent !== 'undefined') {
+                await WebsiteContent.initialize();
+            }
+            
+            // Force initialize BooksyService
+            if (typeof BooksyService !== 'undefined') {
+                BooksyService.init('8048717a-c465-41dc-8fbe-53cad1fb1c48', 'DNNC');
+            }
+            
+            // Force initialize NailAide if available
+            if (typeof NailAide !== 'undefined') {
+                const widget = NailAide.createWidget({
+                    container: document.getElementById('nailaide-root'),
+                    theme: {
+                        primaryColor: '#9333ea',
+                        secondaryColor: '#f3f4f6',
+                        textColor: '#1f2937',
+                        buttonTextColor: '#ffffff'
+                    },
+                    welcomeMessage: 'Hello! How can I help you today?',
+                    bookingUrl: 'https://delanesnaturalnailcare.booksy.com/',
+                    debug: true
+                });
+                
+                widget.mount();
+            }
+            
+            // Run additional visibility checks
+            setTimeout(function() {
+                const container = document.getElementById('nailaide-root');
+                if (container) {
+                    // Check for widget button
+                    const chatButton = container.querySelector('.nailaide-chat-button, #emergency-chat-button');
+                    if (!chatButton) {
+                        console.error('Chat button not found after initialization, using emergency...');
+                        if (typeof initEmergencyWidget === 'function') {
+                            initEmergencyWidget();
+                        } else if (typeof WidgetDoctor !== 'undefined') {
+                            WidgetDoctor.forceShowWidget();
+                        }
+                    } else if (chatButton.style.display === 'none' || chatButton.style.visibility === 'hidden') {
+                        console.error('Chat button is hidden, fixing...');
+                        chatButton.style.display = 'flex';
+                        chatButton.style.visibility = 'visible';
+                        chatButton.style.opacity = '1';
+                    }
+                }
+            }, 3000);
+        } catch (error) {
+            console.error("Error initializing NailAide:", error);
+            // Run emergency widget as fallback
+            setTimeout(function() {
+                if (typeof initEmergencyWidget === 'function') {
+                    initEmergencyWidget();
+                }
+            }, 1000);
+        }
+    });
+    
+    // Run a visibility check after everything has loaded
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const container = document.getElementById('nailaide-root');
+            if (container) {
+                const chatButton = container.querySelector('.nailaide-chat-button, #emergency-chat-button');
+                if (!chatButton || chatButton.style.display === 'none' || chatButton.style.visibility === 'hidden') {
+                    console.error('Chat button still not visible after page load, forcing emergency widget...');
+                    // Use our global emergency function from emergency-widget.js
+                    if (typeof initEmergencyWidget === 'function') {
+                        initEmergencyWidget();
+                    } else if (typeof WidgetDoctor !== 'undefined') {
+                        WidgetDoctor.forceShowWidget();
+                    } else {
+                        // Last resort - create an extremely simple button
+                        const simpleButton = document.createElement('div');
+                        simpleButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0034 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90001C9.87812 3.30494 11.1801 2.99659 12.5 3.00001H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                        Object.assign(simpleButton.style, {
+                            position: 'fixed',
+                            bottom: '20px',
+                            right: '20px',
+                            width: '60px',
+                            height: '60px',
+                            borderRadius: '50%',
+                            backgroundColor: '#9333ea',
+                            color: 'white',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                            zIndex: '999999'
+                        });
+                        simpleButton.onclick = function() {
+                            alert('Chat functionality is loading. Please try again in a moment.');
+                        };
+                        document.body.appendChild(simpleButton);
+                    }
+                }
+            }
+        }, 5000);
+    });
+</script>
 </body>
 </html>
