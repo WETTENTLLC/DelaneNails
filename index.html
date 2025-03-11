@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Delane's Natural Nail Care & Medi-Spa</title>
+    <title>Delane's Natural Nail Care</title>
     
     <!-- Critical CSS at the top -->
     <style>
@@ -50,12 +50,171 @@
             display: none;
             z-index: 1000000;
         }
+        
+        .special-announcement {
+            background: linear-gradient(135deg, #ff69b4, #9333ea);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px auto;
+            text-align: center;
+            max-width: 900px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+        
+        .special-announcement h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .special-announcement p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .masterclass-button {
+            display: inline-block;
+            background: white;
+            color: #9333ea;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .masterclass-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 105, 180, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); }
+        }
+        
+        .announcement-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f44336;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transform: rotate(15deg);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Enhanced 5-Star Yelp Reviews Frame Styling */
+        .yelp-reviews-frame {
+            margin: 30px auto;
+            padding: 25px;
+            width: 80%;
+            background: linear-gradient(to right, #fff, #f5f9ff);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #d32323; /* Yelp red */
+            position: relative;
+            overflow: visible; /* Changed from 'hidden' to 'visible' to show the badge */
+            transition: all 0.4s ease;
+        }
+        
+        .yelp-reviews-frame:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .yelp-reviews-frame h2 {
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .yelp-logo {
+            height: 30px;
+            vertical-align: middle;
+        }
+        
+        .star-rating {
+            color: #d32323;
+            font-size: 24px;
+            margin: 15px 0;
+            letter-spacing: 3px;
+        }
+        
+        .review-count {
+            background: #d32323;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .yelp-cta {
+            display: inline-block;
+            background: #d32323;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(211, 35, 35, 0.2);
+        }
+        
+        .yelp-cta:hover {
+            background: #c41200;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(211, 35, 35, 0.3);
+        }
+        
+        .yelp-badge {
+            position: absolute;
+            top: -15px; /* Adjusted from -10px */
+            right: -15px; /* Adjusted from -10px */
+            background: #d32323;
+            color: white;
+            padding: 5px 15px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1; /* Added to ensure it appears above other elements */
+        }
+
+        /* New style for the official Yelp logo */
+        .official-yelp-logo {
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        
+        @keyframes pulse-yelp {
+            0% { box-shadow: 0 0 0 0 rgba(211, 35, 35, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(211, 35, 35, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 35, 35, 0); }
+        }
     </style>
 
     <!-- Regular stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/nailaide.css">
     <link rel="stylesheet" href="css/walk-in-styles.css">
+    <link rel="stylesheet" href="css/homepage-styles.css">
     
     <!-- Regular styling -->
     <style>
@@ -204,6 +363,14 @@
 
 <!-- Main Content -->
 <main>
+    <!-- SPECIAL ANNOUNCEMENT SECTION -->
+    <section class="special-announcement">
+        <span class="announcement-badge">NEW!</span>
+        <h2>✨ DNNC Masterclass Now Available! ✨</h2>
+        <p>Elevate your nail care expertise with our exclusive masterclass series! Learn professional techniques, insider tips, and build your career in nail artistry.</p>
+        <a href="https://www.dnncmasterclass.com" class="masterclass-button">Visit Masterclass Website</a>
+    </section>
+
     <!-- Hero Section -->
     <section class="hero-section floating-frame">
         <h2>Welcome to Delane's Natural Nail Care & Medi-Spa</h2>
@@ -217,7 +384,7 @@
     <!-- Floating Frame: 2025 Pivot -->
     <section id="pivot" class="floating-frame">
         <h2>Our 2025 Pivot: DNNC and Medi Spa</h2>
-        <p>In 2025, Delane’s Natural Nail Care expands its mission to include a Medi Spa, integrating beauty, health, and wellness into one cohesive experience...</p>
+        <p>In 2025, Delane's Natural Nail Care expands its mission to include a Medi Spa, integrating beauty, health, and wellness into one cohesive experience...</p>
         <a href="services.html#medi-spa-services" class="btn-secondary">Learn More</a>
     </section>
 
@@ -233,33 +400,24 @@
         <a href="shop.html#truth-freedom" class="nav-link">Explore More</a>
     </section>
 
-    <section id="testimonials" class="floating-frame">
-        <h2>Client Testimonials</h2>
-        <p>"I’ve never felt so cared for in a nail salon. Delane’s focus on health and professionalism is unmatched." – A Happy Client</p>
-        <a href="testimonials.html" class="nav-link">Explore More</a>
+    <!-- 5-Star Yelp Reviews Frame - Replacing Testimonials -->
+    <section id="yelp-reviews" class="yelp-reviews-frame">
+        <span class="yelp-badge">TOP RATED</span>
+        <h2>
+            <!-- Updated with direct Yelp logo URL -->
+            <img src="https://media-hosting.imagekit.io//62916031dc514ecf/yelp_logo.png?Expires=1836337836&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cJnHTh6F8Vs-bfTnaKOOUi4-mAO3VXYabwk3ZlXhdwaZwYgwEm0h8gYSkUzFcHNDOhB-GY1CNJR4DT2ckU8B5uR6ok9R1oJujl51OQa6N82TRp6YVs2nPlDV3zXeINLyxBwipAZ8u-HfLpjSSQgD4zwIEArwzj7p1FKIRfLNAXy5PWpY1lNelRbqDl3is9WmAkzaubHWgO6khk3BjHPMJqRaUWatda~D3Ougp81V2QX0k66H9HT44OHPK5bbg~KktUeooXWcjlZQynvQlzvnb16q0dH8ajSZ6cfNauyA1cxfxttR4yMqIl29aIQI7l710gbiuNEhgpzDpeva4vwhMg__" alt="Yelp" class="official-yelp-logo"> 
+            5-Star Yelp Reviews
+        </h2>
+        <div class="star-rating">★★★★★ <span class="review-count">50+ Reviews</span></div>
+        <p>"Delane's Natural Nail Care is absolutely amazing! The attention to detail and focus on natural nail health sets them apart from any salon I've ever visited. My nails have never looked better!" – Sarah T.</p>
+        <p>"I appreciate how clean and professional this salon is. Delane truly understands nail health and provides exceptional service every time." – Megan R.</p>
+        <a href="https://www.yelp.com/biz/delanes-natural-nail-care-san-leandro" target="_blank" class="yelp-cta">Read All Reviews on Yelp</a>
     </section>
 
-    <!-- Our Team Section -->
-    <section id="our-team" class="floating-frame">
-        <h2>Meet Our Team</h2>
-        <p>Our team of professionals is dedicated to providing the best service possible. Get to know the experts who make Delane's Natural Nail Care & Medi-Spa special.</p>
-        <div class="team-members">
-            <div class="team-member">
-                <img src="images/team-member1.jpg" alt="Team Member 1">
-                <h3>Jane Doe</h3>
-                <p>Nail Technician</p>
-            </div>
-            <div class="team-member">
-                <img src="images/team-member2.jpg" alt="Team Member 2">
-                <h3>John Smith</h3>
-                <p>Spa Therapist</p>
-            </div>
-            <!-- Add more team members as needed -->
-        </div>
-    </section>
+    <!-- Our Team Section has been removed -->
 </main>
 
-<!-- Footer -->
+<!-- Standard Footer - Ensuring only one footer exists -->
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-section">
@@ -275,8 +433,8 @@
         <div class="footer-section">
             <h3>Contact Us</h3>
             <p>Email: info@delanesnailcare.com</p>
-            <p>Phone: (123) 456-7890</p>
-            <p>Address: 123 Spa Lane, Beauty City, USA</p>
+            <p>Phone: (510) 346-2457</p>
+            <p>Address: 333 Estudillo Ave, San Leandro, CA</p>
         </div>
         <div class="footer-section">
             <h3>Follow Us</h3>
@@ -292,150 +450,158 @@
     </div>
 </footer>
 
-<!-- Widget control buttons -->ixed to always appear -->
-<div style="position: fixed; bottom: 20px; right: 90px; z-index: 1000000; display: flex; gap: 10px;">
-  <button id="widget-reset" onclick="resetNailAide()" style="background: #f44336; color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer; display: none;">Reset Widget</button>
-  <button id="emergency-fix" onclick="emergencyFix()" style="background: #ff9800; color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer; display: none;">Fix Input</button>
-  <button onclick="forceRebuild()" style="background: #4CAF50; color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer;">Force Rebuild</button>
-  <button onclick="checkWidget()" style="background: #2196F3; color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer;">Debug</button>
-  <button onclick="forceShowWidget()" style="background: #9C27B0; color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer;">Force Show</button>
-</div>
+<!-- Add this just before the other scripts -->
+<script src="js/steps-to-success-content.js"></script>
 
-<!-- Simplified NailAide Chat Widget Loading - Fixed loading sequence -->
+<!-- Services and modules needed for walk-ins -->
+<script src="js/services/booksy-integration.js"></script>
+<script src="js/services/notification-service.js"></script>
+<script src="js/modules/walk-in-manager.js"></script>
+<script src="js/nailaide-walkin-integration.js"></script>
+<script src="js/debug-website-content.js"></script>
+
+<!-- Main NailAide scripts - Simplified loading sequence -->
 <script src="js/nailaide-config.js"></script>
-<script src="js/basic-website-content.js"></script>load order
-<script src="js/nailaide-content-parser.js" onload="console.log('Content parser loaded')" onerror="console.error('Failed to load content parser')"></script>endencies...');
+<script src="js/basic-website-content.js"></script>
+<script src="js/nailaide-content-parser.js"></script>
 <script src="js/nailaide-shop-parser.js"></script>
-<script src="js/nailaide.js"></script>src="js/nailaide-config.js" onload="console.log('Config loaded')" onerror="console.error('Failed to load config')"></script>
-<script> onload="console.log('Content parser loaded')" onerror="console.error('Failed to load content parser')"></script>
-    // Corrected sequence of initializationShop parser loaded')" onerror="console.error('Failed to load shop parser')"></script>
-    document.addEventListener('DOMContentLoaded', function() {n loaded')" onerror="console.error('Failed to load NailAide main')"></script>
+<script src="js/nailaide.js"></script>
+<script src="js/nailaide-content-diagnostic.js"></script>
+<script src="js/nailaide-recovery.js"></script>
+
+<!-- Initialize NailAide widget -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM loaded, waiting for all scripts...');
         
-        // Wait for everything (DOM + scripts) to be fully loaded with a small timeoutDOMContentLoaded', function() {
+        // Wait for everything (DOM + scripts) to be fully loaded with a small timeout
         setTimeout(function() {
             console.log('Everything should be loaded now, initializing NailAide...');
-            ) to be fully loaded with a small timeout
+            
             // Check if NailAide is available
-            if (typeof NailAide !== 'undefined') {alizing NailAide...');
+            if (typeof NailAide !== 'undefined') {
                 console.log('NailAide found, initializing...');
-                 available
-                // First initialize!== 'undefined') {
-                NailAide.init();console.log('NailAide found, initializing...');
+                
+                // First initialize
+                NailAide.init();
                 
                 // Then show the widget with a slight delay
                 setTimeout(function() {
                     console.log('Toggling widget visibility...');
-                    NailAide.toggle();show the widget with a slight delay
-                }, 500);imeout(function() {
-            } else {;
+                    NailAide.toggle();
+                }, 500);
+            } else {
                 console.error('NailAide widget failed to load');
-                alert('Chat widget failed to load. Please refresh the page.');   }, 500);
-            }se {
-        }, 500);         console.error('NailAide widget failed to load');
-    });            alert('Chat widget failed to load. Please refresh the page.');
+                alert('Chat widget failed to load. Please refresh the page.');
+            }
+        }, 500);
+    });
     
     // Enhanced reset function for NailAide widget
     function resetNailAide() {
         console.log('Resetting NailAide widget...');
-         for NailAide widget
+        
         if (window.NailAide) {
-            if (typeof NailAide.reset === 'function') {ilAide widget...');
+            if (typeof NailAide.reset === 'function') {
                 NailAide.reset();
             } else {
-                // Fallback toggleset === 'function') {
+                // Fallback toggle
                 NailAide.toggle();
                 setTimeout(function() {
-                    NailAide.toggle(); ack toggle
-                }, 500);   NailAide.toggle();
-            }       setTimeout(function() {
-        }               NailAide.toggle(); 
-    }            }, 500);
+                    NailAide.toggle();
+                }, 500);
+            }
+        }
+    }
     
     // Emergency fix function
     function emergencyFix() {
         console.log('Applying emergency fix for input field...');
         
         if (window.NailAide && typeof NailAide.fixInputField === 'function') {
-            // Use the dedicated fix functioncy fix for input field...');
+            // Use the dedicated fix function
             NailAide.fixInputField();
-        } else {eof NailAide.fixInputField === 'function') {
+        } else {
             // Fallback manual fix
-            const container = document.querySelector('.nailaide-container');Field();
+            const container = document.querySelector('.nailaide-container');
             if (!container) {
-                alert('NailAide container not found!'); manual fix
-                return;onst container = document.querySelector('.nailaide-container');
-            }if (!container) {
-            ner not found!');
+                alert('NailAide container not found!');
+                return;
+            }
+            
+            const inputContainer = container.querySelector('.nailaide-input-container');
+            if (!inputContainer) {
+                alert('Input container not found!');
+                return;
+            }
+            
             // Replace the input field
             const oldInput = inputContainer.querySelector('textarea');
             if (oldInput) oldInput.remove();
             
-            const newInput = document.createElement('textarea');area');
-            newInput.placeholder = 'Type your message here...';);
+            const newInput = document.createElement('textarea');
+            newInput.placeholder = 'Type your message here...';
             newInput.style.flexGrow = '1';
-            newInput.style.border = '1px solid #ddd';nt('textarea');
-            newInput.style.borderRadius = '20px';ssage here...';
+            newInput.style.border = '1px solid #ddd';
+            newInput.style.borderRadius = '20px';
             newInput.style.padding = '8px 15px';
-            newInput.style.outline = 'none';lid #ddd';
+            newInput.style.outline = 'none';
             newInput.style.resize = 'none';
-            newInput.style.pointerEvents = 'auto';newInput.style.padding = '8px 15px';
+            newInput.style.pointerEvents = 'auto';
             
             inputContainer.prepend(newInput);
-            alert('Emergency fix applied! Try typing now.');   newInput.style.pointerEvents = 'auto';
-        }       
-    }        inputContainer.prepend(newInput);
-    d! Try typing now.');
+            alert('Emergency fix applied! Try typing now.');
+        }
+    }
+    
     // Force complete rebuild of widget
     function forceRebuild() {
         console.log('Forcing complete widget rebuild...');
         
         if (window.NailAide && typeof NailAide.forceReset === 'function') {
-            NailAide.forceReset();ole.log('Forcing complete widget rebuild...');
+            NailAide.forceReset();
             
-            // Show the widget after resetof NailAide.forceReset === 'function') {
+            // Show the widget after reset
             setTimeout(function() {
                 NailAide.toggle();
-            }, 500);// Show the widget after reset
+            }, 500);
             
-            alert('Widget has been completely rebuilt. You should see it now.'); src="js/nailaide-recovery.js"></script>NailAide.toggle();
+            alert('Widget has been completely rebuilt. You should see it now.');
         } else {
-            alert('Cannot force rebuild. NailAide may not be properly loaded.');</html>            
-            alert('Widget has been completely rebuilt. You should see it now.');<!-- Add this just before the closing </body> tag -->
-        } else {<script src="js/nailaide-content-diagnostic.js"></script>
             alert('Cannot force rebuild. NailAide may not be properly loaded.');
-        }<!-- Add a button to manually refresh website content -->
-<button id="refresh-content" onclick="refreshWebsiteContent()" style="position: fixed; bottom: 80px; right: 90px; z-index: 1000000; background: #2196F3; color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer;">Refresh Content</button>    }
+        }
+    }
     
-<script>    // New debug function
-  // Function to check WebsiteContent status    function checkWidget() {
-  function checkWebsiteContent() {        console.log('Running NailAide diagnostics...');
-    if (typeof WebsiteContent === 'undefined') {        
-      console.error('WebsiteContent not found!');        // Check for the NailAide global object
-      alert('WebsiteContent module is not loaded. Site information queries will not work.');        if (typeof NailAide === 'undefined') {
-      return;            console.error('NailAide is not defined!');
-    }            alert('NailAide is not loaded properly. Check the console for details.');
-                return;
-    const content = WebsiteContent.getContent();        }
-    const pageCount = Object.keys(content.pages || {}).length;        
-    const sectionCount = (content.sections || []).length;        // Use built-in debug if available
-    const serviceCount = (content.services || []).length;        if (typeof NailAide.debugWidget === 'function') {
-                const status = NailAide.debugWidget();
-    alert(`WebsiteContent status:\n- Pages: ${pageCount}\n- Sections: ${sectionCount}\n- Services: ${serviceCount}\n- Last updated: ${content.lastUpdated || 'never'}`);            console.table(status);
-                alert('Debug information logged to console. Check browser developer tools.');
-    console.table({            return;
-      pages: pageCount,        }
-      sections: sectionCount,        
-      services: serviceCount,        // Manual check if debugWidget isn't available
-      lastUpdated: content.lastUpdated        const container = document.querySelector('.nailaide-container');
-    });        const status = {
-  }            nailAideExists: !!window.NailAide,
-              containerExists: !!container,
-  // Add a new button to check content status            launcherExists: !!launcher
-  document.getElementById('widget-reset').insertAdjacentHTML('afterend',         };
-    '<button onclick="checkWebsiteContent()" style="background: #03A9F4; color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer;">Check Content</button>'        
-  );        if (container) {
-</script>            const style = window.getComputedStyle(container);
+    // New debug function
+    function checkWidget() {
+        console.log('Running NailAide diagnostics...');
+        
+        // Check for the NailAide global object
+        if (typeof NailAide === 'undefined') {
+            console.error('NailAide is not defined!');
+            alert('NailAide is not loaded properly. Check the console for details.');
+            return;
+        }
+        
+        // Use built-in debug if available
+        if (typeof NailAide.debugWidget === 'function') {
+            const status = NailAide.debugWidget();
+            console.table(status);
+            alert('Debug information logged to console. Check browser developer tools.');
+            return;
+        }
+        
+        // Manual check if debugWidget isn't available
+        const container = document.querySelector('.nailaide-container');
+        const launcher = document.querySelector('.nailaide-launcher');
+        const status = {
+            nailAideExists: !!window.NailAide,
+            containerExists: !!container,
+            launcherExists: !!launcher
+        };
+        
+        if (container) {
+            const style = window.getComputedStyle(container);
             status.containerVisible = style.display !== 'none';
             status.containerOpacity = style.opacity;
             status.containerZIndex = style.zIndex;
@@ -455,6 +621,7 @@
                 NailAide.forceShow();
                 alert('Widget display forced. You should see it now.');
             } else {
+                // Manually try to show it
                 const container = document.querySelector('.nailaide-container');
                 if (container) {
                     container.style.display = 'flex';
@@ -472,17 +639,48 @@
             alert('NailAide is not loaded properly.');
         }
     }
+    
+    // Function to check WebsiteContent status
+    function checkWebsiteContent() {
+        if (typeof WebsiteContent === 'undefined') {
+            console.error('WebsiteContent not found!');
+            alert('WebsiteContent module is not loaded. Site information queries will not work.');
+            return;
+        }
+        
+        const content = WebsiteContent.getContent();
+        const pageCount = Object.keys(content.pages || {}).length;
+        const sectionCount = (content.sections || []).length;
+        const serviceCount = (content.services || []).length;
+        
+        alert(`WebsiteContent status:\n- Pages: ${pageCount}\n- Sections: ${sectionCount}\n- Services: ${serviceCount}\n- Last updated: ${content.lastUpdated || 'never'}`);
+        
+        console.table({
+            pages: pageCount,
+            sections: sectionCount,
+            services: serviceCount,
+            lastUpdated: content.lastUpdated
+        });
+    }
 </script>
-<!-- Add this just before the other scripts -->
-<script src="js/steps-to-success-content.js"></script>d this right after the other scripts but before initialization -->
-<!-- Add the walk-in related scripts before the main NailAide initialization -->
 
-<!-- Services and modules needed for walk-ins -->
-<script src="js/services/booksy-integration.js"></script>
-<script src="js/services/notification-service.js"></script>
-<script src="js/modules/walk-in-manager.js"></script>
-<script src="js/nailaide-walkin-integration.js"></script>
-</body><script src="js/debug-website-content.js"></script>
+<!-- Debug controls - only shown during development -->
+<div style="position: fixed; bottom: 20px; right: 90px; z-index: 1000000; display: none; gap: 10px;" id="debug-controls">
+  <button id="widget-reset" onclick="resetNailAide()">Reset Widget</button>
+  <button id="emergency-fix" onclick="emergencyFix()">Fix Input</button>
+  <button onclick="forceRebuild()">Force Rebuild</button>
+  <button onclick="checkWidget()">Debug</button>
+  <button onclick="forceShowWidget()">Force Show</button>
+  <button onclick="checkWebsiteContent()">Check Content</button>
+  <button onclick="testQuery('tell me about steps to success')">Test Steps Query</button>
+</div>
+
+<!-- Function to show debug tools during development -->
+<script>
+  // Only enable in development mode
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    document.getElementById('debug-controls').style.display = 'flex';
+  }
+</script>
+</body>
 </html>
-<!-- Add a function to test specific queries -->
-</html></body></script>    }        }            alert('NailAide is not loaded properly.');        } else {            }                }                    alert('Widget container not found! Try Force Rebuild first.');                } else {                    alert('Widget display forced. You should see it now.');                    container.style.transform = 'none';                    container.style.height = '500px';                    container.style.visibility = 'visible';                    container.style.opacity = '1';                    container.classList.remove('minimized');                    container.style.display = 'flex';                if (container) {                const container = document.querySelector('.nailaide-container');                // Manually try to show it            } else {                NailAide.forceShow();            if (typeof NailAide.forceShow === 'function') {        if (window.NailAide) {                console.log('Forcing widget to show...');    function forceShowWidget() {    // Force show the widget        }        alert('Debug information logged to console. Check browser developer tools.');        console.table(status);                }            status.containerPosition = style.position;            status.containerZIndex = style.zIndex;            status.containerOpacity = style.opacity;            status.containerVisible = style.display !== 'none';            const style = window.getComputedStyle(container);        if (container) {                };            launcherExists: !!launcher            containerExists: !!container,            nailAideExists: !!window.NailAide,        const status = {                const launcher = document.querySelector('.nailaide-launcher');        const container = document.querySelector('.nailaide-container');        // Manual check if debugWidget isn't available                }            return;            alert('Debug information has been logged to console. Check browser developer tools.');            console.table(status);            const status = NailAide.debugWidget();        if (typeof NailAide.debugWidget === 'function') {        // Use built-in debug if available                }            return;            alert('NailAide is not loaded properly. Check the console for details.');            console.error('NailAide is not defined!');        if (typeof NailAide === 'undefined') {        // Check for the NailAide global object                console.log('Running NailAide diagnostics...');    function checkWidget() {    // New debug function        }        }    '<button onclick="testQuery(\'tell me about steps to success\')" style="position: fixed; bottom: 80px; right: 240px; z-index: 1000000; background: #FF5722; color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer;">Test Steps Query</button>'  );</script></body></html>
