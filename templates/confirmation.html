@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - Delane Nails</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        h1, h2 { color: #9c27b0; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .confirmation { background: #f0fff0; padding: 20px; border-radius: 8px; border-left: 5px solid #4CAF50; }
+        .details { background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 20px 0; }
+        .btn { display: inline-block; background: #9c27b0; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; }
+        nav { margin-bottom: 30px; }
+        nav a { margin-right: 15px; color: #9c27b0; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        footer { margin-top: 50px; text-align: center; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/simple-chat">Chat</a>
+            <a href="/simple-booking">Book Appointment</a>
+        </nav>
+        
+        <div class="confirmation">
+            <h1>Booking Confirmed!</h1>
+            <p>Thank you for booking with Delane Nails. Your appointment has been confirmed.</p>
+        </div>
+        
+        <div class="details">
+            <h2>Appointment Details</h2>
+            <p><strong>Service:</strong> {{ appointment.service_name }}</p>
+            <p><strong>Date & Time:</strong> {{ appointment.start_time.replace('T', ' ') }}</p>
+            <p><strong>Customer:</strong> {{ appointment.customer_name }}</p>
+            <p><strong>Confirmation ID:</strong> {{ appointment.appointment_id }}</p>
+            <p><strong>Status:</strong> {{ appointment.status }}</p>
+        </div>
+        
+        <p>A confirmation has been sent to your email address. If you need to cancel or reschedule, please contact us.</p>
+        
+        <p>
+            <a href="/" class="btn">Return to Home</a>
+        </p>
+        
+        <footer>
+            &copy; 2023 Delane Nails - All Rights Reserved
+        </footer>
+    </div>
+</body>
+</html>

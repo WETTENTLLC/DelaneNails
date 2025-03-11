@@ -1,0 +1,49 @@
+{
+  "timestamp": "2025-03-06T08:40:26.720Z",
+  "duration": 61.482,
+  "allPassed": false,
+  "totalErrors": 21,
+  "totalWarnings": 30,
+  "componentResults": {
+    "tourDependencies": {
+      "passed": false,
+      "warnings": 0,
+      "errors": 9
+    },
+    "authSystem": {
+      "passed": false,
+      "warnings": 1,
+      "errors": 1
+    },
+    "bookingSystem": {
+      "passed": false,
+      "warnings": 3,
+      "errors": 4
+    },
+    "reviewSystem": {
+      "passed": false,
+      "warnings": 3,
+      "errors": 5
+    },
+    "errorAndSecurity": {
+      "passed": false,
+      "warnings": 7,
+      "errors": 1
+    },
+    "imageHandling": {
+      "passed": true,
+      "warnings": 4,
+      "errors": 0
+    },
+    "databaseConnection": {
+      "passed": false,
+      "warnings": 2,
+      "errors": 1
+    },
+    "aiAgent": {
+      "passed": true,
+      "warnings": 10,
+      "errors": 0
+    }
+  }
+}

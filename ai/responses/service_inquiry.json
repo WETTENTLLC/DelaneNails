@@ -1,0 +1,15 @@
+{
+  "name": "service_inquiry",
+  "description": "Responses for when a user asks about services",
+  "responses": [
+    "We offer a variety of nail care services including manicures, pedicures, gel nails, acrylic nails, nail art, and more. Is there a specific service you're interested in?",
+    "Delane Nails provides full nail care services from basic manicures to advanced nail art and extensions. What kind of service are you looking for?",
+    "Our services include everything from quick polish changes to full spa pedicures and custom nail designs. What kind of treatment are you interested in?",
+    "We specialize in gel nails, acrylic sets, manicures, pedicures, and artistic nail designs. Would you like to know more about any specific service?"
+  ],
+  "specific_service_responses": [
+    "Our {service} is one of our most popular options! It includes {context.serviceDescription} and costs ${context.servicePrice}. Would you like to book an appointment?",
+    "The {service} is a great choice. It features {context.serviceDescription} and is priced at ${context.servicePrice}. Can I help you schedule this service?",
+    "You'll love our {service}! It includes {context.serviceDescription} for ${context.servicePrice}. Would you like to book this?"
+  ]
+}

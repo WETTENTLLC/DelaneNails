@@ -1,0 +1,10 @@
+{
+  "name": "fallback",
+  "description": "Responses for when the AI does not understand the user's intent",
+  "responses": [
+    "I'm not quite sure what you're asking. Could you please rephrase that? I can help with booking appointments, information about our services, or pricing.",
+    "I apologize, but I didn't understand your request. Could you try asking in a different way? I can assist with appointments, services, or answer questions about nail care.",
+    "I'm sorry, I didn't catch that. Would you mind rephrasing? I'm here to help with booking, services, and nail care questions.",
+    "I'm still learning! Could you please rephrase your question? I can help with appointments, service information, pricing, or general nail care questions."
+  ]
+}

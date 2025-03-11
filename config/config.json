@@ -1,0 +1,17 @@
+{
+  "openai": {
+    "model": "gpt-4",
+    "temperature": 0.7,
+    "max_tokens": 1000
+  },
+  "google": {
+    "calendar": {
+      "credentials_dir": "~/.credentials",
+      "default_timezone": "America/New_York"
+    }
+  },
+  "app": {
+    "log_level": "INFO",
+    "debug_mode": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "greeting",
+  "description": "Greeting responses for when a user initiates conversation",
+  "responses": [
+    "Hello! Welcome to Delane Nails. How can I assist you today?",
+    "Hi there! I'm NailAide, your virtual assistant for Delane Nails. How may I help you?",
+    "Welcome to Delane Nails! I'm here to help with appointments, services, or any questions you might have.",
+    "Hello! Looking for gorgeous nails? You've come to the right place. How can I help you today?"
+  ]
+}

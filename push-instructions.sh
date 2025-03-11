@@ -12,6 +12,5 @@ git commit -m "Add voice features, site tour navigation, and enhanced accessibil
 
 # Push to the main branch (or whatever your default branch is called)
 git push origin main
-
 # If you're using a different branch name, replace 'main' with your branch name
 # For example: git push origin master

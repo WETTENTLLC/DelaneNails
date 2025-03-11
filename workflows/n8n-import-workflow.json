@@ -1,0 +1,270 @@
+{
+  "name": "DelaneNails Data Import",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "import",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get input data from webhook\nconst inputData = $input.item.json;\nconst { source, dataType, clearExisting } = inputData;\n\n// Validate required fields\nif (!source) {\n  throw new Error('Source is required');\n}\n\nif (!dataType) {\n  throw new Error('Data type is required');\n}\n\n// Process file upload if present\nlet fileData = null;\nif (inputData.fileData) {\n  fileData = inputData.fileData;\n}\n\n// Return prepared data\nreturn {\n  json: {\n    source,\n    dataType,\n    clearExisting: clearExisting === true,\n    fileData,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "name": "Validate Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"source\"]}}",
+              "operation": "equals",
+              "value2": "api"
+            }
+          ]
+        }
+      },
+      "name": "API or File?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$env.DELANENAILS_API_URL}}/api/v1/export/{{$json[\"dataType\"]}}",
+        "authentication": "headerAuth",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.DELANENAILS_API_KEY}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Fetch from API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Process file data based on format\nconst data = $input.item.json;\nconst source = data.source.toLowerCase();\nconst fileData = data.fileData;\n\nif (!fileData) {\n  throw new Error('No file data provided');\n}\n\nlet parsedData;\n\nswitch (source) {\n  case 'csv':\n    // Parse CSV data\n    const lines = fileData.split('\\n');\n    const headers = lines[0].split(',').map(h => h.trim());\n    parsedData = [];\n    \n    for (let i = 1; i < lines.length; i++) {\n      if (!lines[i].trim()) continue;\n      \n      const values = lines[i].split(',').map(v => v.trim());\n      const obj = {};\n      \n      for (let j = 0; j < headers.length; j++) {\n        obj[headers[j]] = values[j];\n      }\n      \n      parsedData.push(obj);\n    }\n    break;\n    \n  case 'json':\n    // Parse JSON data\n    parsedData = JSON.parse(fileData);\n    break;\n    \n  default:\n    throw new Error(`Unsupported file format: ${source}`);\n}\n\nreturn { json: { parsedData, count: parsedData.length } };"
+      },
+      "name": "Process File Data",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        850,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$env.DELANENAILS_API_URL}}/api/v1/import/{{$json[\"dataType\"]}}",
+        "method": "POST",
+        "authentication": "headerAuth",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.DELANENAILS_API_KEY}}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "clearExisting",
+              "value": "={{$json[\"clearExisting\"]}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{$json[\"parsedData\"] || $json[\"data\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Send to DelaneNails",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: `Successfully imported ${$json.count || $json.data.length} ${$json.dataType} records` } }}",
+        "options": {}
+      },
+      "name": "HTTP Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "subject": "Data Import Completed - DelaneNails",
+        "html": "<p>The data import process has been completed successfully.</p>\n<p><strong>Details:</strong></p>\n<ul>\n  <li>Data Type: {{$json[\"dataType\"]}}</li>\n  <li>Records Imported: {{$json.count || $json.data.length}}</li>\n  <li>Timestamp: {{$json[\"timestamp\"]}}</li>\n</ul>\n<p>If you did not initiate this import, please contact the administrator immediately.</p>",
+        "options": {}
+      },
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1450,
+        500
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validate Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Input": {
+      "main": [
+        [
+          {
+            "node": "API or File?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API or File?": {
+      "main": [
+        [
+          {
+            "node": "Fetch from API",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Process File Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch from API": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process File Data": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Send to DelaneNails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send to DelaneNails": {
+      "main": [
+        [
+          {
+            "node": "HTTP Response",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "abcd1234-1234-5678-abcd-1234567890ab",
+  "id": "123456",
+  "meta": {
+    "instanceId": "12345678901234567890"
+  },
+  "tags": [
+    "import",
+    "data",
+    "nails",
+    "automation"
+  ]
+}

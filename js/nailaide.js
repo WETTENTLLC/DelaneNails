@@ -1,718 +1,1119 @@
 /**
- * NailAide - AI Assistant Widget for Delane's Natural Nail Care
+ * NailAide Chat Widget
+ * A simple chat interface for salon websites
  */
-const NailAide = {
-    widget: null,
-    config: null,
-    isOpen: false,
-    conversationState: {
-        awaitingBookingConfirmation: false,
-        lastQuestion: null,
-        context: {},
-        conversationHistory: []
-    },
-    voiceAssistant: null,
-    knowledgeBase: null,
+
+const NailAide = (function() {
+  // Config with defaults that will be overridden by NAILAIDE_CONFIG
+  let config = {
+    primaryColor: '#9333ea',
+    secondaryColor: '#f3f4f6',
+    userBubbleColor: '#e1f5fe',
+    widgetTitle: 'Chat with Us',
+    enableOnMobile: true,
+    initiallyMinimized: true,
+    welcomeMessage: "Hello! How may I help you today?",
+    excludedPages: []
+  };
+
+  // DOM elements
+  let chatContainer;
+  let chatBody;
+  let inputField;
+  let launcherButton;
+  let isWidgetVisible = false;
+
+  function init() {
+    console.log('NailAide initializing...');
     
-    createWidget: function(config) {
-        console.log('Creating NailAide widget with config:', config);
+    // Override defaults with custom configuration
+    if (window.NAILAIDE_CONFIG) {
+      config = {...config, ...window.NAILAIDE_CONFIG};
+      console.log('Configuration loaded:', config);
+    } else {
+      console.warn('No NAILAIDE_CONFIG found, using defaults');
+    }
+    
+    // Check if we should show the widget on this page
+    const currentPath = window.location.pathname;
+    if (config.excludedPages.some(path => currentPath.includes(path))) {
+      console.log('Page excluded, not initializing widget');
+      return; // Don't initialize on excluded pages
+    }
+    
+    // Check mobile visibility
+    if (!config.enableOnMobile && window.innerWidth < 768) {
+      console.log('Mobile disabled, not initializing widget');
+      return; // Don't initialize on mobile if disabled
+    }
+    
+    // Check for shop parser and integrate it
+    if (window.ShopParser) {
+      console.log('ShopParser detected, integrating shop products...');
+      window.ShopParser.init();
+    }
+    
+    createWidgetDOM();
+    attachEventListeners();
+    
+    // Set CSS variables for styling
+    document.documentElement.style.setProperty('--primary-color', config.primaryColor);
+    document.documentElement.style.setProperty('--secondary-color', config.secondaryColor);
+    document.documentElement.style.setProperty('--user-bubble-color', config.userBubbleColor);
+    
+    // Show welcome message
+    if (config.welcomeMessage) {
+      setTimeout(() => {
+        addMessageToChat('bot', config.welcomeMessage);
+      }, 500);
+    }
+    
+    // Dispatch event that NailAide is loaded
+    const event = new Event('nailaide:loaded');
+    window.dispatchEvent(event);
+    
+    console.log('NailAide initialization complete');
+    
+    // Reset recently shown products every 5 minutes
+    setInterval(() => {
+      recentlyShownProducts = [];
+    }, 5 * 60 * 1000);
+  }
+  
+  function createWidgetDOM() {
+    console.log('Creating widget DOM...');
+    
+    // Create main container
+    chatContainer = document.createElement('div');
+    chatContainer.classList.add('nailaide-container');
+    if (config.initiallyMinimized) {
+      chatContainer.classList.add('minimized');
+    }
+    
+    chatContainer.innerHTML = `
+      <div class="nailaide-header" style="background-color: ${config.primaryColor}">
+        <div class="nailaide-title">${config.widgetTitle}</div>
+        <div class="nailaide-controls">
+          <button class="nailaide-minimize">&minus;</button>
+          <button class="nailaide-close">&times;</button>
+        </div>
+      </div>
+      <div class="nailaide-body"></div>
+      <div class="nailaide-input">
+        <textarea placeholder="Type your message here..." rows="1"></textarea>
+        <button class="nailaide-send" style="background-color: ${config.primaryColor}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+    `;
+    
+    // Create launcher button
+    launcherButton = document.createElement('button');
+    launcherButton.classList.add('nailaide-launcher');
+    launcherButton.style.backgroundColor = config.primaryColor;
+    launcherButton.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0034 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90001C9.87812 3.30494 11.1801 2.99659 12.5 3.00001H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `;
+    
+    // Hide widget initially
+    chatContainer.style.display = 'none';
+    isWidgetVisible = false;
+    
+    // Append elements to body
+    document.body.appendChild(chatContainer);
+    document.body.appendChild(launcherButton);
+    
+    console.log('Widget DOM created');
+  }
+  
+  function attachEventListeners() {
+    console.log('Attaching event listeners...');
+    
+    const minimizeButton = chatContainer.querySelector('.nailaide-minimize');
+    const closeButton = chatContainer.querySelector('.nailaide-close');
+    const sendButton = chatContainer.querySelector('.nailaide-send');
+    inputField = chatContainer.querySelector('.nailaide-input textarea');
+    chatBody = chatContainer.querySelector('.nailaide-body');
+    
+    // CRITICAL FIX: Check if inputField exists and properly initialize it
+    if (!inputField) {
+      console.error('Input field not found! Creating a new one...');
+      const inputContainer = chatContainer.querySelector('.nailaide-input');
+      if (inputContainer) {
+        // Create a new textarea if the original one is somehow missing
+        inputField = document.createElement('textarea');
+        inputField.placeholder = 'Type your message here...';
+        inputField.rows = 1;
         
-        this.config = {
-            container: config.container || document.getElementById('nailaide-root'),
-            theme: config.theme || {
-                primaryColor: '#9333ea',
-                secondaryColor: '#f3f4f6',
-                textColor: '#1f2937',
-                buttonTextColor: '#ffffff'
-            },
-            welcomeMessage: config.welcomeMessage || 'Hello! How can I help you today?',
-            bookingUrl: config.bookingUrl || (typeof BooksyService !== 'undefined' ? BooksyService.getBookingUrl() : 'https://delanesnaturalnailcare.booksy.com/'),
-            enableVoice: config.enableVoice !== undefined ? config.enableVoice : true,
-            debug: false, // Force debug to false
-            buttonLabel: config.buttonLabel || 'Ask NailAide' // Default button label
+        // Add the new textarea to the input container
+        inputContainer.prepend(inputField);
+      } else {
+        console.error('Input container not found! Widget may be broken.');
+      }
+    }
+    
+    // Ensure input field is properly set up
+    if (inputField) {
+      // Force enable the input
+      inputField.disabled = false;
+      inputField.readOnly = false;
+      
+      // Force pointer events
+      inputField.style.pointerEvents = 'auto';
+      
+      // Clear any existing event listeners to avoid duplicates
+      inputField.removeEventListener('keypress', handleKeyPress);
+      
+      // Add the event listener for Enter key
+      inputField.addEventListener('keypress', handleKeyPress);
+      
+      // Add click and focus handlers for debugging
+      inputField.addEventListener('click', () => {
+        console.log('Input field clicked');
+      });
+      
+      inputField.addEventListener('focus', () => {
+        console.log('Input field focused');
+        // Scroll to bottom when field gets focus
+        setTimeout(() => {
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 300);
+      });
+      
+      console.log('Input field configured:', inputField);
+    }
+    
+    // Toggle widget visibility when launcher is clicked
+    launcherButton.addEventListener('click', () => {
+      if (isWidgetVisible) {
+        chatContainer.classList.add('minimized');
+        setTimeout(() => {
+          chatContainer.style.display = 'none';
+          isWidgetVisible = false;
+        }, 300);
+      } else {
+        chatContainer.style.display = 'flex';
+        setTimeout(() => {
+          chatContainer.classList.remove('minimized');
+          isWidgetVisible = true;
+        }, 10);
+      }
+    });
+    
+    minimizeButton.addEventListener('click', () => {
+      chatContainer.classList.add('minimized');
+      setTimeout(() => {
+        chatContainer.style.display = 'none';
+        isWidgetVisible = false;
+      }, 300);
+    });
+    
+    closeButton.addEventListener('click', () => {
+      chatContainer.classList.add('minimized');
+      setTimeout(() => {
+        chatContainer.style.display = 'none';
+        isWidgetVisible = false;
+      }, 300);
+    });
+    
+    sendButton.addEventListener('click', sendMessage);
+    
+    inputField.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+    
+    // Make sure sendButton uses updated reference
+    if (sendButton) {
+      sendButton.removeEventListener('click', sendMessage);
+      sendButton.addEventListener('click', sendMessage);
+    }
+    
+    console.log('Event listeners attached');
+  }
+  
+  // Separate function for keypress handling for better maintainability
+  function handleKeyPress(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  }
+  
+  function sendMessage() {
+    // Make sure we have the current input field reference
+    if (!inputField) {
+      inputField = chatContainer.querySelector('.nailaide-input textarea');
+      if (!inputField) {
+        console.error('Input field not found in sendMessage!');
+        return;
+      }
+    }
+    
+    const message = inputField.value.trim();
+    if (message) {
+      addMessageToChat('user', message);
+      
+      // Clear input field properly
+      inputField.value = '';
+      
+      // Process the message
+      processUserMessage(message);
+      
+      // Focus back on input for better UX
+      setTimeout(() => {
+        inputField.focus();
+      }, 100);
+    }
+  }
+  
+  function processUserMessage(message) {
+    // Simple response system - can be enhanced later
+    setTimeout(() => {
+      const messageLower = message.toLowerCase();
+      
+      // Check if it's a question about website content
+      if (isWebsiteContentQuery(message)) {
+        handleWebsiteContentQuery(message);
+        return;
+      }
+  
+      // Check for explicit requests to see more products or shop page
+      if (messageLower.includes('see more products') || 
+          messageLower.includes('show more products') || 
+          messageLower.includes('go to shop') ||
+          messageLower.includes('shop page') ||
+          messageLower === 'shop') {
+        
+        // Direct link to shop page
+        const shopUrl = 'shop.html';
+        addMessageToChat('bot', `You can browse all our products on our shop page:`);
+        
+        // Add shop button in a separate message
+        setTimeout(() => {
+          addMessageToChat('bot', `<a href="${shopUrl}" target="_blank" class="nailaide-shop-button" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">${config.responseTemplates?.shopButtonText || 'Browse All Products'}</a>`, true);
+        }, 300);
+        return;
+      }
+      
+      if (message.toLowerCase().includes('book') || message.toLowerCase().includes('appointment')) {
+        // Handle booking requests
+        const bookingResponse = config.responseTemplates?.booking || 
+          "I'd be happy to help you book an appointment!";
+        
+        // Add the booking response
+        addMessageToChat('bot', bookingResponse);
+        
+        // Add booking button in a separate message
+        setTimeout(() => {
+          const bookingUrl = config.booking?.bookingUrl || 'https://delanesnaturalnailcare.booksy.com/';
+          // Use a special flag to indicate this is HTML content
+          addMessageToChat('bot', `<a href="${bookingUrl}" target="_blank" class="booking-button" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">Book Appointment Now</a>`, true);
+        }, 500);
+      } else if (message.toLowerCase().includes('hour') || message.toLowerCase().includes('open')) {
+        // Handle hours request
+        addMessageToChat('bot', `Our hours are: ${config.businessInfo?.hours || "Mon-Sat: 9am-5pm"}`);
+      } else if (message.toLowerCase().includes('location') || message.toLowerCase().includes('address')) {
+        // Handle location request
+        addMessageToChat('bot', `We're located at: ${config.businessInfo?.address || "333 Estudillo Ave, Suite 100, San Leandro, CA"}`);
+      } else if (message.toLowerCase().includes('walk') && (message.toLowerCase().includes('in') || message.toLowerCase().includes('ins'))) {
+        // Handle walk-in requests
+        const walkInResponse = config.responseTemplates?.walkIn || 
+          `Yes, we do accept walk-ins based on availability! Our hours are ${config.businessInfo?.hours || "Mon-Sat: 9am-5pm"}. For guaranteed service, we recommend booking an appointment.`;
+        
+        addMessageToChat('bot', walkInResponse);
+        
+        // Add booking option as follow-up
+        setTimeout(() => {
+          const bookingUrl = config.booking?.bookingUrl || 'https://delanesnaturalnailcare.booksy.com/';
+          addMessageToChat('bot', `<a href="${bookingUrl}" target="_blank" class="booking-button" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">Book Appointment Now</a>`, true);
+        }, 500);
+      } else if (isProductQuery(message)) {
+        // Handle product requests
+        handleProductQuery(message);
+      } else {
+        // Default response
+        addMessageToChat('bot', "Thank you for your message. How else can I help you today?");
+      }
+    }, 1000);
+  }
+  
+  // Function to detect website content queries
+  function isWebsiteContentQuery(message) {
+    const contentKeywords = [
+      'about', 'tell me about', 'who are you', 'company', 
+      'services', 'what services', 'treatments', 'offerings',
+      'news', 'updates', 'recent', 'latest', 'events',
+      'steps to success', 'steps', 'success', 'program', 'initiative', 'foundation', // Added explicit keywords
+      'nonprofit', 'charity', 'mission', 'empowerment', 'mentorship', 'career'
+    ];
+    
+    const questionWords = ['what', 'who', 'where', 'when', 'how', 'tell me', 'show me', 'explain'];
+    const messageLower = message.toLowerCase();
+    
+    // Check for explicit page references
+    const pageReferences = [
+      'about page', 'services page', 'news page', 'steps to success page', 'steps page',
+      'learn more about', 'read about'
+    ];
+    
+    // Special case for Steps to Success
+    if (messageLower.includes('step') && messageLower.includes('success')) {
+      console.log('Direct match for Steps to Success detected');
+      return true;
+    }
+    
+    // Check for direct page mentions
+    if (pageReferences.some(ref => messageLower.includes(ref))) {
+      return true;
+    }
+    
+    // Check for question about content
+    if (questionWords.some(word => messageLower.includes(word)) &&
+        contentKeywords.some(keyword => messageLower.includes(keyword))) {
+      return true;
+    }
+    
+    return false;
+  }
+  
+  // Function to handle website content queries - Add improved error handling and logging
+  function handleWebsiteContentQuery(message) {
+    console.log('Processing website content query:', message);
+    
+    try {
+      // Special case for Steps to Success
+      if (message.toLowerCase().includes('steps to success') || 
+          (message.toLowerCase().includes('step') && message.toLowerCase().includes('success'))) {
+        
+        console.log('Special handling for Steps to Success');
+        
+        const stepsInfo = {
+          title: 'Steps To Success',
+          summary: "DNNC Steps to Success is our nonprofit initiative empowering women through mentorship and career advancement programs. Our goal is to provide support, education, and opportunities for women to achieve their professional goals in the beauty industry and beyond.",
+          url: 'steps-to-success.html'
         };
         
-        // Load predefined responses if not provided
-        this.loadResponses();
+        addMessageToChat('bot', `Here's information about our ${stepsInfo.title} program:`);
         
-        return this;
-    },
-    
-    mount: function() {
-        console.log('Mounting NailAide widget...');
-        
-        try {
-            if (!this.config) {
-                throw new Error('Widget configuration not set. Call createWidget() first.');
-            }
-            
-            if (!this.config.container) {
-                throw new Error('Widget container not specified or found.');
-            }
-            
-            // Create widget DOM structure
-            this.createWidgetDOM();
-            
-            // Add event listeners
-            this.setupEventListeners();
-            
-            // Initialize voice assistant if enabled
-            if (this.config.enableVoice) {
-                this.initVoiceAssistant();
-            }
-            
-            // Show the chat button
-            this.showChatButton();
-            
-            // Load knowledge base
-            this.loadKnowledgeBase();
-            
-            console.log('NailAide widget mounted successfully');
-            return true;
-        } catch (error) {
-            console.error('Failed to mount NailAide widget:', error);
-            return false;
-        }
-    },
-    
-    createWidgetDOM: function() {
-        const container = this.config.container;
-        container.innerHTML = '';
-        container.classList.add('nailaide-container');
-        
-        // Create chat button with descriptive text
-        const chatButton = document.createElement('div');
-        chatButton.classList.add('nailaide-chat-button');
-        chatButton.innerHTML = `
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0034 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90001C9.87812 3.30494 11.1801 2.99659 12.5 3.00001H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="nailaide-chat-button-text">${this.config.buttonLabel}</span>
-        `;
-        
-        chatButton.style.backgroundColor = this.config.theme.primaryColor;
-        chatButton.style.color = this.config.theme.buttonTextColor;
-        container.appendChild(chatButton);
-        
-        // Create chat window
-        const chatWindow = document.createElement('div');
-        chatWindow.classList.add('nailaide-chat-window');
-        chatWindow.style.display = 'none';
-        
-        // Chat header
-        const chatHeader = document.createElement('div');
-        chatHeader.classList.add('nailaide-chat-header');
-        chatHeader.style.backgroundColor = this.config.theme.primaryColor;
-        chatHeader.style.color = this.config.theme.buttonTextColor;
-        
-        // Header content with accessibility controls
-        chatHeader.innerHTML = `
-            <div class="nailaide-chat-title">NailAide Assistant</div>
-            <div class="accessibility-controls">
-                <button class="accessibility-button language-button" title="Change language">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
-                        <path d="M2 12H22" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 2C9.49872 4.73835 8.07725 8.29203 8 12C8.07725 15.708 9.49872 19.2616 12 22" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </button>
-                <button class="accessibility-button text-size-button" title="Adjust text size">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 10H8L12 4L16 10H18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6 14H8L12 20L16 14H18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="nailaide-chat-close">&times;</div>
-        `;
-        
-        chatWindow.appendChild(chatHeader);
-        
-        // Chat messages container
-        const chatMessages = document.createElement('div');
-        chatMessages.classList.add('nailaide-chat-messages');
-        
-        // Add welcome message
-        const welcomeMessage = document.createElement('div');
-        welcomeMessage.classList.add('nailaide-message', 'nailaide-assistant-message');
-        welcomeMessage.textContent = this.config.welcomeMessage;
-        chatMessages.appendChild(welcomeMessage);
-        
-        chatWindow.appendChild(chatMessages);
-        
-        // Add voice controls
-        const voiceControls = document.createElement('div');
-        voiceControls.classList.add('voice-controls');
-        voiceControls.innerHTML = `
-            <button class="voice-button" title="Tap to start voice input">
-                <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
-            </button>
-            <button class="tour-button" title="Take a guided tour of this page">
-                <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-            </button>
-        `;
-        
-        chatWindow.appendChild(voiceControls);
-        
-        // Chat input area
-        const chatInput = document.createElement('div');
-        chatInput.classList.add('nailaide-chat-input');
-        chatInput.innerHTML = `
-            <input type="text" placeholder="Type your question here...">
-            <button class="nailaide-send-button">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        `;
-        chatWindow.appendChild(chatInput);
-        
-        // Add chat window to container
-        container.appendChild(chatWindow);
-        
-        // Add quick suggestion buttons
-        this.addQuickSuggestions(chatMessages);
-        
-        // Add styles
-        this.addStyles();
-    },
-    
-    addQuickSuggestions: function(chatMessages) {
-        // Create quick suggestion buttons for common questions
-        const suggestionsContainer = document.createElement('div');
-        suggestionsContainer.classList.add('quick-suggestions');
-        suggestionsContainer.innerHTML = `
-            <p>Popular questions:</p>
-            <div class="suggestion-buttons">
-                <button class="suggestion-button">Services & Pricing</button>
-                <button class="suggestion-button">Business Hours</button>
-                <button class="suggestion-button">Book Appointment</button>
-                <button class="suggestion-button">Take a Tour</button>
-            </div>
-        `;
-        
-        chatMessages.appendChild(suggestionsContainer);
-        
-        // Add event listeners to suggestion buttons
-        const buttons = suggestionsContainer.querySelectorAll('.suggestion-button');
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const text = button.textContent;
-                this.addMessage(text, 'user');
-                this.processMessage(text);
-            });
-        });
-    },
-    
-    addStyles: function() {
-        // Add widget styles if not already added
-        if (!document.getElementById('nailaide-styles')) {
-            const styleSheet = document.createElement('style');
-            styleSheet.id = 'nailaide-styles';
-            styleSheet.innerHTML = `
-                .nailaide-container {
-                    position: relative;
-                    width: 100%;
-                    height: 100%;
-                }
-                
-                .nailaide-chat-button {
-                    position: absolute;
-                    bottom: 20px;
-                    right: 20px;
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    cursor: pointer;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                    transition: all 0.3s ease;
-                }
-                
-                .nailaide-chat-button:hover {
-                    transform: scale(1.1);
-                }
-                
-                .nailaide-chat-button-text {
-                    margin-left: 8px;
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-                
-                .nailaide-chat-window {
-                    position: absolute;
-                    bottom: 90px;
-                    right: 20px;
-                    width: 320px;
-                    height: 400px;
-                    background-color: white;
-                    border-radius: 10px;
-                    overflow: hidden;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                    display: flex;
-                    flex-direction: column;
-                }
-                
-                .nailaide-chat-header {
-                    padding: 15px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-                
-                .nailaide-chat-title {
-                    font-weight: bold;
-                }
-                
-                .nailaide-chat-close {
-                    cursor: pointer;
-                    font-size: 24px;
-                }
-                
-                .nailaide-chat-messages {
-                    flex-grow: 1;
-                    padding: 15px;
-                    overflow-y: auto;
-                    background-color: #f9f9f9;
-                }
-                
-                .nailaide-message {
-                    margin-bottom: 15px;
-                    padding: 10px 15px;
-                    border-radius: 18px;
-                    max-width: 80%;
-                    word-wrap: break-word;
-                }
-                
-                .nailaide-assistant-message {
-                    background-color: #e6e6e6;
-                    margin-right: auto;
-                }
-                
-                .nailaide-user-message {
-                    background-color: #9333ea;
-                    color: white;
-                    margin-left: auto;
-                }
-                
-                .nailaide-chat-input {
-                    display: flex;
-                    padding: 10px 15px;
-                    border-top: 1px solid #e6e6e6;
-                }
-                
-                .nailaide-chat-input input {
-                    flex-grow: 1;
-                    padding: 8px 12px;
-                    border: 1px solid #ccc;
-                    border-radius: 20px;
-                    outline: none;
-                }
-                
-                .nailaide-send-button {
-                    width: 36px;
-                    height: 36px;
-                    border-radius: 50%;
-                    background-color: #9333ea;
-                    color: white;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    margin-left: 10px;
-                    cursor: pointer;
-                    border: none;
-                }
-                
-                .voice-controls {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 10px 15px;
-                    border-top: 1px solid #e6e6e6;
-                }
-                
-                .voice-button, .tour-button {
-                    background-color: #9333ea;
-                    color: white;
-                    border: none;
-                    border-radius: 50%;
-                    width: 36px;
-                    height: 36px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    cursor: pointer;
-                }
-                
-                .quick-suggestions {
-                    margin-top: 10px;
-                }
-                
-                .quick-suggestions p {
-                    margin: 0;
-                    font-weight: bold;
-                }
-                
-                .suggestion-buttons {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 10px;
-                    margin-top: 5px;
-                }
-                
-                .suggestion-button {
-                    background-color: #9333ea;
-                    color: white;
-                    border: none;
-                    border-radius: 20px;
-                    padding: 5px 10px;
-                    cursor: pointer;
-                }
-            `;
-            document.head.appendChild(styleSheet);
-        }
-    },
-    
-    setupEventListeners: function() {
-        const container = this.config.container;
-        const chatButton = container.querySelector('.nailaide-chat-button');
-        const chatWindow = container.querySelector('.nailaide-chat-window');
-        const closeButton = container.querySelector('.nailaide-chat-close');
-        const inputField = container.querySelector('.nailaide-chat-input input');
-        const sendButton = container.querySelector('.nailaide-send-button');
-        
-        // Toggle chat window on button click
-        chatButton.addEventListener('click', () => {
-            this.toggleChat();
-        });
-        
-        // Close chat window
-        closeButton.addEventListener('click', () => {
-            this.closeChat();
-        });
-        
-        // Send message on button click
-        sendButton.addEventListener('click', () => {
-            this.sendMessage();
-        });
-        
-        // Send message on Enter key
-        inputField.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.sendMessage();
-            }
-        });
-    },
-    
-    toggleChat: function() {
-        if (this.isOpen) {
-            this.closeChat();
-        } else {
-            this.openChat();
-        }
-    },
-    
-    openChat: function() {
-        const chatWindow = this.config.container.querySelector('.nailaide-chat-window');
-        chatWindow.style.display = 'flex';
-        this.isOpen = true;
-        
-        // Focus input field
         setTimeout(() => {
-            const inputField = this.config.container.querySelector('.nailaide-chat-input input');
-            if (inputField) inputField.focus();
-        }, 100);
-    },
-    
-    closeChat: function() {
-        const chatWindow = this.config.container.querySelector('.nailaide-chat-window');
-        chatWindow.style.display = 'none';
-        this.isOpen = false;
-    },
-    
-    sendMessage: function() {
-        const inputField = this.config.container.querySelector('.nailaide-chat-input input');
-        const message = inputField.value.trim();
+          addMessageToChat('bot', stepsInfo.summary);
+          
+          // Add link to the page
+          setTimeout(() => {
+            addMessageToChat('bot', `<a href="${stepsInfo.url}" target="_blank" class="nailaide-content-button" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">Learn More About ${stepsInfo.title}</a>`, true);
+          }, 500);
+        }, 300);
         
-        if (message) {
-            // Add user message
-            this.addMessage(message, 'user');
-            
-            // Clear input field
-            inputField.value = '';
-            
-            // Process message and get response
-            this.processMessage(message);
+        return;
+      }
+
+      if (typeof window.WebsiteContent === 'undefined') {
+        console.error('WebsiteContent is not defined');
+        addMessageToChat('bot', "I'm sorry, I don't have information about that yet. Please visit our website for more details.");
+        return;
+      }
+      
+      // Get website content
+      let content;
+      try {
+        content = window.WebsiteContent.getContent();
+        console.log('Content retrieved:', content);
+      } catch (e) {
+        console.error('Error getting content:', e);
+        addMessageToChat('bot', "I'm having trouble accessing website information right now. Please try again later.");
+        return;
+      }
+      
+      if (!content) {
+        console.error('Content is null or undefined');
+        addMessageToChat('bot', "I'm still loading information about our website. Please ask again in a moment.");
+        
+        // Try to initialize content
+        if (typeof window.WebsiteContent.init === 'function') {
+          window.WebsiteContent.init()
+            .then(() => console.log('Content initialized after query failure'))
+            .catch(err => console.error('Failed to initialize content:', err));
         }
-    },
-    
-    addMessage: function(text, sender) {
-        const chatMessages = this.config.container.querySelector('.nailaide-chat-messages');
-        const messageElement = document.createElement('div');
+        return;
+      }
+      
+      if (!content.pages || Object.keys(content.pages).length === 0) {
+        console.warn('No pages found in content');
+        addMessageToChat('bot', "I'm still loading information about our website. Please ask again in a moment.");
+        return;
+      }
+      
+      console.log('Content is available, searching for:', message);
+      
+      // Search for relevant content
+      let results;
+      try {
+        results = window.WebsiteContent.searchContent(message);
+        console.log('Search results:', results);
+      } catch (e) {
+        console.error('Error searching content:', e);
+        addMessageToChat('bot', "I encountered an error while searching for that information. Please try a different question.");
+        return;
+      }
+      
+      if (!results || results.length === 0) {
+        addMessageToChat('bot', "I'm sorry, I couldn't find specific information about that. Is there something else you'd like to know?");
+        return;
+      }
+      
+      // Get the most relevant result
+      const topResult = results[0];
+      
+      // Format response based on result type
+      if (topResult.type === 'page') {
+        const page = topResult.item;
+        addMessageToChat('bot', `Here's information about our ${page.title}:`);
         
-        messageElement.classList.add('nailaide-message');
-        if (sender === 'user') {
-            messageElement.classList.add('nailaide-user-message');
-        } else {
-            messageElement.classList.add('nailaide-assistant-message');
-        }
-        
-        messageElement.textContent = text;
-        chatMessages.appendChild(messageElement);
-        
-        // Scroll to bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    },
-    
-    processMessage: function(message) {
-        // Simple responses based on keywords
         setTimeout(() => {
-            let response;
-            
-            // Try to use the salon-specialized AI if available
-            if (typeof NailAideSalonAI !== 'undefined') {
-                response = NailAideSalonAI.processMessage(message, {
-                    name: this.customerName || null
-                });
-                
-                if (response) {
-                    this.addMessage(response, 'assistant');
-                    
-                    // Check if we should activate voice reading
-                    if (this.config.enableVoice && typeof VoiceAssistant !== 'undefined') {
-                        VoiceAssistant.speak(response);
-                    }
-                    
-                    return;
-                }
-            }
-            
-            const lowerMessage = message.toLowerCase();
-            
-            // Extract potential customer name
-            const nameMatch = message.match(/my name is ([A-Za-z]+)/i);
-            if (nameMatch && nameMatch[1]) {
-                this.customerName = nameMatch[1];
-            }
-            
-            // Check if we're waiting for booking confirmation
-            if (this.conversationState.awaitingBookingConfirmation && 
-                (lowerMessage.includes('yes') || lowerMessage.includes('yeah') || lowerMessage === 'y')) {
-                
-                // User confirmed they want to book - open booking page
-                const confirmMsg = this.customerName ? 
-                    `Great, ${this.customerName}! I'm opening the booking page for you now.` : 
-                    `Great! I'm opening the booking page for you now.`;
-                
-                this.addMessage(confirmMsg, 'assistant');
-                this.openBookingPage();
-                
-                // Reset conversation state
-                this.conversationState.awaitingBookingConfirmation = false;
-                return;
-            }
-            
-            // Continue with existing response logic
-            if (lowerMessage.includes('book') || lowerMessage.includes('appointment') || lowerMessage.includes('schedule')) {
-                response = `You can book an appointment through our online scheduling system. Would you like me to open the booking page for you?`;
-                this.addBookingButton();
-                
-                // Set conversation state to await confirmation
-                this.conversationState.awaitingBookingConfirmation = true;
-                this.conversationState.lastQuestion = 'booking';
-            } 
-            else if (lowerMessage.includes('hour') || lowerMessage.includes('open')) {
-                const hours = WebsiteContent.getHours();
-                response = 'Our business hours are:\n';
-                for (const [day, time] of Object.entries(hours)) {
-                    response += `${day}: ${time}\n`;
-                }
-                this.conversationState.awaitingBookingConfirmation = false;
-            }
-            else if (lowerMessage.includes('service') || lowerMessage.includes('price')) {
-                const services = WebsiteContent.getServices();
-                response = 'Here are some of our services:\n';
-                services.forEach(service => {
-                    response += `${service.name}: ${service.price} (${service.duration})\n`;
-                });
-                this.conversationState.awaitingBookingConfirmation = false;
-            }
-            else if (lowerMessage.includes('contact') || lowerMessage.includes('phone') || lowerMessage.includes('email')) {
-                const contactInfo = WebsiteContent.getContactInfo();
-                response = `You can contact us at:\nPhone: ${contactInfo.phone}\nEmail: ${contactInfo.email}\nAddress: ${contactInfo.address}`;
-                this.conversationState.awaitingBookingConfirmation = false;
-            }
-            else {
-                // Use personalized greeting if we have customer name
-                if (this.customerName) {
-                    response = `Thank you for your message, ${this.customerName}. I'm here to help with booking appointments, answering questions about our services, hours, or providing general information about our nail care services. How can I assist you today?`;
-                } else {
-                    response = "Thank you for your message. I'm here to help with booking appointments, answering questions about our services, hours, or providing general information about our nail care services. How can I assist you today?";
-                }
-                this.conversationState.awaitingBookingConfirmation = false;
-            }
-            
-            this.addMessage(response, 'assistant');
-        }, 500);
-    },
-    
-    openBookingPage: function() {
-        // Open the booking URL in a new tab
-        window.open(this.config.bookingUrl, '_blank');
-    },
-    
-    addBookingButton: function() {
-        const chatMessages = this.config.container.querySelector('.nailaide-chat-messages');
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList.add('nailaide-message', 'nailaide-assistant-message');
+          addMessageToChat('bot', page.summary);
+          
+          // Add link to the page
+          setTimeout(() => {
+            addMessageToChat('bot', `<a href="${page.url}" target="_blank" class="nailaide-content-button" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">Visit ${page.title} Page</a>`, true);
+          }, 500);
+        }, 300);
+      } 
+      else if (topResult.type === 'section') {
+        const section = topResult.item;
+        addMessageToChat('bot', `From our ${section.pageTitle}, about "${section.title}":`);
         
-        const bookButton = document.createElement('button');
-        bookButton.textContent = 'Book Appointment';
-        bookButton.style.backgroundColor = this.config.theme.primaryColor;
-        bookButton.style.color = this.config.theme.buttonTextColor;
-        bookButton.style.padding = '8px 16px';
-        bookButton.style.border = 'none';
-        bookButton.style.borderRadius = '20px';
-        bookButton.style.cursor = 'pointer';
+        setTimeout(() => {
+          // Trim content if it's very long
+          let content = section.content;
+          if (content.length > 300) {
+            content = content.substring(0, 297) + '...';
+          }
+          
+          addMessageToChat('bot', content);
+          
+          // Add link to the page
+          setTimeout(() => {
+            addMessageToChat('bot', `<a href="${section.pageUrl}" target="_blank" class="nailaide-content-button" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">Read More</a>`, true);
+          }, 500);
+        }, 300);
+      }
+      else if (topResult.type === 'service') {
+        const service = topResult.item;
+        addMessageToChat('bot', `We offer ${service.title}:`);
         
-        bookButton.addEventListener('click', () => {
-            this.openBookingPage();
-            this.addMessage("Opening booking page...", 'assistant');
-        });
-        
-        buttonContainer.appendChild(bookButton);
-        chatMessages.appendChild(buttonContainer);
-        
-        // Scroll to bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    },
-    
-    showChatButton: function() {
-        const chatButton = this.config.container.querySelector('.nailaide-chat-button');
-        if (chatButton) {
-            chatButton.style.display = 'flex';
-            // Force repaint
-            chatButton.getBoundingClientRect();
-        } else {
-            console.error('Chat button element not found');
-        }
-    },
-    
-    initVoiceAssistant: function() {
-        console.log('Initializing voice assistant...');
-        
-        // Load voice assistant script if not already loaded
-        if (typeof VoiceAssistant === 'undefined') {
-            const script = document.createElement('script');
-            script.src = 'js/voice-assistant.js';
-            script.onload = () => {
-                if (typeof VoiceAssistant !== 'undefined') {
-                    VoiceAssistant.init(this);
-                    this.setupVoiceControls();
-                }
-            };
-            document.head.appendChild(script);
-        } else {
-            // Initialize existing VoiceAssistant
-            VoiceAssistant.init(this);
-            this.setupVoiceControls();
-        }
-    },
-    
-    setupVoiceControls: function() {
-        const voiceButton = document.querySelector('.voice-button');
-        if (voiceButton) {
-            voiceButton.addEventListener('click', () => {
-                if (typeof VoiceAssistant !== 'undefined') {
-                    VoiceAssistant.toggleListening();
-                }
-            });
-        }
-        
-        const tourButton = document.querySelector('.tour-button');
-        if (tourButton) {
-            tourButton.addEventListener('click', () => {
-                if (typeof SiteNavigator !== 'undefined') {
-                    this.addMessage("Starting a guided tour of this page...", 'assistant');
-                    SiteNavigator.startTour();
-                } else {
-                    this.addMessage("I'm sorry, the tour feature is still loading. Please try again in a moment.", 'assistant');
-                }
-            });
-        }
-    },
-    
-    handleVoiceInput: function(transcript) {
-        // Add the transcript to input and process
-        const inputField = this.config.container.querySelector('.nailaide-chat-input input');
-        inputField.value = transcript;
-        this.sendMessage();
-    },
-    
-    loadKnowledgeBase: function() {
-        // Load knowledge base from external source
-        fetch('/api/knowledge-base')
-            .then(response => response.json())
-            .then(data => {
-                this.knowledgeBase = data;
-                console.log('Knowledge base loaded:', data);
-            })
-            .catch(error => {
-                console.error('Failed to load knowledge base:', error);
-            });
-    },
-    
-    loadResponses: function() {
-        // Load predefined responses from external source
-        fetch('/api/responses')
-            .then(response => response.json())
-            .then(data => {
-                this.responses = data;
-                console.log('Predefined responses loaded:', data);
-            })
-            .catch(error => {
-                console.error('Failed to load predefined responses:', error);
-            });
+        setTimeout(() => {
+          let responseText = '';
+          if (service.description) {
+            responseText += service.description;
+          }
+          
+          if (service.price) {
+            responseText += `\n\nPrice: ${service.price}`;
+          }
+          
+          addMessageToChat('bot', responseText);
+          
+          // Add booking suggestion
+          setTimeout(() => {
+            const bookingUrl = config.booking?.bookingUrl || 'https://delanesnaturalnailcare.booksy.com/';
+            addMessageToChat('bot', `<a href="${bookingUrl}" target="_blank" class="booking-button" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">Book This Service</a>`, true);
+          }, 500);
+        }, 300);
+      }
+      else {
+        console.warn('Unknown result type:', topResult.type);
+        addMessageToChat('bot', "I found information but I'm not sure how to display it. Please try asking in a different way.");
+      }
+    } catch (e) {
+      console.error('Unexpected error in handleWebsiteContentQuery:', e);
+      addMessageToChat('bot', "I encountered an unexpected error. Please try again later.");
     }
-};
+  }
+  
+  // Function to detect if a message is a product query - Enhanced with fix for syntax errors
+  function isProductQuery(message) {
+    const productKeywords = [
+      'product', 'buy', 'purchase', 'polish', 'nail polish', 'color', 
+      'truth', 'freedom', 'collection', 'shop', 'nail', 'sale', 'price',
+      'how much', 'cost', 'sell', 'oil', 'cream', 'file', 'buffer', 'kit',
+      'treatment', 'lotion', 'daddi', 'dadi', 'what about', 'tell me about',
+      'other products', 'more products' // Added these patterns
+    ];
+    
+    message = message.toLowerCase();
+    
+    // Direct checks for common product query patterns
+    if (message.includes('what about') || 
+        message.includes('tell me about') || 
+        message.includes('do you have') || 
+        message.includes('do you sell') ||
+        message.includes('what other') || 
+        message.includes('other products') ||
+        message.includes('more products') ||
+        (message.includes('what else') && message.includes('sell'))) {
+      return true;
+    }
+    
+    // Check for specific product keywords
+    return productKeywords.some(keyword => message.includes(keyword));
+  }
+  
+  // Function to handle product queries
+  function handleProductQuery(message) {
+    if (!config.products || !config.products.enabled) {
+      addMessageToChat('bot', "I'm sorry, we don't have product information available at the moment. Please visit our shop page.");
+      return;
+    }
+    
+    // Initialize items array if it doesn't exist
+    if (!config.products.items) {
+      config.products.items = [];
+    }
+    
+    // Check for requests about other/more products
+    const morePatternsLower = message.toLowerCase();
+    const isMoreProductsQuery = 
+      morePatternsLower.includes('what other products') ||
+      morePatternsLower.includes('other products') ||
+      morePatternsLower.includes('more products') ||
+      morePatternsLower.includes('see more') ||
+      morePatternsLower.includes('show more') ||
+      morePatternsLower.includes('what else do you sell');
+    
+    if (isMoreProductsQuery) {
+      // Show different products than the ones recently shown
+      addMessageToChat('bot', config.responseTemplates?.productMoreIntro || "Here are some other products we offer:");
+      
+      // Get all products
+      const allProducts = config.products.items;
+      
+      // Get a different set of products than what was shown before
+      // First try to get products from a different category
+      const shownProducts = getRecentlyShownProducts();
+      
+      let otherProducts;
+      if (shownProducts.length > 0) {
+        // Try to get products from different categories
+        const shownCategories = [...new Set(shownProducts.map(p => p.category))];
+        otherProducts = allProducts.filter(p => !shownCategories.includes(p.category));
+        
+        // If no different categories, get different products
+        if (otherProducts.length === 0) {
+          const shownIds = shownProducts.map(p => p.id);
+          otherProducts = allProducts.filter(p => !shownIds.includes(p.id));
+        }
+        
+        // If still no products, just use all products
+        if (otherProducts.length === 0) {
+          otherProducts = allProducts;
+        }
+      } else {
+        // If no recently shown products, just use all products
+        otherProducts = allProducts;
+      }
+      
+      // Show up to 3 products
+      setTimeout(() => {
+        displayProducts(otherProducts.slice(0, 3));
+      }, 500);
+      
+      return;
+    }
+    
+    // First check if this is a general product inquiry rather than a specific product
+    const generalProductTerms = [
+      'product', 'products', 'items', 'merchandise', 
+      'things', 'stuff', 'goods', 'inventory'
+    ];
+    
+    const messageLower = message.toLowerCase();
+    const isGeneralProductQuery = generalProductTerms.some(term => 
+      messageLower === term || messageLower === `${term}?` || 
+      messageLower === `what ${term}` || messageLower === `what ${term}?` ||
+      messageLower.includes(`what ${term} do you`) || 
+      messageLower.includes(`show me your ${term}`)
+    );
+    
+    if (isGeneralProductQuery) {
+      // Return all products for general queries
+      addMessageToChat('bot', "Here are some of our featured products:");
+      setTimeout(() => {
+        displayProducts(config.products.items.slice(0, 3));
+      }, 500);
+      return;
+    }
+    
+    // Check if this is a followup question about a specific product
+    const specificProductName = extractSpecificProductName(message);
+    
+    if (specificProductName) {
+      // Try to find the specific product
+      const product = findProductByName(specificProductName);
+      
+      if (product) {
+        // Show information about the specific product
+        addMessageToChat('bot', `Here's information about ${product.name}:`);
+        setTimeout(() => {
+          displayProducts([product]);  // Show just this product
+        }, 300);
+        return;
+      }
+      
+      // If product wasn't found in our database but we have a name
+      addMessageToChat('bot', `I don't have detailed information about ${specificProductName} in my database. You might find more information on our shop page or by contacting us directly.`);
+      
+      // Add a link to the shop page
+      setTimeout(() => {
+        const shopUrl = 'shop.html';
+        addMessageToChat('bot', `<a href="${shopUrl}" target="_blank" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">Browse All Products</a>`, true);
+      }, 500);
+      return;
+    }
+    
+    // Continue with regular product display logic
+    const productsToShow = findRelevantProducts(message);
+    if (productsToShow.length > 0) {
+      setTimeout(() => {
+        displayProducts(productsToShow.slice(0, 3));
+      }, 500);
+    } else {
+      addMessageToChat('bot', "I'm sorry, I couldn't find any products matching your query. Please visit our shop page for more options.");
+    }
+  }
+  
+  // New function to extract specific product names from queries
+  function extractSpecificProductName(message) {
+    message = message.toLowerCase();
+    
+    // Check for patterns like "what about X" or "tell me about X"
+    const aboutPattern = /(?:what|tell me) about\s+(.+)(?:\?|$)/i;
+    const aboutMatch = message.match(aboutPattern);
+    if (aboutMatch && aboutMatch[1]) {
+      return aboutMatch[1].trim();
+    }
+    
+    // Check for patterns like "do you have X" or "do you sell X"
+    const havePattern = /do you (?:have|sell)\s+(.+)(?:\?|$)/i;
+    const haveMatch = message.match(havePattern);
+    if (haveMatch && haveMatch[1]) {
+      return haveMatch[1].trim();
+    }
+    
+    // List of general product terms that should not be treated as specific products
+    const generalProductTerms = [
+      'product', 'products', 'items', 'merchandise', 
+      'things', 'stuff', 'goods', 'inventory'
+    ];
+    
+    // Check if the message is a general product inquiry
+    if (generalProductTerms.some(term => message.includes(term))) {
+      return null;
+    }
+    
+    // If no specific patterns matched, return null
+    return null;
+  }
+  
+  // Function to find a product by name
+  function findProductByName(productName) {
+    if (!config.products || !config.products.items) return null;
+    
+    const products = config.products.items;
+    productName = productName.toLowerCase();
+    
+    // Try direct match first
+    let match = products.find(product => 
+      product.name.toLowerCase() === productName
+    );
+    
+    // If no direct match, try contains
+    if (!match) {
+      match = products.find(product => 
+        product.name.toLowerCase().includes(productName) ||
+        (product.keywords && product.keywords.includes(productName))
+      );
+    }
+    
+    // If still no match, try partial word matches
+    if (!match) {
+      const productWords = productName.split(/\s+/);
+      if (productWords.length > 0) {
+        for (const word of productWords) {
+          if (word.length < 3) continue; // Skip very short words
+          match = products.find(product => 
+            product.name.toLowerCase().includes(word) ||
+            (product.keywords && product.keywords.some(k => k.includes(word)))
+          );
+          if (match) break;
+        }
+      }
+    }
+    
+    return match;
+  }
+  
+  // Function to find relevant products based on the message
+  function findRelevantProducts(message) {
+    if (!config.products || !config.products.items) return [];
+    
+    message = message.toLowerCase();
+    const products = config.products.items;
+    
+    // Check for specific phrases about browsing all products
+    if (message.includes('what products do you have') || 
+        message.includes('what do you sell') || 
+        message.includes('show me your products') ||
+        message.includes('what can i buy')) {
+      // Return all products for "show all" queries
+      return products;
+    }
+    
+    // If the message is a general product inquiry but not "show all"
+    if (message.includes('product') || message.includes('buy') || 
+        message.includes('shop') || message.includes('purchase')) {
+      // First try to match by category
+      const category = getCategoryFromMessage(message);
+      if (category) {
+        const categoryProducts = products.filter(product => 
+          product.category.toLowerCase() === category.toLowerCase()
+        );
+        
+        if (categoryProducts.length > 0) {
+          return categoryProducts;
+        }
+      }
+      
+      // If no category match, check for keywords in product names/descriptions
+      const keywords = message
+        .replace(/[.,?!;:]/g, '')
+        .split(/\s+/)
+        .filter(word => word.length > 3);
+      
+      if (keywords.length > 0) {
+        const matchingProducts = products.filter(product => {
+          return keywords.some(keyword => 
+            product.name.toLowerCase().includes(keyword) || 
+            (product.description && product.description.toLowerCase().includes(keyword)) ||
+            (product.keywords && product.keywords.some(k => k.includes(keyword)))
+          );
+        });
+        
+        if (matchingProducts.length > 0) {
+          return matchingProducts;
+        }
+      }
+      
+      // If no specific matches, return all products
+      return products;
+    }
+    
+    // Check for category matches
+    const category = getCategoryFromMessage(message);
+    if (category) {
+      const categoryProducts = products.filter(product => 
+        product.category.toLowerCase() === category.toLowerCase()
+      );
+      
+      if (categoryProducts.length > 0) {
+        return categoryProducts;
+      }
+    }
+    
+    // Check for specific product mentions
+    const specificProducts = products.filter(product => {
+      return message.includes(product.name.toLowerCase()) || 
+             message.includes(product.id.toLowerCase()) || 
+             (product.keywords && product.keywords.some(keyword => message.includes(keyword.toLowerCase())));
+    });
+    
+    if (specificProducts.length > 0) {
+      return specificProducts;
+    }
+    
+    // If no specific match, return all products
+    return products;
+  }
+  
+  // Function to extract category from message
+  function getCategoryFromMessage(message) {
+    message = message.toLowerCase();
+    
+    if (!config.products || !config.products.categories) return null;
+    
+    for (const category of config.products.categories) {
+      if (message.includes(category.toLowerCase())) {
+        return category;
+      }
+    }
+    
+    // Special cases
+    if (message.includes('truth') || message.includes('freedom') || 
+        message.includes('color') || message.includes('colour')) {
+      return 'polish';
+    }
+    
+    return null;
+  }
+  
+  // Track which products have been shown recently
+  let recentlyShownProducts = [];
+
+  // Helper function to get recently shown products
+  function getRecentlyShownProducts() {
+    return recentlyShownProducts;
+  }
+
+  // Function to display products in the chat (updated to include shop link)
+  function displayProducts(products) {
+    if (!products || products.length === 0) return;
+    
+    // Update the recently shown products
+    recentlyShownProducts = products;
+    
+    // Create a product gallery element with improved styling
+    const galleryHtml = `
+      <div class="nailaide-product-gallery">
+        ${products.map(product => {
+          // Check if the product has an image, otherwise use a placeholder
+          const imageSrc = product.image || 'https://via.placeholder.com/90x90?text=Product';
+          return `
+            <div class="nailaide-product-card">
+              <img src="${imageSrc}" alt="${product.name}" class="nailaide-product-image" onerror="this.src='https://via.placeholder.com/90x90?text=Product';">
+              <div class="nailaide-product-info">
+                <div class="nailaide-product-name">${product.name}</div>
+                <div class="nailaide-product-price">${product.price}</div>
+                <a href="${product.url}" target="_blank" class="nailaide-buy-button">Buy Now</a>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+    
+    // Add the gallery to chat (ensure isHtml is true)
+    addMessageToChat('bot', galleryHtml, true);
+    
+    // Add follow-up message and shop link
+    setTimeout(() => {
+      addMessageToChat('bot', "Would you like more information about any of these products?");
+      
+      // Add shop link for browsing more products
+      setTimeout(() => {
+        const shopUrl = 'shop.html';
+        const shopLinkText = config.responseTemplates?.shopLinkText || 'You can see our complete collection in our online shop.';
+        addMessageToChat('bot', shopLinkText);
+        
+        setTimeout(() => {
+          addMessageToChat('bot', `<a href="${shopUrl}" target="_blank" class="nailaide-shop-button" style="display: inline-block; background-color: ${config.primaryColor}; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px;">${config.responseTemplates?.shopButtonText || 'Browse All Products'}</a>`, true);
+        }, 400);
+      }, 800);
+    }, 1000);
+  }
+  
+  // Update the function to accept an isHtml parameter
+  function addMessageToChat(sender, message, isHtml = false) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('nailaide-message', sender);
+    
+    // Check if it's HTML content or has markdown-like links
+    if (isHtml || (message.includes('[') && message.includes('](')) || message.includes('<a ')) {
+      if (message.includes('[') && message.includes('](')) {
+        // Convert markdown links to HTML
+        const linkPattern = /\[(.*?)\]\((.*?)\)/g;
+        message = message.replace(linkPattern, '<a href="$2" target="_blank">$1</a>');
+      }
+      messageElement.innerHTML = message; // Use innerHTML for HTML content
+    } else {
+      messageElement.textContent = message; // Use textContent for plain text
+    }
+    
+    chatBody.appendChild(messageElement);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+  
+  // The toggle function properly defined inside the module scope
+  function toggle() {
+    console.log('Toggle function called', isWidgetVisible);
+    
+    if (chatContainer) {
+      if (isWidgetVisible) {
+        console.log('Hiding widget');
+        chatContainer.classList.add('minimized');
+        setTimeout(() => {
+          chatContainer.style.display = 'none';
+          isWidgetVisible = false;
+        }, 300);
+      } else {
+        console.log('Showing widget');
+        chatContainer.style.display = 'flex';
+        setTimeout(() => {
+          chatContainer.classList.remove('minimized');
+          isWidgetVisible = true;
+          
+          // Critical: Focus on input field after showing widget
+          const input = chatContainer.querySelector('.nailaide-input textarea');
+          if (input) {
+            try {
+              // Force enable the input field
+              input.disabled = false;
+              input.readOnly = false;
+              
+              // Force pointer-events and visibility
+              input.style.pointerEvents = 'auto';
+              input.style.visibility = 'visible';
+              input.style.display = 'block';
+              
+              // Try to focus after a slight delay to ensure DOM is ready
+              setTimeout(() => {
+                input.focus();
+                console.log('Input field focused');
+              }, 500);
+            } catch (e) {
+              console.error('Error focusing input:', e);
+            }
+          } else {
+            console.error('Input field not found when toggling widget');
+          }
+        }, 10);
+      }
+    } else {
+      console.error('Chat container not found. Widget may not be initialized.');
+    }
+  }
+  
+  // Public API
+  return {
+    init: function() {
+      // Only initialize once
+      if (!chatContainer) {
+        init();
+        console.log('NailAide initialized successfully');
+      } else {
+        console.warn('NailAide already initialized');
+        // Refresh event listeners in case they were broken
+        attachEventListeners();
+      }
+    },
+    toggle: function() {
+      console.log('Toggle function called', isWidgetVisible);
+      
+      if (chatContainer) {
+        if (isWidgetVisible) {
+          console.log('Hiding widget');
+          chatContainer.classList.add('minimized');
+          setTimeout(() => {
+            chatContainer.style.display = 'none';
+            isWidgetVisible = false;
+          }, 300);
+        } else {
+          console.log('Showing widget');
+          chatContainer.style.display = 'flex';
+          setTimeout(() => {
+            chatContainer.classList.remove('minimized');
+            isWidgetVisible = true;
+            
+            // Critical: Focus on input field after showing widget
+            const input = chatContainer.querySelector('.nailaide-input textarea');
+            if (input) {
+              try {
+                // Force enable the input field
+                input.disabled = false;
+                input.readOnly = false;
+                
+                // Force pointer-events and visibility
+                input.style.pointerEvents = 'auto';
+                input.style.visibility = 'visible';
+                input.style.display = 'block';
+                
+                // Try to focus after a slight delay to ensure DOM is ready
+                setTimeout(() => {
+                  input.focus();
+                  console.log('Input field focused');
+                }, 500);
+              } catch (e) {
+                console.error('Error focusing input:', e);
+              }
+            } else {
+              console.error('Input field not found when toggling widget');
+            }
+          }, 10);
+        }
+      } else {
+        console.error('Chat container not found. Widget may not be initialized.');
+      }
+    },
+    // ...rest of existing methods...
+    debugWidget: function() {
+      console.log('Running NailAide widget debug...');
+      if (!chatContainer) {
+        console.error('Chat container is not initialized!');
+        return { initialized: false, error: 'Not initialized' };
+      }
+      
+      const status = {
+        initialized: true,
+        visible: isWidgetVisible,
+        containerExists: !!chatContainer,
+        launcherExists: !!launcherButton,
+        containerStyle: chatContainer ? {
+          display: chatContainer.style.display,
+          height: chatContainer.offsetHeight,
+          width: chatContainer.offsetWidth,
+          classes: chatContainer.className
+        } : null
+      };
+      
+      console.log('Widget debug status:', status);
+      return status;
+    },
+    forceShow: function() {
+      if (!chatContainer) {
+        console.error('Cannot force show - widget not initialized');
+        return false;
+      }
+      
+      // Force show regardless of current state
+      chatContainer.style.display = 'flex';
+      chatContainer.classList.remove('minimized');
+      isWidgetVisible = true;
+      
+      // Make doubly sure it's visible by setting important styles
+      chatContainer.style.opacity = '1';
+      chatContainer.style.visibility = 'visible';
+      chatContainer.style.height = '500px';
+      chatContainer.style.transform = 'none';
+      
+      console.log('Widget forced to show');
+      return true;
+    }
+  };
+})();
 
 // Make available globally
 window.NailAide = NailAide;
 
-// Fix AI communication issues
-function initAIAgent() {
-  // Ensure we're not in debug mode by default
-  const isDebug = false;
+// Add a DOMContentLoaded handler for better init reliability
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, checking for NailAide...');
   
-  // Initialize communication channel
-  const agentComm = {
-    send: function(message) {
-      // Remove any debug-related parameters
-      const cleanedMessage = {
-        ...message,
-        debug: undefined
-      };
+  // Add a slight delay to ensure everything is ready
+  setTimeout(() => {
+    if (typeof NailAide !== 'undefined') {
+      console.log('Initializing NailAide from DOMContentLoaded handler');
+      NailAide.init();
       
-      // Send message to AI backend
-      return fetch('/api/agent', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(cleanedMessage)
-      })
-      .then(response => response.json())
-      .catch(error => {
-        console.error('AI Agent communication error:', error);
-        return { error: 'Communication failed', success: false };
-      });
+      // Show the widget after initialization
+      setTimeout(() => {
+        console.log('Showing widget after init');
+        NailAide.toggle();
+      }, 500);
+    } else {
+      console.error('NailAide not found after DOM load');
     }
-  };
-  
-  // ... existing agent code ...
-  
-  return agentComm;
-}
+  }, 100);
+});

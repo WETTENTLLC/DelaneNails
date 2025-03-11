@@ -1,0 +1,10 @@
+{
+  "name": "location_inquiry",
+  "description": "Responses for when a user asks about salon location",
+  "responses": [
+    "We're located at 123 Beauty Boulevard, Styleville, ST 12345. We're in the shopping plaza next to the grocery store, with plenty of free parking available.",
+    "Our salon is at 123 Beauty Boulevard in Styleville. We're easily accessible by public transportation - the #42 bus stops right in front of our salon.",
+    "You'll find us at 123 Beauty Boulevard in Styleville (ST 12345). We're on the corner of Beauty Blvd and Style Street, with a large pink sign out front.",
+    "Delane Nails is located at 123 Beauty Boulevard, Styleville. We have free parking behind the building and we're wheelchair accessible."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "book_appointment",
+  "description": "Responses for when a user wants to book an appointment",
+  "responses": [
+    "I'd be happy to help you book an appointment! {service} is a popular choice. When would you like to come in?",
+    "Great! I can help you schedule a {service} appointment. Do you have a preferred date and time?",
+    "I'll get that {service} appointment set up for you. When would you like to schedule it?",
+    "Let's get you scheduled for a {service}. I'll show you our available time slots.",
+    "I'd be happy to book your {service} appointment. Our schedule is now displayed - please select a convenient time."
+  ]
+}

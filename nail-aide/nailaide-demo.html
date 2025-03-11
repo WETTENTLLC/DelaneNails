@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NailAide Demo - DelaneNails</title>
+    
+    <!-- Business metadata for NailAide -->
+    <meta name="business-name" content="DelaneNails">
+    <meta name="business-phone" content="(555) 123-4567">
+    <meta name="business-email" content="info@delanenails.com">
+    <meta name="business-address" content="123 Beauty Lane, Suite 100, Anytown, USA">
+    <meta name="business-hours" content="Mon-Sat: 9am-7pm, Sun: 10am-5pm">
+    
+    <style>
+        :root {
+            --primary-color: #f06292;
+            --secondary-color: #f8bbd0;
+            --text-color: #333;
+            --light-bg: #fafafa;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .sample-questions {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .sample-questions h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .question-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .question-item {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .question-item:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        footer {
+            background-color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">DelaneNails</a>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../services.html">Services</a>
+                <a href="../gallery.html">Gallery</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Meet NailAide - Your Virtual Nail Salon Assistant</h1>
+            <p>NailAide is our intelligent chat assistant designed to help answer your questions about our services, products, and booking information. Try asking a question in the chat widget that appears in the bottom right corner!</p>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>Instant Answers</h3>
+                <p>Get immediate responses to your questions about our salon services, hours, and products without having to call or search through the website.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Service Information</h3>
+                <p>Ask about our different nail services, what they include, how long they take, and what makes them special.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Product Recommendations</h3>
+                <p>Get information about the professional nail products we use and recommend for home care between appointments.</p>
+            </div>
+        </section>
+
+        <section class="sample-questions">
+            <h2>Try These Sample Questions</h2>
+            <p>Click on any question to ask NailAide directly:</p>
+            <ul class="question-list">
+                <li class="question-item" data-question="What services do you offer?">What services do you offer?</li>
+                <li class="question-item" data-question="What are your business hours?">What are your business hours?</li>
+                <li class="question-item" data-question="How can I book an appointment?">How can I book an appointment?</li>
+                <li class="question-item" data-question="What nail products do you sell?">What nail products do you sell?</li>
+                <li class="question-item" data-question="How much does a gel manicure cost?">How much does a gel manicure cost?</li>
+                <li class="question-item" data-question="Do you do nail art?">Do you do nail art?</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 DelaneNails. All rights reserved.</p>
+    </footer>
+
+    <!-- Script to handle sample question clicks -->
+    <script>
+        // Debug flag to help troubleshoot - setting to true for debugging
+        const NAILAIDE_DEBUG = true;
+        
+        function debugLog(message) {
+            if (NAILAIDE_DEBUG) {
+                console.log(`[NailAide] ${message}`);
+            }
+        }
+        
+        // Check if NailAide is ready to receive questions
+        function isNailAideReady() {
+            return document.getElementById('user-message') && document.getElementById('send-message');
+        }
+        
+        // Send question to NailAide with retry logic
+        function sendToNailAide(question) {
+            debugLog(`Requesting to send question: "${question}"`);
+            
+            // If NailAide is ready, submit the question immediately
+            if (isNailAideReady()) {
+                submitQuestion(question);
+                return;
+            }
+            
+            // If not ready, wait for it
+            debugLog("NailAide not ready yet, waiting...");
+            let attempts = 0;
+            const maxAttempts = 20; // Try for about 10 seconds
+            
+            const checkInterval = setInterval(() => {
+                attempts++;
+                debugLog(`Check attempt ${attempts}/${maxAttempts}...`);
+                
+                if (isNailAideReady()) {
+                    clearInterval(checkInterval);
+                    debugLog("NailAide is now ready!");
+                    submitQuestion(question);
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(checkInterval);
+                    debugLog("NailAide failed to load in time");
+                    alert("Sorry, the chat assistant isn't responding. Please try refreshing the page.");
+                }
+            }, 500);
+        }
+        
+        // Function to actually submit the question
+        function submitQuestion(question) {
+            debugLog(`Submitting question: "${question}"`);
+            const inputField = document.getElementById('user-message');
+            const sendButton = document.getElementById('send-message');
+            
+            inputField.value = question;
+            sendButton.click();
+            
+            // Scroll to widget
+            const widget = document.getElementById('nail-aide-widget');
+            if (widget) {
+                widget.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Set up question click handlers when document is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            debugLog("Setting up sample question handlers");
+            
+            const questionItems = document.querySelectorAll('.question-item');
+            questionItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const question = item.getAttribute('data-question');
+                    debugLog(`Sample question clicked: "${question}"`);
+                    sendToNailAide(question);
+                });
+            });
+            
+            // Initialize NailAide
+            initializeNailAide();
+        });
+        
+        // Load NailAide with fallbacks
+        function initializeNailAide() {
+            debugLog("Initializing NailAide...");
+            
+            // Try multiple possible script locations
+            loadScriptWithFallbacks([
+                "nailaide-standalone.js",
+                "../js/nailaide-web.js",
+                "../nail-aide/nailaide-standalone.js",
+                "../js/nailaide-standalone.js",
+                "nailaide-web.js"
+            ]);
+        }
+        
+        // Attempt to load scripts from different locations
+        function loadScriptWithFallbacks(scriptUrls, currentIndex = 0) {
+            if (currentIndex >= scriptUrls.length) {
+                debugLog("ERROR: All script loading attempts failed");
+                displayChatError("Failed to load the chat assistant. Please check your internet connection or contact support.");
+                return;
+            }
+            
+            const scriptUrl = scriptUrls[currentIndex];
+            debugLog(`Attempting to load script from: ${scriptUrl}`);
+            
+            const script = document.createElement('script');
+            script.src = scriptUrl;
+            
+            script.onload = () => {
+                debugLog(`Successfully loaded script: ${scriptUrl}`);
+                // Check after a short delay if the chat interface elements have appeared
+                setTimeout(() => {
+                    if (!isNailAideReady()) {
+                        debugLog(`Script loaded but chat interface not initialized from: ${scriptUrl}`);
+                        loadScriptWithFallbacks(scriptUrls, currentIndex + 1);
+                    } else {
+                        debugLog("NailAide initialized successfully!");
+                    }
+                }, 1000);
+            };
+            
+            script.onerror = () => {
+                debugLog(`Failed to load script from: ${scriptUrl}`);
+                loadScriptWithFallbacks(scriptUrls, currentIndex + 1);
+            };
+            
+            document.body.appendChild(script);
+        }
+        
+        // Display a user-friendly error message
+        function displayChatError(message) {
+            // Display error on the page
+            const mainElement = document.querySelector('main');
+            const errorDiv = document.createElement('div');
+            errorDiv.style.backgroundColor = '#ffebee';
+            errorDiv.style.color = '#c62828';
+            errorDiv.style.padding = '15px';
+            errorDiv.style.borderRadius = '4px';
+            errorDiv.style.margin = '20px 0';
+            errorDiv.style.textAlign = 'center';
+            errorDiv.innerHTML = `<strong>Error:</strong> ${message}<br>
+                                 <button id="retry-button" style="margin-top:10px; padding:8px 16px; background-color:#f06292; border:none; border-radius:4px; color:white; cursor:pointer;">
+                                    Retry Loading Chat Assistant
+                                 </button>`;
+            
+            mainElement.appendChild(errorDiv);
+            
+            // Add retry functionality
+            document.getElementById('retry-button').addEventListener('click', () => {
+                errorDiv.remove();
+                initializeNailAide();
+            });
+        }
+    </script>
+</body>
+</html>

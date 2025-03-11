@@ -1,0 +1,48 @@
+/* NailAide Chat Interface Styles */
+
+:root {
+  --primary-color: #ff6b95;
+  --secondary-color: #f8f9fa;
+  --text-color: #333333;
+  --border-color: #e0e0e0;
+  --bot-message-bg: #fff;
+  --user-message-bg: #fff5f8;
+  --button-color: #ff6b95;
+  --button-hover: #ff4978;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --border-radius: 10px;
+}
+
+/* Chat Container */
+#chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+#chat-toggle:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+#chat-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow:

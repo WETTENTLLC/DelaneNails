@@ -1,0 +1,26 @@
+{
+  "name": "book_appointment",
+  "description": "User wants to book a nail appointment",
+  "examples": [
+    "I want to book an appointment",
+    "book appointment",
+    "schedule appointment",
+    "make appointment",
+    "book a manicure",
+    "schedule a pedicure",
+    "I need a gel nail appointment",
+    "book nail service",
+    "reserve a time for nail care",
+    "appointment for nail art",
+    "I'd like to get my nails done",
+    "can I make an appointment",
+    "I need to schedule a nail appointment",
+    "booking for tomorrow",
+    "schedule me for a manicure",
+    "make a reservation for nail care",
+    "set up an appointment for acrylic nails",
+    "book me in for a pedicure",
+    "I want to get my nails done on Friday",
+    "schedule a nail appointment for next week"
+  ]
+}

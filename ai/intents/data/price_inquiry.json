@@ -1,0 +1,26 @@
+{
+  "name": "price_inquiry",
+  "description": "User asks about pricing of services",
+  "examples": [
+    "how much does it cost",
+    "what are your prices",
+    "pricing information",
+    "how much is a manicure",
+    "manicure price",
+    "pedicure cost",
+    "what do you charge for gel nails",
+    "how much for acrylic nails",
+    "price list",
+    "service costs",
+    "how much would I pay for a full set",
+    "nail art pricing",
+    "cost of a basic pedicure",
+    "deluxe manicure price",
+    "prices for gel polish",
+    "what's the cheapest service",
+    "most expensive treatment",
+    "do you have a price menu",
+    "what are your rates",
+    "fee for nail service"
+  ]
+}

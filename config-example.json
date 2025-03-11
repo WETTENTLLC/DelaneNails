@@ -1,0 +1,41 @@
+{
+    "api_host": "0.0.0.0",
+    "api_port": 8000,
+    "api_debug": true,
+    
+    "use_mock_api": true,
+    "external_api_url": "https://api.yoursalon.com",
+    "api_key": "your-api-key-here",
+    
+    "db_type": "sqlite",
+    "db_path": "delane_nails.db",
+    
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "smtp_username": "your-email@gmail.com",
+    "smtp_password": "your-app-password",
+    "from_email": "appointments@delanenails.com",
+    
+    "sms_provider": "twilio",
+    "twilio_account_sid": "your-account-sid",
+    "twilio_auth_token": "your-auth-token",
+    "twilio_phone_number": "+15551234567",
+    
+    "business_name": "Delane Nails",
+    "business_phone": "+15559876543",
+    "business_email": "info@delanenails.com",
+    "business_address": "123 Main St, Anytown, USA",
+    "business_hours": {
+        "monday": "9:00-17:00",
+        "tuesday": "9:00-17:00",
+        "wednesday": "9:00-17:00",
+        "thursday": "9:00-17:00",
+        "friday": "9:00-17:00",
+        "saturday": "10:00-16:00",
+        "sunday": "closed"
+    },
+    
+    "web_host": "0.0.0.0",
+    "web_port": 5000,
+    "web_debug": true
+}

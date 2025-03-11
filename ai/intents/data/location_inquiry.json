@@ -1,0 +1,26 @@
+{
+  "name": "location_inquiry",
+  "description": "User asks about salon location",
+  "examples": [
+    "where are you located",
+    "what's your address",
+    "how do I get to your salon",
+    "where is your salon",
+    "directions to salon",
+    "salon location",
+    "where's your shop",
+    "are you near downtown",
+    "which street are you on",
+    "do you have parking",
+    "is there parking nearby",
+    "where should I park",
+    "is public transport available",
+    "how do I find you",
+    "what's the nearest landmark",
+    "which bus goes to your salon",
+    "are you close to the mall",
+    "map to salon",
+    "what's your zip code",
+    "which neighborhood are you in"
+  ]
+}

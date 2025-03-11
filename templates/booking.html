@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Delane Nails</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        h1, h2 { color: #9c27b0; }
+        .container { max-width: 800px; margin: 0 auto; }
+        form { background: #f9f9f9; padding: 20px; border-radius: 8px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { background: #9c27b0; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; }
+        nav { margin-bottom: 30px; }
+        nav a { margin-right: 15px; color: #9c27b0; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        footer { margin-top: 50px; text-align: center; color: #666; }
+        #availableSlots { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/simple-chat">Chat</a>
+            <a href="/simple-booking">Book Appointment</a>
+        </nav>
+        
+        <h1>Book Your Appointment</h1>
+        <p>Please fill out the form below to book your appointment.</p>
+        
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="service">Select Service</label>
+                <select id="service" name="service_id" required>
+                    <option value="">Choose a service...</option>
+                    {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }} - ${{ service.price }} ({{ service.duration }} min)</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Select Date</label>
+                <input type="date" id="date" name="date" required min="{{ current_date }}">
+            </div>
+            
+            <div class="form-group" id="availableSlots">
+                <label for="slot">Select Time</label>
+                <select id="slot" name="slot_id" required>
+                    <option value="">Select date and service first</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="notes">Special Requests (Optional)</label>
+                <textarea id="notes" name="notes" rows="3"></textarea>
+            </div>
+            
+            <button type="submit">Book Appointment</button>
+        </form>
+        
+        <footer>
+            &copy; 2023 Delane Nails - All Rights Reserved
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var serviceSelect = document.getElementById('service');
+            var dateInput = document.getElementById('date');
+            var slotSelect = document.getElementById('slot');
+            var slotsDiv = document.getElementById('availableSlots');
+            var bookingForm = document.getElementById('bookingForm');
+            
+            function updateSlots() {
+                var serviceId = serviceSelect.value;
+                var date = dateInput.value;
+                
+                if (!serviceId || !date) {
+                    slotsDiv.style.display = 'none';
+                    return;
+                }
+                
+                // Show loading state
+                slotsDiv.style.display = 'block';
+                slotSelect.innerHTML = '<option value="">Loading available times...</option>';
+                
+                // Fetch available slots
+                fetch('/api/slots?service_id=' + serviceId + '&date=' + date)
+                    .then(function(response) { return response.json(); })
+                    .then(function(slots) {
+                        slotSelect.innerHTML = '';
+                        
+                        if (slots.length === 0) {
+                            slotSelect.innerHTML = '<option value="">No available slots for this date</option>';
+                            return;
+                        }
+                        
+                        slotSelect.innerHTML = '<option value="">Choose a time...</option>';
+                        
+                        for (var i = 0; i < slots.length; i++) {
+                            var slot = slots[i];
+                            var option = document.createElement('option');
+                            option.value = slot.id;
+                            var startTime = slot.start_time.substring(11, 16);
+                            var hour = parseInt(startTime.split(':')[0]);
+                            var ampm = hour >= 12 ? 'PM' : 'AM';
+                            option.textContent = startTime + ' (' + ampm + ')';
+                            slotSelect.appendChild(option);
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error:', error);
+                        slotSelect.innerHTML = '<option value="">Error loading times</option>';
+                    });
+            }
+            
+            serviceSelect.addEventListener('change', updateSlots);
+            dateInput.addEventListener('change', updateSlots);
+            
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                var formData = {
+                    service_id: serviceSelect.value,
+                    slot_id: slotSelect.value,
+                    customer_name: document.getElementById('name').value,
+                    customer_email: document.getElementById('email').value,
+                    customer_phone: document.getElementById('phone').value,
+                    notes: document.getElementById('notes').value
+                };
+                
+                if (!formData.service_id || !formData.slot_id || !formData.customer_name || !formData.customer_phone) {
+                    alert('Please fill all required fields');
+                    return;
+                }
+                
+                // Submit booking
+                fetch('/api/simple-booking', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                .then(function(response) { return response.json(); })
+                .then(function(data) {
+                    if (data.appointment_id) {
+                        window.location.href = '/simple-confirmation?id=' + data.appointment_id;
+                    } else if (data.error) {
+                        alert('Error: ' + data.error);
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                    alert('There was an error booking your appointment. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

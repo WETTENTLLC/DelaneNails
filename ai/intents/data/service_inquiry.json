@@ -1,0 +1,26 @@
+{
+  "name": "service_inquiry",
+  "description": "User asks about salon services",
+  "examples": [
+    "what services do you offer",
+    "what treatments do you have",
+    "tell me about your services",
+    "what kinds of manicures do you offer",
+    "do you do gel nails",
+    "do you offer acrylic nails",
+    "what nail services are available",
+    "types of pedicures",
+    "nail services list",
+    "nail treatments available",
+    "what can I get done at your salon",
+    "nail options",
+    "tell me about your manicures",
+    "what's included in a pedicure",
+    "do you offer nail art",
+    "do you do nail extensions",
+    "full set acrylic information",
+    "what is a gel manicure",
+    "explain your deluxe pedicure",
+    "what treatments are popular"
+  ]
+}

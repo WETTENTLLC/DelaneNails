@@ -1,0 +1,26 @@
+{
+  "name": "hours_inquiry",
+  "description": "User asks about salon hours",
+  "examples": [
+    "when are you open",
+    "what are your hours",
+    "opening hours",
+    "business hours",
+    "what time do you close",
+    "what time do you open",
+    "are you open on Sunday",
+    "weekend hours",
+    "are you open today",
+    "what days are you open",
+    "do you work on Mondays",
+    "salon hours",
+    "when do you close tonight",
+    "hours of operation",
+    "are you open late",
+    "early morning appointments",
+    "evening availability",
+    "holiday hours",
+    "are you closed on holidays",
+    "what time should I come in"
+  ]
+}

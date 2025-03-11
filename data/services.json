@@ -1,0 +1,131 @@
+{
+  "services": [
+    {
+      "id": "basic-manicure",
+      "name": "Basic Manicure",
+      "description": "Classic care for your hands including nail shaping, cuticle care, hand massage, and polish application.",
+      "price": 25,
+      "duration": 30,
+      "category": "Manicure",
+      "keywords": ["basic", "regular manicure", "standard manicure", "simple manicure", "classic manicure"],
+      "popular": true
+    },
+    {
+      "id": "deluxe-manicure",
+      "name": "Deluxe Manicure",
+      "description": "Enhanced hand care with exfoliation, extended massage, hydrating mask, and premium polish application.",
+      "price": 40,
+      "duration": 45,
+      "category": "Manicure",
+      "keywords": ["deluxe", "luxury manicure", "premium manicure", "spa manicure"]
+    },
+    {
+      "id": "gel-manicure",
+      "name": "Gel Manicure",
+      "description": "Long-lasting gel polish application with all the care of a basic manicure. No-chip formula lasts up to 2 weeks.",
+      "price": 45,
+      "duration": 45,
+      "category": "Manicure",
+      "keywords": ["gel", "shellac", "gel polish", "no-chip", "long lasting"],
+      "popular": true
+    },
+    {
+      "id": "basic-pedicure",
+      "name": "Basic Pedicure",
+      "description": "Comprehensive foot care including soak, exfoliation, nail shaping, cuticle care, foot massage, and polish application.",
+      "price": 35,
+      "duration": 45,
+      "category": "Pedicure",
+      "keywords": ["pedicure", "basic pedi", "regular pedicure", "standard pedicure", "foot care"],
+      "popular": true
+    },
+    {
+      "id": "deluxe-pedicure",
+      "name": "Deluxe Pedicure",
+      "description": "Premium foot care with aromatic soak, intensive exfoliation, callus removal, extended massage with hot stones, mask, and premium polish.",
+      "price": 60,
+      "duration": 60,
+      "category": "Pedicure",
+      "keywords": ["deluxe pedi", "spa pedicure", "premium pedicure", "luxury foot care", "special pedicure"]
+    },
+    {
+      "id": "gel-pedicure",
+      "name": "Gel Pedicure",
+      "description": "All the benefits of a basic pedicure with long-lasting gel polish that remains flawless for up to 3 weeks.",
+      "price": 55,
+      "duration": 60,
+      "category": "Pedicure",
+      "keywords": ["gel pedi", "shellac pedicure", "no chip pedicure", "long lasting pedicure"],
+      "popular": true
+    },
+    {
+      "id": "acrylic-full-set",
+      "name": "Acrylic Full Set",
+      "description": "Complete acrylic nail application including nail preparation, tips or forms, acrylic application, shaping, and polish.",
+      "price": 60,
+      "duration": 75,
+      "category": "Enhancements",
+      "keywords": ["acrylics", "fake nails", "nail extensions", "full set", "acrylic nails"]
+    },
+    {
+      "id": "acrylic-fill",
+      "name": "Acrylic Fill",
+      "description": "Maintenance service for growing acrylic nails, filling the gap between the cuticle and existing acrylic.",
+      "price": 40,
+      "duration": 60,
+      "category": "Enhancements",
+      "keywords": ["fill", "fill in", "acrylic maintenance", "infill", "acrylic touch up"]
+    },
+    {
+      "id": "nail-art",
+      "name": "Nail Art",
+      "description": "Creative designs painted on your nails, from simple patterns to elaborate artwork. Price varies by complexity.",
+      "price": 10,
+      "priceNote": "Starts at $10, varies by design complexity",
+      "duration": 15,
+      "durationNote": "Added to service time, varies by design complexity",
+      "category": "Art & Design",
+      "keywords": ["art", "designs", "nail painting", "decorations", "nail decor"],
+      "popular": true
+    },
+    {
+      "id": "polish-change-hands",
+      "name": "Polish Change (Hands)",
+      "description": "Quick nail polish removal and fresh application for hands. Does not include nail shaping or cuticle care.",
+      "price": 15,
+      "duration": 15,
+      "category": "Quick Services",
+      "keywords": ["polish", "color change", "quick polish", "manicure polish", "nail color"]
+    },
+    {
+      "id": "polish-change-feet",
+      "name": "Polish Change (Feet)",
+      "description": "Quick nail polish removal and fresh application for feet. Does not include nail shaping or cuticle care.",
+      "price": 18,
+      "duration": 20,
+      "category": "Quick Services",
+      "keywords": ["polish feet", "toe polish", "pedicure polish", "toes color change", "foot nail color"]
+    }
+  ],
+  "categories": [
+    "Manicure",
+    "Pedicure",
+    "Enhancements",
+    "Art & Design",
+    "Quick Services"
+  ],
+  "businessHours": {
+    "monday": "10:00 AM - 7:00 PM",
+    "tuesday": "10:00 AM - 7:00 PM",
+    "wednesday": "10:00 AM - 7:00 PM",
+    "thursday": "10:00 AM - 8:00 PM",
+    "friday": "9:00 AM - 8:00 PM",
+    "saturday": "9:00 AM - 6:00 PM",
+    "sunday": "11:00 AM - 5:00 PM"
+  },
+  "contactInfo": {
+    "phone": "(555) 123-4567",
+    "email": "info@delanenails.com",
+    "address": "123 Beauty Boulevard, Styleville, ST 12345"
+  }
+}

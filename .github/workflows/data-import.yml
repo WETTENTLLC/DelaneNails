@@ -1,0 +1,76 @@
+name: Data Import Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      import_source:
+        description: 'Source of import data'
+        required: true
+        default: 'csv'
+        type: choice
+        options:
+        - csv
+        - json
+        - api
+        - excel
+      data_type:
+        description: 'Type of data to import'
+        required: true
+        type: choice
+        options:
+        - customers
+        - appointments
+        - services
+        - products
+        - staff
+        - reviews
+      file_path:
+        description: 'Path to import file (if applicable)'
+        required: false
+      clear_existing:
+        description: 'Clear existing data before import'
+        required: true
+        default: 'false'
+        type: boolean
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Validate import source
+        run: |
+          echo "Preparing to import ${{ github.event.inputs.data_type }} data from ${{ github.event.inputs.import_source }} source"
+          if [[ "${{ github.event.inputs.import_source }}" != "api" && -z "${{ github.event.inputs.file_path }}" ]]; then
+            echo "::error::File path is required for non-API imports"
+            exit 1
+          fi
+      
+      - name: Import data
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          API_KEY: ${{ secrets.IMPORT_API_KEY }}
+          CLEAR_EXISTING: ${{ github.event.inputs.clear_existing }}
+        run: |
+          npm run data:import -- \
+            --source=${{ github.event.inputs.import_source }} \
+            --type=${{ github.event.inputs.data_type }} \
+            --file="${{ github.event.inputs.file_path }}" \
+            --clear=${{ github.event.inputs.clear_existing }}
+      
+      - name: Verify import
+        run: npm run data:verify -- --type=${{ github.event.inputs.data_type }}
+      
+      - name: Report results
+        run: echo "Successfully imported ${{ github.event.inputs.data_type }} data"

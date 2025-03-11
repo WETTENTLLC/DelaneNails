@@ -1,661 +1,293 @@
-#nailaide-root {
-    position: fixed !important;
-    bottom: 0 !important;
-    right: 0 !important;
-    z-index: 9999 !important;
-    width: auto !important;
-    height: auto !important;
-    pointer-events: none;
-    font-family: Arial, sans-serif;
-    border: none !important;
-    background-color: transparent !important;
+/* NailAide Chat Widget Styles - Simplified */
+
+/* Base widget container */
+.nailaide-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 999998;
 }
 
-#nailaide-root > * {
-    pointer-events: auto;
+.nailaide-container.minimized {
+  height: 0;
+  padding-top: 45px;
+  overflow: hidden;
 }
 
-/* Prevent widget from being hidden by other elements */
-.nailaide-widget {
-    position: fixed !important;
-    bottom: 90px !important;
-    right: 20px !important;
-    width: 350px !important;
-    height: 500px !important;
-    background-color: white !important;
-    border-radius: 12px !important;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15) !important;
-    z-index: 9998 !important;
-    overflow: hidden !important;
-    display: none;
-    flex-direction: column;
-    background: #fff;
-    transition: all 0.3s ease;
-}
-
-/* Smooth transitions */
-.nailaide-widget,
-.nailaide-button {
-    will-change: transform, opacity;
-}
-
-.nailaide-button {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    width: 60px !important;
-    height: 60px !important;
-    border-radius: 50% !important;
-    background-color: #9333ea !important;
-    color: white !important;
-    border: none !important;
-    cursor: pointer !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
-    z-index: 10000 !important;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-}
-
-.nailaide-button:hover {
-    transform: scale(1.1);
-}
-
-.chat-header {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Mobile optimizations */
-@media (max-width: 400px) {
-    .nailaide-widget-fullscreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100% !important;
-        height: 100% !important;
-        border-radius: 0 !important;
-        z-index: 99999;
-    }
-}
-
-.feature-buttons {
-    position: absolute;
-    bottom: 70px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.feature-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.feature-buttons button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.feature-buttons button:hover {
-    background: rgba(0,0,0,0.1);
-}
-
-.feature-toggle {
-    display: flex;
-    gap: 8px;
-    margin-left: auto;
-}
-
-.feature-toggle button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 4px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.feature-toggle button:hover {
-    background: rgba(0,0,0,0.1);
-}
-
-.chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-.chat-message {
-    padding: 8px 12px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    max-width: 80%;
-    word-wrap: break-word;
-    font-size: 16px;
-    line-height: 1.5;
-    white-space: pre-wrap;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-.chat-message.user {
-    background-color: #9333ea;
-    color: white;
-    align-self: flex-end;
-}
-
-.chat-message.ai {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #ccc;
-    align-self: flex-start;
-}
-
-.chat-input {
-    padding: 15px;
-    border-top: 1px solid #eee;
-    display: flex;
-    gap: 10px;
-}
-
-.chat-input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.chat-input button {
-    padding: 10px 20px;
-    background: #9333ea;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.service-preview {
-    width: 100%;
-    margin: 10px 0;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.preview-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-}
-
-.preview-carousel img {
-    width: 100%;
-    scroll-snap-align: start;
-}
-
-/* AR preview styles */
-.ar-preview {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10000;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-}
-
-/* Formatted lists and tables */
-.chat-message pre {
-    font-family: monospace;
-    white-space: pre;
-    margin: 8px 0;
-    background: #fff;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.booking-link {
-    color: #00bcd4;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 4px 8px;
-    background: rgba(0, 188, 212, 0.1);
-    border-radius: 4px;
-    margin: 0 2px;
-    transition: all 0.3s ease;
-}
-
-.booking-link:hover {
-    background: rgba(0, 188, 212, 0.2);
-    text-decoration: underline;
-}
-
-/* NailAide Widget Styles */
-
+/* Header styling */
 .nailaide-header {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  color: white;
+  cursor: move;
 }
 
-.nailaide-header h3 {
-    margin: 0;
-    font-size: 18px;
+.nailaide-title {
+  font-weight: bold;
+  font-size: 16px;
 }
 
-.nailaide-close {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
+.nailaide-controls {
+  display: flex;
 }
 
-.nailaide-chat-container {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
+.nailaide-controls button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+  padding: 0 5px;
 }
 
-.nailaide-messages {
-    height: 100%;
-    overflow-y: auto;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
+/* Chat message area */
+.nailaide-body {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
 }
 
+/* Message bubbles */
 .nailaide-message {
-    display: flex;
-    margin-bottom: 10px;
-    max-width: 80%;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  max-width: 80%;
+  word-break: break-word;
 }
 
-.nailaide-message-user {
-    align-self: flex-end;
+.nailaide-message.bot {
+  background-color: #f0f0f0;
+  align-self: flex-start;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
 }
 
-.nailaide-message-assistant {
-    align-self: flex-start;
+.nailaide-message.user {
+  background-color: var(--user-bubble-color, #e1f5fe);
+  align-self: flex-end;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
 }
 
-.nailaide-bubble {
-    padding: 10px 15px;
-    border-radius: 18px;
-    word-break: break-word;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.nailaide-message-user .nailaide-bubble {
-    border-bottom-right-radius: 3px;
-}
-
-.nailaide-message-assistant .nailaide-bubble {
-    border-bottom-left-radius: 3px;
-}
-
-.nailaide-input-area {
-    padding: 15px;
-    border-top: 1px solid #e5e7eb;
-    display: flex;
-    background-color: #f9fafb;
-}
-
+/* Input area */
 .nailaide-input {
-    flex: 1;
-    padding: 10px 15px;
-    border: 1px solid #d1d5db;
-    border-radius: 20px;
-    outline: none;
-    font-size: 14px;
+  display: flex !important;
+  padding: 10px !important;
+  border-top: 1px solid #e0e0e0 !important;
+  background: white !important;
+  position: relative !important;
+  z-index: 999996 !important; /* Very high z-index */
+  pointer-events: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
+.nailaide-input textarea {
+  flex-grow: 1 !important;
+  border: 2px solid #9333ea !important; /* Make border more visible */
+  border-radius: 20px !important;
+  padding: 8px 15px !important;
+  outline: none !important;
+  resize: none !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  background: white !important; /* Explicitly set background */
+  position: relative !important; /* Proper stacking */
+  z-index: 999997 !important; /* Very high z-index */
+  min-height: 20px !important; /* Ensure minimum height */
+  pointer-events: auto !important; /* Force pointer events */
+  user-select: text !important; /* Ensure text selection works */
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  color: black !important; /* Ensure text is visible */
+  box-sizing: border-box !important;
+  width: calc(100% - 50px) !important; /* Make room for send button */
+  margin: 0 !important;
+}
+
+/* Ensure input is interactive */
+.nailaide-input textarea:focus {
+  border-color: var(--primary-color, #9333ea);
+  box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2);
+  outline: none !important;
+}
+
+/* Send button adjustments */
 .nailaide-send {
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 50%;
-    margin-left: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    transition: transform 0.2s;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  margin-left: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto !important;
 }
 
-.nailaide-send:hover {
-    transform: scale(1.05);
+/* Chat launcher button */
+.nailaide-launcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--primary-color, #9333ea);
+  border: none;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 999997;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
-.nailaide-bubble a {
-    color: #0d6efd;
-    text-decoration: none;
+/* Links in chat */
+.nailaide-message a {
+  color: #9333ea;
+  text-decoration: underline;
 }
 
-.nailaide-bubble a:hover {
-    text-decoration: underline;
+.nailaide-message a:hover {
+  text-decoration: none;
 }
 
-/* Add scrollbar styling */
-.nailaide-messages::-webkit-scrollbar {
-    width: 6px;
+/* Product gallery styles - improved for better button display */
+.nailaide-product-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 5px 0;
 }
 
-.nailaide-messages::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+.nailaide-product-card {
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 90px; /* Increased height to fit button better */
+  border: 1px solid #eee;
 }
 
-.nailaide-messages::-webkit-scrollbar-thumb {
-    background: #c4c4c4;
-    border-radius: 3px;
+.nailaide-product-image {
+  height: 90px; /* Match container height */
+  width: 90px; /* Increased width */
+  object-fit: cover;
+  border-right: 1px solid #eee;
 }
 
-.nailaide-messages::-webkit-scrollbar-thumb:hover {
-    background: #a0a0a0;
+.nailaide-product-info {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.nailaide-product-name {
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: #333;
+  line-height: 1.2;
+  max-height: 28px;
+  overflow: hidden;
+}
+
+.nailaide-product-price {
+  color: #9333ea;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 3px 0;
+}
+
+.nailaide-buy-button {
+  background-color: var(--primary-color, #9333ea);
+  color: white !important; /* Ensure text is white */
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  text-decoration: none !important; /* Remove underline */
+  font-weight: bold;
+  width: fit-content; /* Ensure button fits content */
+  display: inline-block;
+  margin-top: auto; /* Push to bottom of container */
+  transition: all 0.2s;
+}
+
+.nailaide-buy-button:hover {
+  background-color: #7e22ce;
+  transform: translateY(-2px);
+}
+
+/* Shop button styling */
+.nailaide-shop-button {
+  background-color: var(--primary-color, #9333ea);
+  color: white !important;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none !important;
+  font-weight: bold;
+  display: inline-block;
+  margin: 10px 0;
+  transition: all 0.2s;
+}
+
+.nailaide-shop-button:hover {
+  background-color: #7e22ce;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Mobile responsiveness */
 @media (max-width: 480px) {
-    .nailaide-widget {
-        width: calc(100% - 40px);
-        right: 20px;
-        left: 20px;
-        bottom: 80px;
-    }
-}
-
-/* Enhanced style for service and product lists */
-.nailaide-service-list,
-.nailaide-product-list {
+  .nailaide-container {
+    width: calc(100% - 40px);
+    right: 20px;
+    bottom: 80px;
+  }
+  
+  .nailaide-shop-button,
+  .nailaide-buy-button {
     width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.nailaide-services-grid,
-.nailaide-products-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-@media (min-width: 300px) {
-    .nailaide-services-grid,
-    .nailaide-products-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-.nailaide-service-card,
-.nailaide-product-card {
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.nailaide-service-card:hover,
-.nailaide-product-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.nailaide-service-name,
-.nailaide-product-name {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #1f2937;
+    text-align: center;
+    padding: 12px 10px;
     font-size: 14px;
-}
-
-.nailaide-service-price,
-.nailaide-product-price {
-    color: #9333ea;
-    font-weight: bold;
-    margin-bottom: 5px;
-    font-size: 14px;
-}
-
-.nailaide-service-duration {
-    color: #6b7280;
-    font-size: 12px;
-    margin-bottom: 8px;
-}
-
-.nailaide-book-btn,
-.nailaide
-
-/* NailAide Chat Widget Styling */
-
-#nailaide-root {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 350px;
-    height: 500px;
-    z-index: 9999;
-    pointer-events: auto;
-    background: transparent;
-    border: none !important;
-    background-color: transparent !important;
-}
-
-/* Ensure the container is visible for debugging */
-.debug-highlight #nailaide-root {
-    border: none !important;
-    background-color: transparent !important;
-}
-
-.nailaide-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    pointer-events: auto;
-}
-
-.nailaide-chat-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: auto !important; /* Change from fixed width to auto for text */
-    min-width: 60px;
-    padding: 0 20px 0 15px;
-    height: 60px;
-    border-radius: 30px; /* Rounded corners for button with text */
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow for emphasis */
-    transition: all 0.3s ease;
-    pointer-events: auto;
-    z-index: 10000;
-    font-weight: bold;
-    gap: 10px; /* Space between icon and text */
-    animation: gentle-pulse 3s infinite;
-}
-
-.nailaide-chat-button-text {
-    font-size: 16px;
-    color: white;
-    margin-left: 5px;
-    white-space: nowrap;
-}
-
-/* Pulsating animation to draw attention */
-@keyframes gentle-pulse {
-    0% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
-    50% { box-shadow: 0 4px 20px rgba(147, 51, 234, 0.6); }
-    100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
-}
-
-.nailaide-chat-button:hover {
-    transform: scale(1.05);
-}
-
-/* Tour mode indicator */
-.tour-mode-active {
-    position: fixed;
-    top: 70px;
-    right: 20px;
-    background-color: #9333ea;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    z-index: 9999;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-/* Voice Input Button */
-.voice-input-container {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-}
-
-/* Make sure everything inside the widget is interactive */
-#nailaide-root, 
-#nailaide-root * {
-    pointer-events: auto;
-}
-
-/* Ensure widget elements are above other page elements */
-.nailaide-container,
-.nailaide-chat-button,
-.nailaide-chat-window {
-    z-index: 10000;
-}
-
-/* Fix for the red box around widget */
-.ai-widget {
-  border: none; /* Remove any border by default */
-}
-
-/* Debug styling - only visible when debug mode is on */
-.debug-border {
-  display: none !important;
-  border: none !important;
-  visibility: hidden !important;
-}
-
-.debug-toggle {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
-/* Additional accessibility features */
-.voice-controls {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 15px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #e0e0e0;
-}
-
-.voice-button {
-  background-color: #9333ea;
-  border: none;
-  color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.voice-button:hover {
-  background-color: #7926c9;
-}
-
-.voice-button.active {
-  background-color: #ff4d4f;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.4);
   }
-  70% {
-    box-shadow: 0 0 0 10px rgba(255, 77, 79, 0);
+  
+  .nailaide-product-gallery {
+    margin: 0;
   }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0);
-  }
-}
-
-/* Accessibility controls */
-.accessibility-controls {
-  position: absolute;
-  top: 5px;
-  right: 50px;
-  display: flex;
-  gap: 5px;
-}
-
-.accessibility-button {
-  background: none;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-
-.accessibility-button:hover {
-  opacity: 1;
-}
-
-/* Debug styling - only visible when debug mode is on */
-.debug-border {
-  border: 2px solid red;
-  display: none; /* Hidden by default */
-}
-
-.debug-toggle {
-  background-color: #ff5555;
-  color: white;
-  padding: 5px 10px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 9999;
-  display: none; /* Hidden by default */
 }

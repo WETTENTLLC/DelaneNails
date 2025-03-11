@@ -1,0 +1,25 @@
+{
+  "name": "greeting",
+  "description": "User greets the assistant",
+  "examples": [
+    "hello",
+    "hi",
+    "hey",
+    "hi there",
+    "hello there",
+    "good morning",
+    "good afternoon",
+    "good evening",
+    "howdy",
+    "greetings",
+    "hey nailaide",
+    "hi bot",
+    "what's up",
+    "yo",
+    "hola",
+    "hello nailaide",
+    "start",
+    "begin",
+    "let's talk"
+  ]
+}

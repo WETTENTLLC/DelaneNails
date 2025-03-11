@@ -266,3 +266,93 @@ window.addEventListener('load', function() {
         window.NailAideDebug.init();
     }
 });
+
+/**
+ * NailAide Debug Helper
+ * Provides console debugging and troubleshooting tools
+ */
+
+// Create debug namespace
+window.NailAideDebug = {
+  version: '1.0.0',
+  
+  // Check if all required files are loaded
+  checkDependencies: function() {
+    console.group('NailAide Dependency Check');
+    
+    // Check for configuration
+    if (window.NAILAIDE_CONFIG) {
+      console.log('✓ Configuration loaded:', window.NAILAIDE_CONFIG);
+    } else {
+      console.error('✗ Configuration not found! The widget won\'t work properly.');
+    }
+    
+    // Check for main script
+    if (window.NailAide) {
+      console.log('✓ NailAide main script loaded');
+    } else {
+      console.error('✗ NailAide main script not found!');
+    }
+    
+    // Check for CSS
+    const hasCss = Array.from(document.styleSheets).some(sheet => {
+      try {
+        return sheet.href && sheet.href.includes('nailaide.css');
+      } catch (e) {
+        return false; // CORS may prevent reading stylesheet href
+      }
+    });
+    
+    if (hasCss) {
+      console.log('✓ NailAide CSS appears to be loaded');
+    } else {
+      console.warn('? NailAide CSS might be missing (can\'t confirm due to possible CORS)');
+    }
+    
+    console.groupEnd();
+    
+    return {
+      config: !!window.NAILAIDE_CONFIG,
+      script: !!window.NailAide,
+      css: hasCss
+    };
+  },
+  
+  // Force show the widget for debugging
+  showWidget: function() {
+    if (window.NailAide) {
+      console.log('Forcing widget to display...');
+      window.NailAide.toggle();
+      return true;
+    } else {
+      console.error('NailAide not loaded, cannot show widget');
+      return false;
+    }
+  },
+  
+  // Initialize debugging tools
+  init: function() {
+    console.log('NailAide Debug Tools initialized');
+    
+    // Add keyboard shortcut Ctrl+Shift+N to show widget
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.shiftKey && e.key === 'N') {
+        window.NailAideDebug.showWidget();
+      }
+    });
+    
+    // Show the debugging button
+    document.getElementById('widget-reset').style.display = 'block';
+    
+    // Run dependency check on load
+    setTimeout(this.checkDependencies, 1000);
+  }
+};
+
+// Auto-initialize debugging when the DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  window.NailAideDebug.init();
+});
+
+// Log that debug script was loaded
+console.log('NailAide Debug Tools loaded');

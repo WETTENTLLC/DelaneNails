@@ -1,0 +1,10 @@
+{
+  "name": "hours_inquiry",
+  "description": "Responses for when a user asks about business hours",
+  "responses": [
+    "Our salon is open Monday through Wednesday from 10:00 AM to 7:00 PM, Thursday and Friday from 9:00 AM to 8:00 PM, Saturday from 9:00 AM to 6:00 PM, and Sunday from 11:00 AM to 5:00 PM. When would you like to visit us?",
+    "We're open 7 days a week! Our hours are: Monday-Wednesday: 10AM-7PM, Thursday-Friday: 9AM-8PM, Saturday: 9AM-6PM, Sunday: 11AM-5PM. Is there a specific day you'd like to come in?",
+    "Delane Nails is open Monday to Friday with extended hours on Thursday and Friday (until 8PM). We're also open on weekends - Saturday from 9AM-6PM and Sunday from 11AM-5PM.",
+    "Our operating hours are: Mon-Wed 10AM-7PM, Thu-Fri 9AM-8PM, Sat 9AM-6PM, and Sun 11AM-5PM. Would you like to book an appointment during these times?"
+  ]
+}
