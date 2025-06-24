@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://delanesnails.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /js/
+Disallow: /css/
+
+# Allow important pages
+Allow: /images/
+Allow: /services.html
+Allow: /shop.html
+Allow: /booking.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /steps-to-success.html

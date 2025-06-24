@@ -7,7 +7,7 @@
 
   // Configuration
   const CONFIG = {
-    GEMINI_API_KEY: 'AIzaSyBvZZ8Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9', // Replace with actual key
+    GEMINI_API_KEY: 'AIzaSyCr913ppyEgYL0k47gLye1YTiL9lD1SH_0',
     GEMINI_API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'
   };
 
