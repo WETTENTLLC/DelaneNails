@@ -47,7 +47,7 @@
       this.container.innerHTML = `
         <div class="nailaide-header">
           <h3>Nail Care Assistant</h3>
-          <button class="nailaide-close" onclick="window.NailAide.toggle()">×</button>
+          <button class="nailaide-close">×</button>
         </div>
         <div class="nailaide-messages"></div>
         <div class="nailaide-input-container">
@@ -71,7 +71,10 @@
 
     attachEventListeners() {
       const sendButton = this.container.querySelector('.nailaide-send');
+      const closeButton = this.container.querySelector('.nailaide-close');
+      
       sendButton.onclick = () => this.sendMessage();
+      closeButton.onclick = () => this.toggle();
       
       this.inputField.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
