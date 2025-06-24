@@ -1,22 +1,46 @@
 // Pricing data structure for services and products
 const pricingData = {
     services: {
-        manicure: {
-            ibx: { name: "IBX Restorative Manicure", price: 50, priceRange: "50-55", duration: "60 min" },
-            gelish: { name: "Gelish Manicure", price: 60, duration: "45 min" }
+        mobile: {
+            mobilePedi: { name: "Mobile Pedicure", price: 135, priceRange: "135+", duration: "2h" },
+            mobileCombo: { name: "Mobile Manicure and Pedicure", price: 175, priceRange: "175+", duration: "3h" }
         },
         pedicure: {
             express: { name: "Luxurious Express Pedicure", price: 45, duration: "30 min" },
-            specialized: { name: "Specialized Pedicure", price: 75, priceRange: "75+", duration: "90 min" },
-            psoriasis: { name: "Psoriasis Foot Treatment", price: 95, duration: "90 min" }
+            waterless: { name: "Luxurious Waterless Pedicure", price: 45, duration: "30 min" },
+            spa: { name: "Spa Pedicure", price: 65, duration: "1h" },
+            gelPedi: { name: "Gel Pedicure - No Gel Removal", price: 75, duration: "1h" },
+            spaCandy: { name: "Spa Pedicure w/Candy's Touch", price: 75, duration: "1h" }
         },
-        combos: {
-            spaCombo: { name: "Spa Mani/Pedi Combo", price: 100, duration: "120 min" },
-            gelishCombo: { name: "Gelish Manicure + Spa Pedicure", price: 110, duration: "135 min" }
+        specializedFootcare: {
+            crackedHeels: { name: "Special Focus Cracked Heels", price: 75, duration: "1h" },
+            specialized1: { name: "Specialized Pedicure I", price: 75, duration: "1h" },
+            specialized2: { name: "Specialized Pedicure II", price: 85, duration: "1h" },
+            specialized3: { name: "Specialized Pedicure III", price: 100, duration: "1h" },
+            keryflex: { name: "Keryflex (Prosthetic Nail Care)", price: 200, duration: "1h 30min" }
+        },
+        manicure: {
+            gelishNoRemoval: { name: "Gelish Manicure - No Gel Removal", price: 55, duration: "1h" },
+            gelishWithRemoval: { name: "Gelish Manicure WITH Gel Removal", price: 60, duration: "1h 15min" },
+            gelIbxFirst: { name: "Gel IBX Restorative Manicure - First Time", price: 75, duration: "1h 30min" },
+            gelIbxReturn: { name: "Gel IBX Restorative Manicure - Returning", price: 65, duration: "1h 15min" },
+            ibxFirst: { name: "IBX Restorative Manicure - First Time", price: 55, duration: "1h 15min" },
+            ibxReturn: { name: "IBX Restorative Manicure - Returning", price: 50, duration: "1h" },
+            candyTouch: { name: "Manicure w/Candy's Touch", price: 55, duration: "1h" },
+            spaParaffin: { name: "Spa Manicure w/ Paraffin Wax", price: 65, duration: "1h 15min" },
+            psoriasHand: { name: "Psoriasis Hand Treatment", price: 55, duration: "30min" }
         },
         addOns: {
-            gelRemoval: { name: "Gel Polish Removal", price: 15, duration: "15 min" },
-            paraffin: { name: "Paraffin Wax", price: 20, duration: "20 min" }
+            gelRemoval: { name: "Gel Polish Removal", price: 15, duration: "30min" },
+            hardGelRemoval1: { name: "Hard Gel/Acrylic Removal - Option 1", price: 40, duration: "1h" },
+            hardGelRemoval2: { name: "Hard Gel/Acrylic Removal - Option 2", price: 60, duration: "1h 30min" },
+            paraffin: { name: "Paraffin Wax - Add On", price: 20, duration: "15min" },
+            ibxTreatment: { name: "IBX Treatment - Add On", price: 20, duration: "20min" },
+            nailRepair: { name: "Nail Repair - Add On", price: 10, duration: "10min" }
+        },
+        newTechSpecials: {
+            newTechGelPediNo: { name: "New Tech Gel Pedicure - No Removal", price: 50, duration: "1h 15min" },
+            newTechGelPediWith: { name: "New Tech Gel Pedicure - With Removal", price: 60, duration: "1h 30min" }
         }
     },
     products: {
