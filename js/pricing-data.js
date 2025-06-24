@@ -6,7 +6,7 @@ const pricingData = {
             gelish: { name: "Gelish Manicure", price: 60, duration: "45 min" }
         },
         pedicure: {
-            express: { name: "Luxurious Express Pedicure", price: 45, duration: "45 min" },
+            express: { name: "Luxurious Express Pedicure", price: 45, duration: "30 min" },
             specialized: { name: "Specialized Pedicure", price: 75, priceRange: "75+", duration: "90 min" },
             psoriasis: { name: "Psoriasis Foot Treatment", price: 95, duration: "90 min" }
         },
