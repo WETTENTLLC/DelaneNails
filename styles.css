@@ -14,8 +14,8 @@ body {
 
 /* === HEADER STYLING === */
 header {
-    background-color: #000000;
-    color: white;
+    background-color: #ffffff;
+    color: #333;
     padding: 25px 20px; /* Increased padding to fit all content */
     position: relative; /* Changed from sticky to relative to remove scrolling */
     z-index: 1000;
@@ -368,8 +368,8 @@ nav ul li a:hover {
 
 /* === FOOTER STYLES === */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #ffffff;
+    color: #333;
     padding: 40px 20px;
     margin-top: 50px;
     text-align: center;
