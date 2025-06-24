@@ -1,71 +1,54 @@
 /**
  * Basic WebsiteContent Module
- * Provides a simple implementation of the WebsiteContent module
- * Use this as a fallback if the main content parser isn't working
+ * Provides current site information for the chat widget
  */
 
 (function() {
   console.log('Basic WebsiteContent module loaded');
   
-  // Check if WebsiteContent is already defined
   if (typeof window.WebsiteContent !== 'undefined') {
     console.log('WebsiteContent already exists, not overriding');
     return;
   }
   
-  // Define basic website information
+  // Current website information
   const basicSiteInfo = {
-    pages: {
-      'about': {
-        id: 'about',
-        title: 'About Us',
-        url: 'about.html',
-        summary: "At Delane's Natural Nail Care & Medi-Spa, we are dedicated to providing the highest quality nail care and wellness services in a relaxing, professional, and clean environment. Our team of experts is passionate about helping you look and feel your best."
+    business: {
+      name: "Delane's Natural Nail Care & Medi-Spa",
+      address: "333 Estudillo Ave, Suite 204, San Leandro, CA 94577",
+      phone: "(510) 346-2457",
+      email: "delane@delanesnails.com",
+      hours: {
+        wednesday: "11:00 AM - 7:00 PM",
+        thursday: "11:00 AM - 7:00 PM", 
+        friday: "11:00 AM - 7:00 PM",
+        saturday: "9:00 AM - 3:00 PM",
+        tuesday: "Mobile & At-Home Visits Only",
+        sunday: "Closed",
+        monday: "Closed"
       },
-      'services': {
-        id: 'services',
-        title: 'Our Services',
-        url: 'services.html',
-        summary: "We offer a range of nail care services including manicures, pedicures, and specialized treatments. In 2025, we're expanding to include Medi Spa services, integrating beauty, health, and wellness into one cohesive experience."
-      },
-      'shop': {
-        id: 'shop',
-        title: 'Shop',
-        url: 'shop.html',
-        summary: "Browse our exclusive Truth & Freedom nail polish collection, featuring colors named in honor of famous women. A portion of the proceeds from every purchase supports our DNNC Steps to Success program."
-      },
-      'steps': {
-        id: 'steps',
-        title: 'Steps to Success',
-        url: 'steps-to-success.html',
-        summary: "DNNC Steps to Success is our nonprofit initiative empowering women through mentorship and career advancement programs."
-      }
+      bookingUrl: "https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo",
+      rating: "4.9 stars on Yelp with 500+ reviews"
     },
-    sections: [],
     services: [
-      {
-        id: 'manicure',
-        title: 'Manicure',
-        description: 'Our signature manicure includes nail shaping, cuticle care, hand massage, and polish application.',
-        price: '$30'
-      },
-      {
-        id: 'pedicure',
-        title: 'Pedicure',
-        description: 'Rejuvenating pedicure treatment includes foot soak, exfoliation, nail care, and massage.',
-        price: '$45'
-      },
-      {
-        id: 'gel-polish',
-        title: 'Gel Polish Application',
-        description: 'Long-lasting gel polish application that stays perfect for up to two weeks.',
-        price: '$35'
-      }
+      { id: 'mobile-pedicure', title: 'Mobile Pedicure', price: '$135+', duration: '2h' },
+      { id: 'mobile-combo', title: 'Mobile Manicure and Pedicure', price: '$175+', duration: '3h' },
+      { id: 'express-pedicure', title: 'Luxurious Express Pedicure', price: '$45', duration: '30min' },
+      { id: 'spa-pedicure', title: 'Spa Pedicure', price: '$65', duration: '1h' },
+      { id: 'specialized-pedicure-1', title: 'Specialized Pedicure I', price: '$75', duration: '1h' },
+      { id: 'specialized-pedicure-2', title: 'Specialized Pedicure II', price: '$85', duration: '1h' },
+      { id: 'keryflex', title: 'Keryflex (Prosthetic Nail Care)', price: '$200', duration: '1h 30min' },
+      { id: 'gelish-manicure', title: 'Gelish Manicure', price: '$55-60', duration: '1h' },
+      { id: 'ibx-manicure', title: 'IBX Restorative Manicure', price: '$50-55', duration: '1h' }
+    ],
+    products: [
+      { id: 'dadi-oil', title: 'Dadi Oil & Anti-Fungal Oil', price: '$6-25' },
+      { id: 'lotions', title: 'Luxury Lotions', price: '$18-28' },
+      { id: 'sugar-scrub', title: 'Sugar Scrub', price: '$22' }
     ],
     lastUpdated: new Date()
   };
   
-  // Create WebsiteContent implementation
   window.WebsiteContent = {
     getContent: function() {
       return basicSiteInfo;
@@ -75,22 +58,9 @@
       query = query.toLowerCase();
       const results = [];
       
-      // Check pages
-      Object.values(basicSiteInfo.pages).forEach(page => {
-        if (page.title.toLowerCase().includes(query) ||
-            page.summary.toLowerCase().includes(query)) {
-          results.push({
-            type: 'page',
-            item: page,
-            relevance: 5
-          });
-        }
-      });
-      
-      // Check services
+      // Search services
       basicSiteInfo.services.forEach(service => {
-        if (service.title.toLowerCase().includes(query) ||
-            service.description.toLowerCase().includes(query)) {
+        if (service.title.toLowerCase().includes(query)) {
           results.push({
             type: 'service',
             item: service,
@@ -105,11 +75,6 @@
     init: async function() {
       console.log('Basic WebsiteContent initialized');
       return Promise.resolve();
-    },
-    
-    parseAllPages: async function() {
-      console.log('Basic WebsiteContent parsing (no-op)');
-      return Promise.resolve(basicSiteInfo);
     }
   };
   
