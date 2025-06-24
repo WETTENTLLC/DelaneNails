@@ -324,6 +324,25 @@
     <meta name="business-email" content="info@delanenails.com">
     <meta name="business-address" content="123 Beauty Lane, Suite 100, Anytown, USA">
     <meta name="business-hours" content="Mon-Sat: 9am-7pm, Sun: 10am-5pm">
+
+    <!-- Additional mobile optimization styles -->
+    <style>
+        /* Prevent content shift when menu opens */
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* Better spacing for mobile */
+        @media (max-width: 768px) {
+            section {
+                margin-bottom: 30px;
+            }
+            
+            .header-content {
+                position: relative;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -336,6 +355,13 @@
         <div class="title-and-slogan">
             <h1>Delane's Natural Nail Care & Medi Spa</h1>
             <p>Relaxing, Private, Professional, and Clean</p>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
         <!-- Navigation -->
@@ -414,6 +440,13 @@
         <a href="https://www.yelp.com/biz/delanes-natural-nail-care-san-leandro" target="_blank" class="yelp-cta">Read All Reviews on Yelp</a>
     </section>
 
+    <!-- New Initiative Announcement - Updated to use floating-frame and center formatting -->
+    <center><section id="training-initiative" class="floating-frame">
+        <h2>Announcing Our New Initiative: Specialized Manicure Training</h2>
+        <p>In response to recent regulatory changes, DNNC is expanding specialized training for manicurists to ensure safety and excellence in our industry. Join us for in-person or Zoom sessions!</p>
+        <a href="training.html" class="btn-secondary">Learn More</a>
+    </section></center>
+
     <!-- Our Team Section has been removed -->
 </main>
 
@@ -449,6 +482,9 @@
         <p>&copy; 2023 Delane's Natural Nail Care & Medi-Spa. All rights reserved.</p>
     </div>
 </footer>
+
+<!-- Add mobile menu script before other scripts -->
+<script src="js/mobile-menu.js"></script>
 
 <!-- Add this just before the other scripts -->
 <script src="js/steps-to-success-content.js"></script>

@@ -6,6 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/pricing-styles.css">
+    <!-- Additional responsive styling for shop -->
+    <style>
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* Mobile-optimized product layout */
+        @media (max-width: 768px) {
+            .product-card {
+                width: 100%;
+                margin: 10px 0;
+            }
+            
+            .row {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .col-md-6 {
+                width: 100%;
+            }
+            
+            .featured-products .container {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -20,6 +48,13 @@
         <div class="title-and-slogan">
             <h1>Delane's Natural Nail Care & Medi-Spa</h1>
             <p>Relaxing, Private, Professional, and Clean</p>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
         <!-- Navigation -->
@@ -53,7 +88,7 @@ onclick="window.location.href='booking.html'">BOOK NOW</button>
         <center><section class="floating-frame">
             <h1>Welcome to Our Shop</h1>
             <p>Support our mission by purchasing products that empower 
-               change.Each shade in our Truth & Freedom collection is named after an 
+               change. Each shade in our Truth & Freedom collection is named after an 
                inspiring woman who embodies strength, resilience, and beauty. Our 
                non-toxic, cruelty-free formula is designed for long-lasting shine and nail health. 
                All proceeds go toward helping single mothers build brighter futures.</p>
@@ -69,6 +104,7 @@ onclick="window.location.href='booking.html'">BOOK NOW</button>
                 providing mentorship, career guidance, and empowerment programs for aspiring women.
             </p>
             <img src="/images/truth-freedom.png" alt="Truth & Freedom Nail Polish">
+            <div class="product-price">Starting at $15.00</div>
             <p>
                 Join the movement—wear your story and make a difference.
             </p>
@@ -79,6 +115,7 @@ onclick="window.location.href='booking.html'">BOOK NOW</button>
         <center><section id="nail-treatment" class="floating-frame">
         <h2>Dadi Oil & Anti-Fungal Oil</h2>
         <p> Nail strengthening oil treatment that restores brittle, thin and damaged nails. Great for skin, hair, and nails. 95% Organic. Vegan</p>
+        <div class="product-price">$25.00 - $35.00</div>
         <a href="shop.html#order-now" class="nav-link">Order Now</a>
     </section></center>
 
@@ -86,6 +123,7 @@ onclick="window.location.href='booking.html'">BOOK NOW</button>
         <center><section id="lotions-oils" class="floating-frame">
         <h2>Lotions</h2>
         <p>Hydrate and nourish your skin with our luxurious collection of lotions and essential oils.</p>
+        <div class="product-price">$18.00 - $28.00</div>
         <a href="shop.html#order-now" class="nav-link">Order Now</a>
     </section></center>
 
@@ -93,6 +131,7 @@ onclick="window.location.href='booking.html'">BOOK NOW</button>
         <center><section id="sugar-scrub" class="floating-frame">
         <h2>Sugar Scrub</h2>
         <p>Exfoliate and refresh your skin with our handcrafted sugar scrubs, perfect for smooth and radiant skin.</p>
+        <div class="product-price">$22.00</div>
         <a href="shop.html#order-now" class="nav-link">Order Now</a>
     </section></center>
 
@@ -100,26 +139,41 @@ onclick="window.location.href='booking.html'">BOOK NOW</button>
         <center><section id="pedicure-slippers" class="floating-frame">
         <h2>Pedicure Slippers</h2>
         <p>Enjoy ultimate comfort with our premium pedicure slippers, designed for relaxation and style.</p>
+        <div class="product-price">$12.00 - $18.00</div>
         <a href="shop.html#order-now" class="nav-link">Order Now</a>
     </section></center>
 
+        <!-- Featured Products Section -->
+        <section class="featured-products">
+            <div class="container">
+                <h2>Featured Products</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card product-card">
+                            <img src="images/annie-malone-coloring-book.jpg" class="card-img-top" alt="Annie Malone Coloring Book">
+                            <div class="card-body">
+                                <h5 class="card-title">Annie Malone Coloring Book by Myeshia</h5>
+                                <p class="card-text">Learn about the inspirational story of Annie Turnbo Malone, the first Black female millionaire in the US and mentor to Madame CJ Walker, through this beautifully illustrated coloring book.</p>
+                                <p class="price">$12.99</p>
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Additional products can be added here -->
+                </div>
+            </div>
+        </section>
 
-        <!-- Mission Section -->
-        <center><section class="shop-mission">               
-        <section id="shop">
-        <div class="floating-frame">
-        <section class="shop-mission floating-frame">
+        <!-- Clean up these improperly nested sections -->
+        <center><section class="shop-mission floating-frame">
             <h2>Why Shop With Us?</h2>
             <p>When you purchase from our shop, you're not just buying a 
 product – you're supporting our initiative to provide resources, training, 
 and support to underserved women and single mothers in need. Your purchase makes a difference.</p>
         </section></center>
 
-        <!-- Yelp Reviews Section -->
-        <center><section class="yelp-reviews">
-        <section id="yelp-reviews">
-        <div class="floating-frame">
-        <section id="yelp-section" class=floating-frame">
+        <!-- Fix this section -->
+        <center><section id="yelp-section" class="floating-frame">
             <h2>5-Star Yelp Reviews</h2>
             <div class="yelp-rating">
                 <p>We are proud of our consistent 5-star ratings on Yelp!</p>
@@ -131,6 +185,8 @@ and support to underserved women and single mothers in need. Your purchase makes
     <footer>
         <center><p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p></center>
     </footer>
+    <!-- Add mobile menu script before closing body tag -->
+    <script src="js/mobile-menu.js"></script>
 </body>
 </html>
 

@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>About - Delane's Natural Nail Care & Medi-Spa</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body.menu-open {
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <div class="header-placeholder left"></div> <!-- Left Placeholder -->
-
     <div class="header-content">
         <!-- Logo -->
         <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
@@ -19,6 +22,13 @@
         <div class="title-and-slogan">
             <h1>Delane's Natural Nail Care & Medi Spa</h1>
             <p>Relaxing, Private, Professional, and Clean</p>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
         <!-- Navigation -->
@@ -35,8 +45,6 @@
             </ul>
         </nav>
     </div>
-
-    <div class="header-placeholder right"></div> <!-- Right Placeholder -->
 
     <!-- Header Buttons -->
     <div class="header-buttons">
@@ -67,6 +75,22 @@
             </div>
         </section>
 
+        <section class="our-mission">
+            <div class="container">
+                <h2>Our Mission & Inspiration</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>We borrow a page from the great philanthropist and cosmetologist, Annie Turnbo Malone, who predated and taught Madame CJ Walker as the first Black female millionaire in the US. She was committed to making a difference in the lives of women who would ordinarily be left out of a system that was designed to disenfranchise women and minorities.</p>
+                        <p>Like Annie Malone, we are here to lead women in a holistic manner to a sustainable career for themselves and their families. In the spirit of her legacy, DNNC in partnership with DNNC Steps to Success is providing essential training to empower new professionals in our industry.</p>
+                        <a href="https://historicmissourians.shsmo.org/annie-turnbo-malone" target="_blank" class="btn btn-outline-secondary">Learn more about Annie Malone</a>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="images/annie-malone.jpg" alt="Annie Turnbo Malone" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="donation-frame">
             <p>Support Steps to Success</p>
             <a href="steps-to-success.html" title="Learn more about Steps to Success">Donate Now</a>
@@ -87,5 +111,6 @@
     </nav>
     <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
 </footer>
+<script src="js/mobile-menu.js"></script>
 </body>
 </html>

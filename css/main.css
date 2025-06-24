@@ -117,3 +117,264 @@ footer {
         flex-direction: column;
     }
 }
+
+/* Announcement Banner */
+.announcement-banner {
+  background-color: #f8f1ff;
+  padding: 3rem 0;
+  margin: 2rem 0;
+  text-align: center;
+  border-radius: 8px;
+}
+
+/* Mission Section */
+.our-mission {
+  padding: 4rem 0;
+  background-color: #f9f9f9;
+}
+
+/* Training Initiative */
+.training-initiative {
+  padding: 4rem 0;
+}
+
+.training-initiative .card {
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+.training-initiative .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Shop Products */
+.product-card {
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #673AB7;
+}
+
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1000;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #e83e8c;
+    transition: all 0.3s ease;
+}
+
+/* Improved Responsive Design */
+@media (max-width: 992px) {
+    .header-content {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .title-and-slogan h1 {
+        font-size: 1.5rem;
+    }
+    
+    .title-and-slogan p {
+        font-size: 0.9rem;
+    }
+    
+    .logo {
+        max-width: 120px;
+        margin-bottom: 10px;
+    }
+    
+    .header-placeholder {
+        display: none;
+    }
+    
+    .header-buttons {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    .header-buttons button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Floating frames adjustments */
+    .floating-frame {
+        width: 95%;
+        padding: 15px;
+        margin: 15px auto;
+    }
+    
+    /* Announcement banner adjustment */
+    .announcement-banner {
+        padding: 1.5rem 0;
+        margin: 1rem 0;
+    }
+    
+    .special-announcement h2 {
+        font-size: 20px;
+    }
+    
+    .special-announcement p {
+        font-size: 16px;
+    }
+    
+    .masterclass-button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    
+    /* Yelp section adjustment */
+    .yelp-reviews-frame {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .yelp-badge {
+        top: -10px;
+        right: -10px;
+        padding: 3px 10px;
+        font-size: 10px;
+    }
+    
+    /* Product cards for shop */
+    .product-card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: white;
+        height: 100vh;
+        z-index: 999;
+        padding: 60px 20px 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        overflow-y: auto;
+    }
+    
+    nav.mobile-open ul {
+        display: flex;
+    }
+    
+    nav ul li {
+        margin: 10px 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+    
+    /* Improved banner layout */
+    .special-announcement {
+        padding: 15px;
+    }
+    
+    /* Better touch targets */
+    nav ul li a, 
+    .btn-secondary,
+    .yelp-cta, 
+    .masterclass-button {
+        display: block;
+        padding: 12px;
+        margin: 5px 0;
+    }
+    
+    /* Better image scaling */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Training section layout */
+    .training-initiative .row {
+        flex-direction: column;
+    }
+    
+    /* Our mission section layout */
+    .our-mission .row {
+        flex-direction: column;
+    }
+    
+    .our-mission .col-md-6 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* Footer adjustments */
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-and-slogan h1 {
+        font-size: 1.2rem;
+    }
+    
+    .header-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Fix widget position */
+    #nailaide-root {
+        width: calc(100% - 40px) !important;
+    }
+    
+    /* Smaller headings on mobile */
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+}

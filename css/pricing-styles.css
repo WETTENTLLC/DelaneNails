@@ -1,0 +1,56 @@
+/* Pricing display styles */
+.pricing-info {
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.price-item:last-child {
+    border-bottom: none;
+}
+
+.service-name {
+    font-weight: bold;
+    flex: 1;
+}
+
+.service-duration {
+    color: #888;
+    font-size: 0.9em;
+    margin: 0 10px;
+}
+
+.service-price {
+    font-weight: bold;
+    color: #4CAF50;
+    font-size: 1.1em;
+}
+
+.product-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4CAF50;
+    margin: 10px 0;
+}
+
+/* Mobile responsive pricing */
+@media (max-width: 768px) {
+    .price-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .service-duration {
+        margin: 0;
+    }
+}
