@@ -102,36 +102,81 @@
         this.removeTypingIndicator();
         this.addMessage('assistant', response);
       } catch (error) {
+        console.error('Chat error:', error);
         this.removeTypingIndicator();
-        this.addMessage('assistant', 'I apologize, but I\'m having trouble responding right now. Please call us at (510) 346-2457 or book online at our Booksy page.');
+        const fallbackResponse = this.getFallbackResponse(message);
+        this.addMessage('assistant', fallbackResponse);
       }
     }
 
     async getGeminiResponse(userMessage) {
-      const systemPrompt = this.buildSystemPrompt();
-      
-      const requestBody = {
-        contents: [{
-          parts: [{
-            text: `${systemPrompt}\n\nUser question: ${userMessage}`
-          }]
-        }]
-      };
-
-      const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody)
-      });
-
-      if (!response.ok) {
-        throw new Error('Gemini API request failed');
+      // First try local response for common queries
+      const localResponse = this.getLocalResponse(userMessage);
+      if (localResponse) {
+        return localResponse;
       }
 
-      const data = await response.json();
-      return data.candidates[0].content.parts[0].text;
+      // Try Gemini API
+      try {
+        const systemPrompt = this.buildSystemPrompt();
+        
+        const requestBody = {
+          contents: [{
+            parts: [{
+              text: `${systemPrompt}\n\nUser question: ${userMessage}`
+            }]
+          }]
+        };
+
+        const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+          console.error('Gemini API error:', response.status, response.statusText);
+          throw new Error('Gemini API request failed');
+        }
+
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text;
+      } catch (error) {
+        console.error('Gemini API error:', error);
+        return this.getFallbackResponse(userMessage);
+      }
+    }
+
+    getLocalResponse(message) {
+      const msg = message.toLowerCase();
+      
+      if (msg.includes('service') || msg.includes('what do you offer')) {
+        return `We offer comprehensive nail care services:\n\n• Mobile Pedicure: $135+ (2h)\n• Luxurious Express Pedicure: $45 (30min)\n• Spa Pedicure: $65 (1h)\n• Specialized Pedicures: $75-100\n• Gelish Manicure: $55-60\n• IBX Restorative Manicure: $50-55\n\nWe specialize in natural nail health and have 4.9 stars on Yelp! Would you like to book an appointment?`;
+      }
+      
+      if (msg.includes('book') || msg.includes('appointment') || msg.includes('schedule')) {
+        return `I'd be happy to help you book an appointment! You can book online through our Booksy page: https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo\n\nOur hours are:\n• Wed-Fri: 11AM-7PM\n• Saturday: 9AM-3PM\n• Tuesday: Mobile & At-Home Visits Only\n• Sun-Mon: Closed\n\nYou can also call us at (510) 346-2457!`;
+      }
+      
+      if (msg.includes('hour') || msg.includes('open') || msg.includes('time')) {
+        return `Our business hours are:\n\n• Wednesday-Friday: 11:00 AM - 7:00 PM\n• Saturday: 9:00 AM - 3:00 PM\n• Tuesday: Mobile & At-Home Visits Only\n• Sunday-Monday: Closed\n\nWe're located at 333 Estudillo Ave, Suite 204, San Leandro, CA 94577`;
+      }
+      
+      if (msg.includes('price') || msg.includes('cost') || msg.includes('how much')) {
+        return `Here are our popular services and pricing:\n\n• Express Pedicure: $45 (30min)\n• Spa Pedicure: $65 (1h)\n• Mobile Pedicure: $135+ (2h)\n• Gelish Manicure: $55-60\n• Specialized Pedicures: $75-100\n• Keryflex Nail Care: $200\n\nWould you like to book one of these services?`;
+      }
+      
+      if (msg.includes('location') || msg.includes('address') || msg.includes('where')) {
+        return `We're located at:\n333 Estudillo Ave, Suite 204\nSan Leandro, CA 94577\n\nPhone: (510) 346-2457\nEmail: delane@delanesnails.com\n\nWe also offer mobile services that come to you!`;
+      }
+      
+      return null;
+    }
+
+    getFallbackResponse(message) {
+      return `Thank you for your question! Here's how you can get help:\n\n📞 Call us: (510) 346-2457\n🌐 Book online: https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo\n📧 Email: delane@delanesnails.com\n\nWe're open Wed-Fri 11AM-7PM, Sat 9AM-3PM. Tuesday is for mobile visits only!`;
     }
 
     buildSystemPrompt() {
