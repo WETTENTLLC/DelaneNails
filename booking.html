@@ -3,123 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delane's Natural Nail Care & Medi-Spa - Book Your Appointment</title>
+    <title>Book Your Appointment - Delane's Natural Nail Care</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header, footer {
-            background: black;
-            color: white;
+        .booking-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px;
             text-align: center;
-            padding: 15px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-
-        nav ul li a {
-            color: #00bcd4;
-            text-decoration: none;
-        }
-
-        h2, h3 {
-            color: #00bcd4;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input, select, textarea, button {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 100%;
-        }
-
-        button {
-            background-color: #00bcd4;
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background-color: #008ba3;
-        }
-
-        .floating-frame {
-            background: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .service-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
             background: white;
-            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .booksy-button {
+            display: inline-block;
+            background: #00bcd4;
+            color: white;
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
             border-radius: 10px;
-            width: 80%;
-            max-width: 500px;
-            text-align: center;
+            transition: all 0.3s ease;
+            margin-top: 20px;
         }
-
-        .close {
-            float: right;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: red;
-        }
-
-        @media (min-width: 768px) {
-            main {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
+        
+        .booksy-button:hover {
+            background: #008ba3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 139, 163, 0.3);
         }
     </style>
 </head>
 <body>
-<header>
-    <div class="header-placeholder left"></div> <!-- Left Placeholder -->
 
+<header>
     <div class="header-content">
         <!-- Logo -->
         <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
@@ -145,103 +64,42 @@
         </nav>
     </div>
 
-    <div class="header-placeholder right"></div> <!-- Right Placeholder 
--->
-
     <!-- Header Buttons -->
     <div class="header-buttons">
-        <button class="get-started" onclick="window.location.href='booking.html'">RESET BOOKING</button>
+        <button class="get-started" onclick="window.location.href='booking.html'">BOOK NOW</button>
         <button class="donate-now" onclick="window.location.href='https://www.flipcause.com/secure/donate/NjYzMzc='">DONATE</button>
     </div>
 </header>
-    
-    <main id="mainContent">
-        <!-- Booking Form -->
-        <section id="booking-form" class="floating-frame">
-            <h2>Book Your Appointment</h2>
-            <form id="bookingForm">
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required>
-                
-                <label for="time">Time:</label>
-                <input type="time" id="time" name="time" required>
-                
-                <label for="stylist">Select Stylist:</label>
-                <select id="stylist" name="stylist" required aria-label="Select Stylist">
-                    <option value="stylist1">Jane Doe</option>
-                    <option value="stylist2">John Smith</option>
-                </select>
-                
-                <label for="coupon">Coupon Code (Optional):</label>
-                <input type="text" id="coupon" name="coupon" placeholder="Enter coupon code">
-                
-                <button type="submit">Book & Pay</button>
-            </form>
-        </section>
 
-        <!-- Preferences Form -->
-        <section id="preferences-form" class="floating-frame">
-            <h3>Preferences & Health Concerns</h3>
-            <form id="preferencesForm">
-                <label for="music">Preferred Music:</label>
-                <input type="text" id="music" name="music" placeholder="E.g., Classical, Jazz">
-                
-                <label for="diabetic">Health Concerns:</label>
-                <input type="text" id="Health Concerns" name="answer" 
-placeholder="E.g., Explain-E.g. Are you diabetic">
-                <label for="scents">Preferred Scents:</label>
-                <input type="text" id="scents" name="scents" placeholder="E.g., Lavender, Vanilla">
-                
-                <button type="submit">Save Preferences</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
-        <nav>
-            <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
-            </ul>
-        </nav>
-    </footer>
-
-    <!-- Donation Frame -->
-    <div class="donation-frame">
-        <p>Support Steps to Success</p>
-        <a href="steps-to-success.html">Donate Now</a>
+<main>
+    <div class="booking-container">
+        <h1>Book Your Appointment</h1>
+        <p>Ready to experience our exceptional nail care services? Book your appointment through our secure Booksy platform.</p>
+        
+        <a href="https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro" target="_blank" class="booksy-button">
+            Book on Booksy
+        </a>
+        
+        <p style="margin-top: 30px; color: #666;">
+            <strong>Hours:</strong><br>
+            Tuesday - Friday: 11:00 AM - 7:00 PM<br>
+            Saturday: 9:00 AM - 3:00 PM<br>
+            Sunday - Monday: Closed
+        </p>
     </div>
+</main>
 
-    <!-- Modal -->
-    <div id="service-modal" class="service-modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeServiceModal('service-modal')">&times;</span>
-            <p>Additional service information goes here.</p>
-        </div>
-    </div>
+<footer>
+    <p>&copy; 2025 Delane's Natural Nail Care. All rights reserved.</p>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</footer>
 
-    <script>
-        // Modal Functionality
-        function openServiceModal(serviceId) {
-            const modal = document.getElementById(serviceId);
-            modal.style.display = 'flex';
-        }
-
-        function closeServiceModal(serviceId) {
-            const modal = document.getElementById(serviceId);
-            modal.style.display = 'none';
-        }
-
-        // Close modal when clicking outside the content
-        window.addEventListener('click', function(event) {
-            const modals = document.querySelectorAll('.service-modal');
-            modals.forEach(function(modal) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
