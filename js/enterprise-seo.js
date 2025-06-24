@@ -114,20 +114,6 @@ class EnterpriseSEO {
   }
 
   setupPerformanceOptimization() {
-    // Preload critical resources
-    const preloadLinks = [
-      { href: '/css/nailaide-gemini.css', as: 'style' },
-      { href: '/js/basic-website-content.js', as: 'script' }
-    ];
-
-    preloadLinks.forEach(link => {
-      const preload = document.createElement('link');
-      preload.rel = 'preload';
-      preload.href = link.href;
-      preload.as = link.as;
-      document.head.appendChild(preload);
-    });
-
     // DNS prefetch for external resources
     const dnsPrefetch = ['//fonts.googleapis.com', '//www.google-analytics.com'];
     dnsPrefetch.forEach(domain => {
