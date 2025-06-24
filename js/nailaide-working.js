@@ -123,7 +123,7 @@
 
       // Booking inquiries
       if (msg.includes('book') || msg.includes('appointment') || msg.includes('schedule') || msg.includes('reserve')) {
-        return `I'd love to help you book an appointment! 📅\n\n**Easy Online Booking:**\n🌐 https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo\n\n**Our Hours:**\n• Wednesday-Friday: 11AM-7PM\n• Saturday: 9AM-3PM\n• Tuesday: Mobile & At-Home Visits Only\n• Sunday-Monday: Closed\n\n**Or Call Us:**\n📞 (510) 346-2457\n\nWhich service interests you most?`;
+        return `I'd love to help you book an appointment! 📅\n\n**Click to Book Online:**\n<a href="https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo" target="_blank" style="background: #00bcd4; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin: 10px 0;">📅 BOOK NOW ON BOOKSY</a>\n\n**Our Hours:**\n• Wednesday-Friday: 11AM-7PM\n• Saturday: 9AM-3PM\n• Tuesday: Mobile & At-Home Visits Only\n• Sunday-Monday: Closed\n\n**Or Call Us:**\n📞 (510) 346-2457\n\nWhich service interests you most?`;
       }
 
       // Hours inquiry
@@ -143,7 +143,7 @@
 
       // Mobile services inquiry
       if (msg.includes('mobile') || msg.includes('home') || msg.includes('travel') || msg.includes('come to me')) {
-        return `Yes! We offer premium mobile services! 🚗✨\n\n🏠 **Mobile Services:**\n• Mobile Pedicure: $135+ (2 hours)\n• Mobile Manicure & Pedicure: $175+ (3 hours)\n\n📅 **Mobile Day:**\n• Tuesday: Dedicated mobile service day\n• Other days: By special arrangement\n\n✨ **What's Included:**\n• All professional equipment\n• Premium natural products\n• Same quality as in-salon service\n• Comfort of your own home\n\n📞 **Book Mobile Service:**\nCall (510) 346-2457 or book online:\nhttps://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo\n\nWhich mobile service interests you?`;
+        return `Yes! We offer premium mobile services! 🚗✨\n\n🏠 **Mobile Services:**\n• Mobile Pedicure: $135+ (2 hours)\n• Mobile Manicure & Pedicure: $175+ (3 hours)\n\n📅 **Mobile Day:**\n• Tuesday: Dedicated mobile service day\n• Other days: By special arrangement\n\n✨ **What's Included:**\n• All professional equipment\n• Premium natural products\n• Same quality as in-salon service\n• Comfort of your own home\n\n**Book Mobile Service:**\n<a href="https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo" target="_blank" style="background: #00bcd4; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; display: inline-block; margin: 5px 0;">📅 BOOK MOBILE SERVICE</a>\n\nOr call: (510) 346-2457\n\nWhich mobile service interests you?`;
       }
 
       // Specialized services
@@ -162,7 +162,7 @@
       }
 
       // Default intelligent response
-      return `Thank you for your question! I'd be happy to help you with information about Delane's Natural Nail Care & Medi-Spa.\n\n🌟 **Quick Info:**\n• Premium nail care services ($45-200)\n• Mobile services available\n• 4.9⭐ rating with 500+ reviews\n• Natural nail health specialists\n\n📞 **Contact Us:**\nPhone: (510) 346-2457\n🌐 Book Online: https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo\n\n⏰ **Hours:**\nWed-Fri: 11AM-7PM, Sat: 9AM-3PM\nTuesday: Mobile visits only\n\nWhat specific information can I help you find?`;
+      return `Thank you for your question! I'd be happy to help you with information about Delane's Natural Nail Care & Medi-Spa.\n\n🌟 **Quick Info:**\n• Premium nail care services ($45-200)\n• Mobile services available\n• 4.9⭐ rating with 500+ reviews\n• Natural nail health specialists\n\n**Book Your Appointment:**\n<a href="https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo" target="_blank" style="background: #00bcd4; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; display: inline-block; margin: 5px 0;">📅 BOOK NOW</a>\n\n📞 **Or Call:** (510) 346-2457\n\n⏰ **Hours:**\nWed-Fri: 11AM-7PM, Sat: 9AM-3PM\nTuesday: Mobile visits only\n\nWhat specific information can I help you find?`;
     }
 
     addMessage(sender, text, isTyping = false) {
