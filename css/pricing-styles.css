@@ -7,11 +7,24 @@
 }
 
 .price-item {
+    display: block;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.price-item .service-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 8px;
+}
+
+.price-item p {
+    margin: 8px 0 0 0;
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.4;
 }
 
 .price-item:last-child {
