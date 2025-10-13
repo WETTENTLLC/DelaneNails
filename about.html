@@ -13,8 +13,13 @@
 </head>
 <body>
 
-<header>
-    <div class="header-content">
+<header style="position: relative; padding: 0;">
+    <!-- Header Hero Image -->
+    <div class="header-hero" style="position: absolute; top: 0; left: 0; width: 100%; height: 280px; overflow: hidden; z-index: 1;">
+        <img src="images/HeaderHero Image.png" alt="Delane's Natural Nail Care Header Hero" style="width: 100%; height: 280px; object-fit: contain; object-position: left; display: block;">
+    </div>
+    
+    <div class="header-content" style="position: relative; z-index: 2; background: rgba(255,255,255,0.9); padding: 10px;">
         <!-- Logo -->
         <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
 
@@ -46,7 +51,7 @@
     </div>
 
     <!-- Header Buttons -->
-    <div class="header-buttons">
+    <div class="header-buttons" style="position: relative; z-index: 2;">
         <button class="get-started" onclick="window.location.href='booking.html'">BOOK NOW</button>
         <button class="donate-now" onclick="window.location.href='https://www.flipcause.com/secure/donate/NjYzMzc='">DONATE</button>
     </div>
