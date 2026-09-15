@@ -1,0 +1,425 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    line-height: 1.6;
+    font-size: 1.3rem; /* Increased body text size for better readability */
+}
+
+/* === HEADER STYLING === */
+header {
+    background-color: #ffffff;
+    color: #333;
+    padding: 25px 20px; /* Increased padding to fit all content */
+    position: relative; /* Changed from sticky to relative to remove scrolling */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    flex-direction: column; /* Stack elements vertically */
+    width: 100%;
+    height: auto; /* Allow height to adjust based on content */
+    text-align: center; /* Center all text */
+}
+
+.header-image-container {
+    width: 100%; /* Full width */
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.header-image-container img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Ensures the image fits properly */
+}
+
+/* Logo */
+.logo {
+    max-width: 180px; /* Increased size for better visibility */
+    height: auto;
+    margin-bottom: 15px; /* Adjusted spacing */
+}
+
+/* Title & Slogan */
+.title-and-slogan h1 {
+    font-size: 2.2rem; /* Increased size for better readability */
+    color: #00bcd4;
+    margin: 10px 0;
+}
+
+.title-and-slogan p {
+    font-size: 1.6rem; /* Increased size for better readability */
+    margin: 0;
+}
+
+/* Navigation */
+nav {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px; /* Adjusted spacing */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Increased gap for better spacing */
+}
+
+nav ul li a {
+    color: #00bcd4;
+    text-decoration: none;
+    padding: 10px 15px; /* Increased padding for better touch targets */
+    font-size: 1.3rem; /* Increased size for better readability */
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #007a8f; /* Hover effect for links */
+}
+
+/* Header Buttons */
+.header-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Increased gap for better spacing */
+    margin-top: 15px; /* Adjusted spacing */
+}
+
+/* Book Now & Donate Buttons */
+.get-started, .donate-now {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 12px 24px; /* Increased padding for better touch targets */
+    font-size: 1.3rem; /* Increased size for better readability */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.get-started:hover, .donate-now:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+}
+
+/* About Page Specific Styles */
+.about-container ul li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between image and text */
+}
+
+.about-container ul li img {
+    width: 240px; /* Adjust size as needed */
+    height: 240px; /* Adjust size as needed */
+    flex-shrink: 0; /* Prevent image from shrinking */
+    object-fit: contain; /* Ensures the image scales properly */
+}
+
+/* Services Grid and Medi-Spa Grid */
+.services-grid, .medi-spa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Service Frame and Medi-Spa Item */
+.service-frame, .medi-spa-item {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-frame:hover, .medi-spa-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 188, 212, 0.6);
+}
+
+/* Image Styling */
+.medi-spa-item img {
+    width: 100%; /* Ensure the image takes up the full width of its container */
+    max-width: 300px; /* Limit the maximum width of the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+    margin-bottom: 15px; /* Space between image and text */
+}
+
+/* Text Content Styling */
+.medi-spa-item h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.medi-spa-item p {
+    font-size: 1.3rem;
+    color: #555;
+    margin: 15px 0;
+}
+
+.medi-spa-item button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease;
+}
+
+.medi-spa-item button:hover {
+    background-color: #007a8f;
+}
+
+/* Video Styling */
+.medi-spa-item video {
+    width: 100%; /* Ensure the video takes up the full width of its container */
+    max-width: 300px; /* Limit the maximum width of the video */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+    margin-bottom: 15px; /* Space between video and text */
+}
+
+/* TV Frame Styling */
+.tv-frame {
+    position: relative;
+    width: 90%; /* Adjust width as needed */
+    max-width: 600px; /* Limit maximum width */
+    margin: 20px auto; /* Center the frame */
+    padding: 20px;
+    background-color: #333; /* Dark background for TV frame */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* TV Screen Styling */
+.tv-screen {
+    background-color: #fff; /* White background for the screen */
+    padding: 20px;
+    padding-bottom: 60px; /* Add extra padding at the bottom */
+    border-radius: 10px; /* Rounded corners for the screen */
+    text-align: center; /* Center-align content */
+    position: relative; /* Ensure the screen is positioned correctly */
+}
+
+.tv-screen h3 {
+    color: #00bcd4; /* Blue color for headings */
+    margin-top: 0;
+}
+
+.tv-screen p {
+    color: #555; /* Dark gray for text */
+    line-height: 1.6;
+}
+
+.tv-screen .read-more {
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 20px; /* Add margin at the bottom */
+    padding: 10px 20px;
+    background-color: #00bcd4; /* Blue button */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.tv-screen .read-more:hover {
+    background-color: #007a8f; /* Darker blue on hover */
+}
+
+/* TV Logo Styling */
+.tv-logo {
+    position: absolute;
+    bottom: 10px; /* Position at the bottom of the frame */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    text-align: center;
+    z-index: 1; /* Ensure the logo is above the screen */
+}
+
+.tv-logo img {
+    width: 80px; /* Adjust logo size */
+    height: auto;
+}
+
+/* Hover Effect for TV Frame */
+.tv-frame:hover {
+    transform: translateY(-10px); /* Float effect */
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6); /* Blue glow effect */
+}
+/* === FLOATING FRAME BASE STYLES === */
+.floating-frame, .service-frame {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 25px; /* Increased padding for better spacing */
+    margin: 25px auto;
+    width: 90%; /* Adjusted width for better fit on mobile */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-frame:hover, .service-frame:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+}
+
+/* Container for image and text */
+.image-text-container {
+    display: flex;
+    align-items: center; /* Vertically center items */
+    gap: 20px; /* Space between image and text */
+}
+
+/* Image styling */
+.image-text-container img {
+    width: 150px; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+/* Text content styling */
+.text-content {
+    flex: 1; /* Allow text to take up remaining space */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .image-text-container {
+        flex-direction: column; /* Stack image and text vertically */
+        text-align: center; /* Center-align text */
+    }
+
+    .image-text-container img {
+        width: 100%; /* Full width for smaller screens */
+        max-width: 300px; /* Limit maximum width */
+    }
+}
+
+/* === SERVICES GRID === */
+.services-grid, .medi-spa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.service-frame, .medi-spa-item {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-frame:hover, .medi-spa-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 188, 212, 0.6);
+}
+
+.service-frame h3, .medi-spa-item h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.service-frame p, .medi-spa-item p {
+    font-size: 1.3rem;
+    color: #555;
+    margin: 15px 0;
+}
+
+.service-frame button, .medi-spa-item button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease;
+}
+
+.service-frame button:hover, .medi-spa-item button:hover {
+    background-color: #007a8f;
+}
+
+/* === FOOTER STYLES === */
+footer {
+    background-color: #ffffff;
+    color: #333;
+    padding: 40px 20px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+footer nav ul li a {
+    color: #00bcd4;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+footer nav ul li a:hover {
+    color: #007a8f;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    header {
+        padding: 20px; /* Adjusted padding for mobile */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack navigation links vertically */
+        gap: 10px;
+    }
+
+    .floating-frame, .service-frame {
+        width: 95%; /* Adjusted width for better fit on mobile */
+    }
+
+    .services-grid, .medi-spa-grid {
+        grid-template-columns: 1fr; /* Stack grid items vertically on mobile */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack footer sections vertically */
+        align-items: center;
+        text-align: center;
+    }
+}

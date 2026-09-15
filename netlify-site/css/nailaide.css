@@ -1,0 +1,293 @@
+/* NailAide Chat Widget Styles - Simplified */
+
+/* Base widget container */
+.nailaide-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 999998;
+}
+
+.nailaide-container.minimized {
+  height: 0;
+  padding-top: 45px;
+  overflow: hidden;
+}
+
+/* Header styling */
+.nailaide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  color: white;
+  cursor: move;
+}
+
+.nailaide-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.nailaide-controls {
+  display: flex;
+}
+
+.nailaide-controls button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+  padding: 0 5px;
+}
+
+/* Chat message area */
+.nailaide-body {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+/* Message bubbles */
+.nailaide-message {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  max-width: 80%;
+  word-break: break-word;
+}
+
+.nailaide-message.bot {
+  background-color: #f0f0f0;
+  align-self: flex-start;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+
+.nailaide-message.user {
+  background-color: var(--user-bubble-color, #e1f5fe);
+  align-self: flex-end;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+/* Input area */
+.nailaide-input {
+  display: flex !important;
+  padding: 10px !important;
+  border-top: 1px solid #e0e0e0 !important;
+  background: white !important;
+  position: relative !important;
+  z-index: 999996 !important; /* Very high z-index */
+  pointer-events: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.nailaide-input textarea {
+  flex-grow: 1 !important;
+  border: 2px solid #9333ea !important; /* Make border more visible */
+  border-radius: 20px !important;
+  padding: 8px 15px !important;
+  outline: none !important;
+  resize: none !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  background: white !important; /* Explicitly set background */
+  position: relative !important; /* Proper stacking */
+  z-index: 999997 !important; /* Very high z-index */
+  min-height: 20px !important; /* Ensure minimum height */
+  pointer-events: auto !important; /* Force pointer events */
+  user-select: text !important; /* Ensure text selection works */
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  color: black !important; /* Ensure text is visible */
+  box-sizing: border-box !important;
+  width: calc(100% - 50px) !important; /* Make room for send button */
+  margin: 0 !important;
+}
+
+/* Ensure input is interactive */
+.nailaide-input textarea:focus {
+  border-color: var(--primary-color, #9333ea);
+  box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2);
+  outline: none !important;
+}
+
+/* Send button adjustments */
+.nailaide-send {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  margin-left: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto !important;
+}
+
+/* Chat launcher button */
+.nailaide-launcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--primary-color, #9333ea);
+  border: none;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 999997;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Links in chat */
+.nailaide-message a {
+  color: #9333ea;
+  text-decoration: underline;
+}
+
+.nailaide-message a:hover {
+  text-decoration: none;
+}
+
+/* Product gallery styles - improved for better button display */
+.nailaide-product-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.nailaide-product-card {
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 90px; /* Increased height to fit button better */
+  border: 1px solid #eee;
+}
+
+.nailaide-product-image {
+  height: 90px; /* Match container height */
+  width: 90px; /* Increased width */
+  object-fit: cover;
+  border-right: 1px solid #eee;
+}
+
+.nailaide-product-info {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.nailaide-product-name {
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: #333;
+  line-height: 1.2;
+  max-height: 28px;
+  overflow: hidden;
+}
+
+.nailaide-product-price {
+  color: #9333ea;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 3px 0;
+}
+
+.nailaide-buy-button {
+  background-color: var(--primary-color, #9333ea);
+  color: white !important; /* Ensure text is white */
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  text-decoration: none !important; /* Remove underline */
+  font-weight: bold;
+  width: fit-content; /* Ensure button fits content */
+  display: inline-block;
+  margin-top: auto; /* Push to bottom of container */
+  transition: all 0.2s;
+}
+
+.nailaide-buy-button:hover {
+  background-color: #7e22ce;
+  transform: translateY(-2px);
+}
+
+/* Shop button styling */
+.nailaide-shop-button {
+  background-color: var(--primary-color, #9333ea);
+  color: white !important;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none !important;
+  font-weight: bold;
+  display: inline-block;
+  margin: 10px 0;
+  transition: all 0.2s;
+}
+
+.nailaide-shop-button:hover {
+  background-color: #7e22ce;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .nailaide-container {
+    width: calc(100% - 40px);
+    right: 20px;
+    bottom: 80px;
+  }
+  
+  .nailaide-shop-button,
+  .nailaide-buy-button {
+    width: 100%;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+  
+  .nailaide-product-gallery {
+    margin: 0;
+  }
+}

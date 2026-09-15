@@ -1,0 +1,143 @@
+/* Styles for the walk-in appointment flow */
+
+/* Time slots container */
+.time-slots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  max-width: 100%;
+}
+
+.time-slot-button {
+  background-color: var(--primary-color, #9333ea);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  flex-grow: 0;
+  flex-basis: auto;
+}
+
+.time-slot-button:hover {
+  background-color: #7e22ce;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hour headings in time slots */
+.time-hour-heading {
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Service selection container */
+.service-selection-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.service-button {
+  background-color: var(--primary-color, #9333ea);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.service-button:hover {
+  background-color: #7e22ce;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-name {
+  font-weight: bold;
+}
+
+.service-details {
+  font-size: 12px;
+  margin-top: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-price {
+  font-weight: bold;
+}
+
+/* Confirmation buttons */
+.walk-in-confirm {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.walk-in-confirm button {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.walk-in-confirm-yes {
+  background-color: var(--primary-color, #9333ea);
+  color: white;
+}
+
+.walk-in-confirm-no {
+  background-color: #f44336;
+  color: white;
+}
+
+.walk-in-confirm button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Status indicators */
+.walk-in-success {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.walk-in-error {
+  background-color: #f44336;
+  color: white;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .time-slot-button,
+  .service-button {
+    padding: 10px;
+    font-size: 16px; /* Larger on mobile for touch */
+  }
+  
+  .walk-in-confirm {
+    flex-direction: column;
+  }
+}

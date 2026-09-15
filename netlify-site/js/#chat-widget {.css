@@ -1,0 +1,32 @@
+#chat-widget {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 10px;
+}
+
+#chat-output {
+    height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.chat-message {
+    margin-bottom: 5px;
+}
+
+#chat-form {
+    display: flex;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 5px;
+}
+
+#chat-form button {
+    padding: 5px 10px;
+}

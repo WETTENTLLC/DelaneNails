@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delane's Natural Nail Care | San Leandro, CA</title>
+    <meta name="description" content="Relaxing, private, professional nail care in San Leandro, CA. Specializing in natural manicures, pedicures, medical foot treatments, and AI-powered consultations.">
+    <meta name="keywords" content="natural nail care, manicure San Leandro, pedicure, medical pedicure, foot fungus treatment, callus removal, DNNC, Delane's Natural Nail Care">
+    <meta name="author" content="Delane's Natural Nail Care">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://delanesnails.com/">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Delane's Natural Nail Care | San Leandro, CA">
+    <meta property="og:description" content="Relaxing, private, professional nail care in San Leandro, CA. Specializing in natural manicures, pedicures, and medical foot treatments.">
+    <meta property="og:image" content="https://delanesnails.com/images/logo-images.png">
+    <meta property="og:url" content="https://delanesnails.com/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Delane's Natural Nail Care | San Leandro, CA">
+    <meta name="twitter:description" content="Relaxing, private, professional nail care in San Leandro, CA.">
+    <meta name="twitter:image" content="https://delanesnails.com/images/logo-images.png">
+    
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Delane's Natural Nail Care",
+      "description": "Specializing in natural nail care, manicures, pedicures, and medical foot treatments in a relaxing, private environment.",
+      "url": "https://delanesnails.com/",
+      "telephone": "+1-510-346-2457",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "333 Estudillo Ave, Suite 204",
+        "addressLocality": "San Leandro",
+        "addressRegion": "CA",
+        "postalCode": "94577",
+        "addressCountry": "US"
+      },
+      "openingHours": [
+        "Mo-Fr 11:00-19:00",
+        "Sa 09:00-15:00"
+      ],
+      "priceRange": "$$",
+      "image": "https://delanesnails.com/images/logo-images.png",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "100+"
+      }
+    }
+    </script>
+    
+    <!-- Critical CSS at the top -->
+    <style>
+        /* Essential widget styles to prevent FOUC */
+        #nailaide-root {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            z-index: 999999 !important;
+            width: 350px !important;
+            height: 500px !important;
+            background: transparent !important;
+            pointer-events: auto !important;
+        }
+        
+        .nailaide-chat-button, #emergency-chat-button {
+            position: absolute !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            width: 60px !important;
+            height: 60px !important;
+            border-radius: 50% !important;
+            background-color: #9333ea !important;
+            color: white !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            cursor: pointer !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+            z-index: 999999 !important;
+        }
+        
+        /* Widget reset button style */
+        #widget-reset {
+            position: fixed;
+            bottom: 20px;
+            right: 90px;
+            padding: 8px 12px;
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000000;
+        }
+        
+        .special-announcement {
+            background: linear-gradient(135deg, #ff69b4, #9333ea);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px auto;
+            text-align: center;
+            max-width: 900px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+        
+        .special-announcement h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .special-announcement p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .masterclass-button {
+            display: inline-block;
+            background: white;
+            color: #9333ea;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .masterclass-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 105, 180, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); }
+        }
+        
+        .announcement-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f44336;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transform: rotate(15deg);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Enhanced 5-Star Yelp Reviews Frame Styling */
+        .yelp-reviews-frame {
+            margin: 30px auto;
+            padding: 25px;
+            width: 80%;
+            background: linear-gradient(to right, #fff, #f5f9ff);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #d32323; /* Yelp red */
+            position: relative;
+            overflow: visible; /* Changed from 'hidden' to 'visible' to show the badge */
+            transition: all 0.4s ease;
+        }
+        
+        .yelp-reviews-frame:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .yelp-reviews-frame h2 {
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .yelp-logo {
+            height: 30px;
+            vertical-align: middle;
+        }
+        
+        .star-rating {
+            color: #d32323;
+            font-size: 24px;
+            margin: 15px 0;
+            letter-spacing: 3px;
+        }
+        
+        .review-count {
+            background: #d32323;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .yelp-cta {
+            display: inline-block;
+            background: #d32323;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(211, 35, 35, 0.2);
+        }
+        
+        .yelp-cta:hover {
+            background: #c41200;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(211, 35, 35, 0.3);
+        }
+        
+        .yelp-badge {
+            position: absolute;
+            top: -15px; /* Adjusted from -10px */
+            right: -15px; /* Adjusted from -10px */
+            background: #d32323;
+            color: white;
+            padding: 5px 15px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1; /* Added to ensure it appears above other elements */
+        }
+
+        /* New style for the official Yelp logo */
+        .official-yelp-logo {
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        
+        @keyframes pulse-yelp {
+            0% { box-shadow: 0 0 0 0 rgba(211, 35, 35, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(211, 35, 35, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 35, 35, 0); }
+        }
+    </style>
+
+    <!-- Regular stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/nailaide-gemini.css">
+    <link rel="stylesheet" href="css/walk-in-styles.css">
+    <link rel="stylesheet" href="css/homepage-styles.css">
+    
+    <!-- Regular styling -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            background-color: white;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        .header-content h1, .header-content p {
+            margin: 10px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section h1, section h2 {
+            color: #00bcd4;
+        }
+
+        section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .frame {
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        ul li img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .donation-frame {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .donation-frame a {
+            color: #00bcd4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+
+    <!-- Business metadata for NailAide -->
+    <meta name="business-name" content="DelaneNails">
+    <meta name="business-phone" content="(555) 123-4567">
+    <meta name="business-email" content="info@delanenails.com">
+    <meta name="business-address" content="123 Beauty Lane, Suite 100, Anytown, USA">
+    <meta name="business-hours" content="Mon-Sat: 9am-7pm, Sun: 10am-5pm">
+
+    <!-- Additional mobile optimization styles -->
+    <style>
+        /* Prevent content shift when menu opens */
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* Better spacing for mobile */
+        @media (max-width: 768px) {
+            section {
+                margin-bottom: 30px;
+            }
+            
+            .header-content {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header style="position: relative; padding: 0;">
+    <!-- Header Hero Image -->
+    <div class="header-hero" style="position: absolute; top: 0; left: 0; width: 100%; height: 280px; overflow: hidden; z-index: 1;">
+        <img src="images/HeaderHero Image.png" alt="Delane's Natural Nail Care Header Hero" style="width: 100%; height: 280px; object-fit: contain; object-position: left; display: block;">
+    </div>
+    
+    <div class="header-content" style="position: relative; z-index: 2; background: rgba(255,255,255,0.9); padding: 10px;">
+        <!-- Logo -->
+        <img src="images/logo-images.png" alt="Delane's Natural Nail Care Logo" class="logo">
+
+        <!-- Title & Slogan -->
+        <div class="title-and-slogan">
+            <strong>Book Now</strong>
+            <h1>Delane's Natural Nail Care</h1>
+            <p>Relaxing, Private, Professional, and Clean</p>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="shop.html">Shop</a></li>
+
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="steps-to-success.html">Steps to Success</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header Buttons -->
+    <div class="header-buttons" style="position: relative; z-index: 2;">
+        <button class="get-started" onclick="window.location.href='https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo'" target="_blank">Book Your Appointment Now</button>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <!-- Event Promotion -->
+    <section class="special-announcement">
+        <h2>Foot Care for Life San Leandro Wellness Event</h2>
+        <p>Join us for this upcoming wellness event this week! Support our community initiative for foot care and wellness.</p>
+        <a href="https://www.gofundme.com/f/foot-care-for-life-san-leandro-wellness-event?utm_source=ig&utm_medium=social&utm_content=link_in_bio&utm_id=97760_v0_s00_e0_tv3_a1dennhbcvkl5p" class="masterclass-button" target="_blank">Donate Now</a>
+    </section>
+
+    <!-- YELP Banner -->
+    <section class="yelp-banner floating-frame" style="background: #d32323; color: white; text-align: center; padding: 15px; margin: 20px auto; border-radius: 10px;">
+        <h2 style="color: white; margin: 0;">YELP Loves Us! DNNC is 5 Star Rated!</h2>
+        <div class="star-rating" style="color: #fff; font-size: 20px; margin: 10px 0;">★★★★★ 5.0/5</div>
+        <a href="https://www.yelp.com/biz/delanes-natural-nail-care-san-leandro" class="yelp-cta" target="_blank">View Reviews on Yelp</a>
+    </section>
+
+    <!-- Happening Now Section -->
+    <section class="happening-now floating-frame">
+        <h2>Happening Now</h2>
+        <p>Stay updated with our latest posts, events, and behind-the-scenes moments!</p>
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="https://www.instagram.com/delanes_nails?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="masterclass-button" style="display: inline-block; padding: 12px 30px; background: linear-gradient(135deg, #ff69b4, #9333ea); color: white; text-decoration: none; border-radius: 30px; font-weight: bold;">View Live Feed on Instagram</a>
+        </div>
+        <p style="text-align: center; font-size: 14px; color: #666;">Follow us for real-time updates and community events.</p>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section floating-frame">
+        <h2>Welcome to Delane's Natural Nail Care</h2>
+        <p>Our specialty is natural nail care, manicures and pedicures. We want to ensure that your nails, hands and feet are as healthy as possible. Because of this, we offer a unique service which has a more medical focus. Our services provide remedies for nail fungus, cracked and callus heels, dry skin, and the cutting of thick toe nails as well as other treatments. We do not provide nail enhancements such as acrylic or gel nails. Actually, many seek our services because we have reversed damage caused by acrylic and gel methods. However, we do provide a gel alternative for those who want their polish to last longer than normal. We have also identified natural polishes that also last a long time and are absent of toxins that are typically found in most lacquers.</p>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial floating-frame" style="background: #f0f8ff; border-left: 4px solid #00bcd4;">
+        <blockquote style="font-style: italic; margin: 0; padding: 20px;">
+            "The cleanliness, meticulous staff, and relaxing private rooms make this place exceptional."
+            <footer style="margin-top: 10px; font-weight: bold;">— Krystal K.</footer>
+        </blockquote>
+    </section>
+
+    <!-- Popular Services Preview -->
+    <section class="popular-services floating-frame">
+        <h2>Popular Services</h2>
+        <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+            <div class="service-card" style="padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                <h3>Specialized Pedicure</h3>
+                <p><strong>$75.00 • 1 hour</strong></p>
+                <p>For those with the following conditions: extremely dry skin, thick toe nails, and those with previous problems with ingrown toe nails and foot fungus. If necessary, we can provide referrals to podiatrist. (Repeat clients only).</p>
+            </div>
+            <div class="service-card" style="padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                <h3>Spa Pedicure</h3>
+                <p><strong>$65.00 • 1 hour</strong></p>
+                <p>Transform your feet with an exfoliating scrub, relaxing mineral salt bath, thorough calf and foot massage, callus treatment, complete with polish/buff and moisturizing serum. Disposable foot tub liners used.</p>
+            </div>
+            <div class="service-card" style="padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                <h3>Luxurious Express Pedicure</h3>
+                <p><strong>$45.00 • 30 minutes</strong></p>
+                <p>An express spa pedicure with a moisturizing treatment, foot soak, callous treatment, and aromatherapy.</p>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 16px; margin: 20px 0; color: #333;">Click on <strong>Book Now</strong> for more service options</p>
+        <center><a href="https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo" class="btn-secondary" target="_blank">View All Services</a></center>
+    </section>
+
+    <!-- DNNC Steps to Success -->
+    <section class="steps-to-success floating-frame">
+        <h2>DNNC Steps to Success</h2>
+        <p><strong>DNNC Steps to Success (DNNC STS)</strong> began organically in 2000 in Oakland, CA, and was formalized with a fiscal sponsor in 2016. This transformative initiative works in partnership with Delane's Natural Nail Care to empower and nurture the growth and development of underserved women, with a special focus on African American single parents in the Bay Area.</p>
+        
+        <h3>Leadership Team</h3>
+        <ul>
+            <li><strong>Founder and Executive Director:</strong> Delane Sims</li>
+            <li><strong>Assistant Executive Director:</strong> Myeshia Jefferson</li>
+        </ul>
+        
+        <p>Did you know?</p>
+        <ul>
+            <li>Of the 10 million low-income working families with children in the U.S., 39% are headed by single working mothers—approximately 4.1 million families.</li>
+            <li>Single-parent families are among the poorest in the nation, making them extremely vulnerable to homelessness.</li>
+            <li>Over 75% of all homeless families nationwide are headed by single women with children.</li>
+        </ul>
+        <p>These statistics, along with Delane's own life experience as a former homeless single mother, drive the mission of STS. Delane understands the challenges these women face and has dedicated her life to providing them with the tools and opportunities they need to thrive.</p>
+        
+        <h3>Our Programs & Services:</h3>
+        <ul>
+            <li><strong>Social skills and mental wellness workshops</strong> - Building confidence and emotional resilience</li>
+            <li><strong>Vocational training in cosmetology</strong> - Partnership with Delane's Natural Nail Care for hands-on experience</li>
+            <li><strong>Mentorship and employment pathways</strong> - Connecting participants with career opportunities</li>
+            <li><strong>Financial literacy and family stability support</strong> - Teaching essential life skills</li>
+            <li><strong>Emergency assistance</strong> - Housing help and life-changing support including providing vehicles to single mothers</li>
+        </ul>
+        
+        <h3>Awards and Recognition</h3>
+        <ul>
+            <li><strong>Mayor's Award of Excellence</strong> - San Leandro, December 2018</li>
+            <li><strong>Business of the Year</strong> - From Assemblymember Mia Bonta</li>
+            <li><strong>"The Future is our Community Award"</strong> - Local Chamber of Commerce, 2023</li>
+        </ul>
+        
+        <h3>Our Impact</h3>
+        <p>DNNC Steps to Success is designed to prevent homelessness, poverty, and poor health by addressing root causes and providing systemic support. We focus specifically on African American single parents in the Bay Area, providing comprehensive support that changes lives.</p>
+    </section>
+
+    <!-- Mobile Services -->
+    <section class="mobile-services floating-frame">
+        <h2>Mobile Services</h2>
+        <p><strong>Mobile Pedicure:</strong> Starts at $100.</p>
+        <p><strong>Eligibility:</strong> Designed for those homebound, in hospitals or nursing homes, pregnant, or otherwise unable to travel.</p>
+        <p><strong>Note:</strong> Mobile manicures are only available when booked with a mobile pedicure.</p>
+        <p><strong>Travel Fee:</strong> Applies beyond a 10-mile radius of the salon.</p>
+        <p><strong>Booking:</strong> Call 510-346-2457 to arrange.</p>
+    </section>
+
+    <!-- Salon Policies -->
+    <section class="salon-policies floating-frame">
+        <h2>Salon Policies</h2>
+        <p><strong>Cancellation:</strong> A 24-hour notice by phone is required to avoid charges.</p>
+        <p><strong>Children:</strong> Only allowed if receiving a service, though breastfed babies are welcome.</p>
+        <p><strong>Privacy:</strong> Private rooms are available upon request for specialized services; please notify the salon when booking.</p>
+        <p><strong>Group Booking:</strong> For two people, book separately online and request the same room in the notes. For more than two people, call for availability.</p>
+    </section>
+</main>
+
+<!-- Standard Footer - Ensuring only one footer exists -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: delane@delanesnails.com</p>
+            <p>Phone: (510) 346-2457</p>
+            <p>Address: 333 Estudillo Ave, Suite 204, San Leandro, CA 94577</p>
+            <p>Hours: Wed-Fri 11AM-7PM, Sat 9AM-3PM</p>
+            <p>Tuesday: Mobile & At-Home Visits Only</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="https://booksy.com/en-us/195354_delane-s-natural-nail-care_nail-salon_101290_san-leandro#ba_s=seo" target="_blank">Book Appointments</a></li>
+                <li><a href="https://www.yelp.com/biz/delanes-natural-nail-care-san-leandro" target="_blank">DNNC on YELP!</a></li>
+                <li><a href="steps-to-success.html">Donate to Steps to Success</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        
+        <p>&copy; 2025 Delane's Natural Nail Care & Medi-Spa. All rights reserved.</p>
+        <p style="font-size: 12px; margin-top: 10px;">Website created by <a href="mailto:jkinghall@wettinc.com" style="color: #00bcd4;">WETT INC</a></p>    <p style="font-size: 12px; margin-top: 10px;">Powered by WETT AI</p>    </div>
+</footer>
+
+<!-- Add mobile menu script before other scripts -->
+<script src="js/mobile-menu.js"></script>
+
+
+
+
+
+<!-- Enterprise Systems -->
+<script src="js/security-clean.js"></script>
+<script src="js/enterprise-seo.js"></script>
+<script src="js/image-optimization.js"></script>
+
+<!-- NailAide Chat Widget - TEMPORARILY DISABLED -->
+<!-- <script src="js/basic-website-content.js"></script> -->
+<!-- <script src="js/nailaide-working.js"></script> -->
+
+<!-- Initialize NailAide widget - TEMPORARILY DISABLED -->
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, waiting for all scripts...');
+        
+        // Wait for everything (DOM + scripts) to be fully loaded with a small timeout
+        setTimeout(function() {
+            console.log('Everything should be loaded now, initializing NailAide...');
+            
+            // Check if NailAide is available
+            if (typeof NailAide !== 'undefined') {
+                console.log('NailAide found, initializing...');
+                
+                // First initialize
+                NailAide.init();
+                
+                // Widget ready - starts closed
+                console.log('Widget ready - starts closed');
+            } else {
+                console.error('NailAide widget failed to load');
+                alert('Chat widget failed to load. Please refresh the page.');
+            }
+        }, 500);
+    });
+    
+    // NailAide functions - TEMPORARILY DISABLED
+    /*
+    // Enhanced reset function for NailAide widget
+    function resetNailAide() {
+        console.log('Resetting NailAide widget...');
+        
+        if (window.NailAide) {
+            if (typeof NailAide.reset === 'function') {
+                NailAide.reset();
+            } else {
+                // Fallback toggle
+                NailAide.toggle();
+                setTimeout(function() {
+                    // Widget starts closed
+                }, 500);
+            }
+        }
+    }
+    
+    // Emergency fix function
+    function emergencyFix() {
+        console.log('Applying emergency fix for input field...');
+        
+        if (window.NailAide && typeof NailAide.fixInputField === 'function') {
+            // Use the dedicated fix function
+            NailAide.fixInputField();
+        } else {
+            // Fallback manual fix
+            const container = document.querySelector('.nailaide-container');
+            if (!container) {
+                alert('NailAide container not found!');
+                return;
+            }
+            
+            const inputContainer = container.querySelector('.nailaide-input-container');
+            if (!inputContainer) {
+                alert('Input container not found!');
+                return;
+            }
+            
+            // Replace the input field
+            const oldInput = inputContainer.querySelector('textarea');
+            if (oldInput) oldInput.remove();
+            
+            const newInput = document.createElement('textarea');
+            newInput.placeholder = 'Type your message here...';
+            newInput.style.flexGrow = '1';
+            newInput.style.border = '1px solid #ddd';
+            newInput.style.borderRadius = '20px';
+            newInput.style.padding = '8px 15px';
+            newInput.style.outline = 'none';
+            newInput.style.resize = 'none';
+            newInput.style.pointerEvents = 'auto';
+            
+            inputContainer.prepend(newInput);
+            alert('Emergency fix applied! Try typing now.');
+        }
+    }
+    
+    // Force complete rebuild of widget
+    function forceRebuild() {
+        console.log('Forcing complete widget rebuild...');
+        
+        if (window.NailAide && typeof NailAide.forceReset === 'function') {
+            NailAide.forceReset();
+            
+            // Show the widget after reset
+            setTimeout(function() {
+                NailAide.toggle();
+            }, 500);
+            
+            alert('Widget has been completely rebuilt. You should see it now.');
+        } else {
+            alert('Cannot force rebuild. NailAide may not be properly loaded.');
+        }
+    }
+    
+    // New debug function
+    function checkWidget() {
+        console.log('Running NailAide diagnostics...');
+        
+        // Check for the NailAide global object
+        if (typeof NailAide === 'undefined') {
+            console.error('NailAide is not defined!');
+            alert('NailAide is not loaded properly. Check the console for details.');
+            return;
+        }
+        
+        // Use built-in debug if available
+        if (typeof NailAide.debugWidget === 'function') {
+            const status = NailAide.debugWidget();
+            console.table(status);
+            alert('Debug information logged to console. Check browser developer tools.');
+            return;
+        }
+        
+        // Manual check if debugWidget isn't available
+        const container = document.querySelector('.nailaide-container');
+        const launcher = document.querySelector('.nailaide-launcher');
+        const status = {
+            nailAideExists: !!window.NailAide,
+            containerExists: !!container,
+            launcherExists: !!launcher
+        };
+        
+        if (container) {
+            const style = window.getComputedStyle(container);
+            status.containerVisible = style.display !== 'none';
+            status.containerOpacity = style.opacity;
+            status.containerZIndex = style.zIndex;
+            status.containerPosition = style.position;
+        }
+        
+        console.table(status);
+        alert('Debug information has been logged to console. Check browser developer tools.');
+    }
+    
+    // Force show the widget
+    function forceShowWidget() {
+        console.log('Forcing widget to show...');
+        
+        if (window.NailAide) {
+            if (typeof NailAide.forceShow === 'function') {
+                NailAide.forceShow();
+                alert('Widget display forced. You should see it now.');
+            } else {
+                // Manually try to show it
+                const container = document.querySelector('.nailaide-container');
+                if (container) {
+                    container.style.display = 'flex';
+                    container.classList.remove('minimized');
+                    container.style.opacity = '1';
+                    container.style.visibility = 'visible';
+                    container.style.height = '500px';
+                    container.style.transform = 'none';
+                    alert('Widget display forced. You should see it now.');
+                } else {
+                    alert('Widget container not found! Try Force Rebuild first.');
+                }
+            }
+        } else {
+            alert('NailAide is not loaded properly.');
+        }
+    }
+    
+    // Function to check WebsiteContent status
+    function checkWebsiteContent() {
+        if (typeof WebsiteContent === 'undefined') {
+            console.error('WebsiteContent not found!');
+            alert('WebsiteContent module is not loaded. Site information queries will not work.');
+            return;
+        }
+        
+        const content = WebsiteContent.getContent();
+        const pageCount = Object.keys(content.pages || {}).length;
+        const sectionCount = (content.sections || []).length;
+        const serviceCount = (content.services || []).length;
+        
+        alert(`WebsiteContent status:\n- Pages: ${pageCount}\n- Sections: ${sectionCount}\n- Services: ${serviceCount}\n- Last updated: ${content.lastUpdated || 'never'}`);
+        
+        console.table({
+            pages: pageCount,
+            sections: sectionCount,
+            services: serviceCount,
+            lastUpdated: content.lastUpdated
+        });
+    }
+    */
+</script>
+
+<!-- Debug controls - TEMPORARILY DISABLED -->
+<!-- <div style="position: fixed; bottom: 20px; right: 90px; z-index: 1000000; display: none; gap: 10px;" id="debug-controls">
+  <button id="widget-reset" onclick="resetNailAide()">Reset Widget</button>
+  <button id="emergency-fix" onclick="emergencyFix()">Fix Input</button>
+  <button onclick="forceRebuild()">Force Rebuild</button>
+  <button onclick="checkWidget()">Debug</button>
+  <button onclick="forceShowWidget()">Force Show</button>
+  <button onclick="checkWebsiteContent()">Check Content</button>
+  <button onclick="testQuery('tell me about steps to success')">Test Steps Query</button>
+</div> -->
+
+<!-- Function to show debug tools during development -->
+<script>
+  // Only enable in development mode
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    document.getElementById('debug-controls').style.display = 'flex';
+  }
+</script>
+</body>
+</html>
+

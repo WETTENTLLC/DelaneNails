@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Cuticle Oil",
+      "description": "Nourishing treatment with jojoba oil and vitamin E",
+      "price": "$12.99",
+      "category": "Nail Care"
+    },
+    {
+      "id": 2,
+      "name": "Base Coat",
+      "description": "Long-lasting protective foundation for nail color",
+      "price": "$9.99",
+      "category": "Polishes"
+    },
+    {
+      "id": 3,
+      "name": "Quick Dry Top Coat",
+      "description": "Seals and protects color with a glossy finish",
+      "price": "$11.99",
+      "category": "Polishes"
+    },
+    {
+      "id": 4,
+      "name": "Nail Strengthener",
+      "description": "Fortifies weak, brittle nails with keratin",
+      "price": "$14.99",
+      "category": "Nail Care"
+    },
+    {
+      "id": 5,
+      "name": "Nail Polish Remover",
+      "description": "Acetone-free formula gentle on natural nails",
+      "price": "$7.99",
+      "category": "Nail Care"
+    }
+  ]
+}
