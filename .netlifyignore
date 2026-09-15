@@ -1,0 +1,43 @@
+# Local and repository metadata
+.git/
+.github/
+.vscode/
+node_modules/
+coverage/
+reports/
+
+# Backups and duplicate deployment artifacts
+backup/
+archived/
+delanesnails-static-upload/
+deployment_upload/
+delanesnails-static-upload.zip
+uploads/
+
+# Credentials and private configuration
+.env
+.env.*
+credentials/
+config/
+
+# Server and development source; Netlify serves the existing static pages/assets
+app.js
+bootstrap.js
+index.js
+package.json
+package-lock.json
+pnpm-lock.yaml
+jest.config.js
+controllers/
+models/
+routes/
+services/
+middleware/
+tests/
+utils/
+src/
+client/
+ai/
+
+# PHP handlers require a separate backend or Netlify Functions
+*.php
